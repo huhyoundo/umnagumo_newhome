@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import ClinicSection from './components/ClinicSection';
 import DoctorSection from './components/DoctorSection';
 import StatsSection from './components/StatsSection';
+import TrustSystemSection from './components/TrustSystemSection';
 import BeforeAfterSection from './components/BeforeAfterSection';
 import ContentGrid from './components/ContentGrid';
 import Footer from './components/Footer';
@@ -14,8 +15,9 @@ export default function Home() {
       <main>
         <Hero />
         <ClinicSection />
-        <DoctorSection />
         <StatsSection />
+        <TrustSystemSection />
+        <DoctorSection />
         <BeforeAfterSection />
         <ContentGrid />
       </main>

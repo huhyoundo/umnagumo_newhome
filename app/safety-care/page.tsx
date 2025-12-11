@@ -97,7 +97,7 @@ export default function SafetyCarePage() {
   return (
     <>
       <Header />
-      <main className="pt-[70px]">
+      <main className="pt-[70px] md:pt-0">
         {/* Hero Section */}
         <section className="relative py-16 md:py-24 bg-[#3a3a3a]">
           <div className="absolute inset-0 z-0">
@@ -106,6 +106,8 @@ export default function SafetyCarePage() {
               alt="안전케어"
               fill
               className="object-cover opacity-60"
+              quality={100}
+              sizes="100vw"
             />
           </div>
           <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
@@ -169,6 +171,8 @@ export default function SafetyCarePage() {
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      quality={100}
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
                   </div>
                   <div className="bg-[#8B7355] text-white py-3 px-4 text-center">
@@ -199,6 +203,8 @@ export default function SafetyCarePage() {
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      quality={100}
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
                   </div>
                   <div className="bg-[#8B7355] text-white py-3 px-4 text-center">
@@ -229,6 +235,8 @@ export default function SafetyCarePage() {
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      quality={100}
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
                   </div>
                   <div className="bg-[#8B7355] text-white py-3 px-4 text-center">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import FloatingContactButton from "./components/FloatingContactButton";
 
 export const metadata: Metadata = {
   title: "엄나구모 성형외과 | 강남 논현 가슴성형 전문",
@@ -20,6 +21,20 @@ export const metadata: Metadata = {
     url: "https://www.bust1.com/",
     siteName: "엄나구모 성형외과",
     type: "website",
+    images: [
+      {
+        url: "https://www.bust1.com/logo.png",
+        width: 800,
+        height: 600,
+        alt: "엄나구모 성형외과 로고",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "엄나구모 성형외과 | 강남 논현 가슴성형 전문",
+    description: "강남 논현동 가슴성형 전문 엄나구모 성형외과. 맞춤 디자인과 풍부한 임상 경험을 바탕으로 자연스럽고 아름다운 가슴라인을 제공합니다.",
+    images: ["https://www.bust1.com/logo.png"],
   },
 };
 
@@ -38,6 +53,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased min-h-screen">
         {children}
+        <FloatingContactButton />
       </body>
     </html>
   );

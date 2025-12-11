@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 const surgeryItems = [
   { name: '가슴재수술', href: '/breast-revision' },
@@ -21,130 +21,144 @@ const aboutItems = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [showMegaMenu, setShowMegaMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setActiveDropdown(null);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
-        isScrolled ? 'bg-white shadow-sm' : 'bg-white'
+      className={`fixed md:sticky top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
+        isScrolled
+          ? 'bg-white shadow-[0_1px_20px_rgba(0,0,0,0.08)]'
+          : 'bg-white/95'
       }`}
     >
-      <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-16">
-        <div className="flex items-center justify-between h-[70px]">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
+      {/* Main Header */}
+      <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-10">
+        <div className="flex items-center justify-center h-[70px]">
+          {/* Logo - Left */}
+          <Link href="/" className="absolute left-6 lg:left-10 flex items-center">
             <Image
               src="/logo.png"
               alt="엄나구모 성형외과"
-              width={140}
-              height={40}
-              className="h-[32px] md:h-[36px] w-auto transition-transform group-hover:scale-105"
+              width={160}
+              height={45}
+              className="h-[36px] md:h-[42px] w-auto"
               priority
+              quality={100}
             />
-            <span className="text-[15px] md:text-[17px] font-semibold text-[#2a2a2a] tracking-[-0.02em]">
-              엄나구모 성형외과
-            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8" ref={dropdownRef}>
-            {/* 병원 소개 */}
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('about')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="relative text-[14px] text-gray-600 hover:text-[#8B7355] transition-colors font-medium tracking-[-0.01em] py-6 group flex items-center gap-1">
+          {/* Desktop Navigation - Center */}
+          <div
+            className="hidden lg:block relative"
+            onMouseEnter={() => setShowMegaMenu(true)}
+            onMouseLeave={() => setShowMegaMenu(false)}
+          >
+            {/* Main Menu Items */}
+            <nav className="flex items-center justify-center">
+              <Link
+                href="#"
+                className="px-8 py-6 text-[17px] text-[#333] hover:text-[#8B7355] transition-colors tracking-[-0.01em] font-medium"
+                onClick={(e) => e.preventDefault()}
+              >
                 병원 소개
-                <svg className={`w-3 h-3 transition-transform ${activeDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {activeDropdown === 'about' && (
-                <div className="absolute top-full left-0 bg-white shadow-lg border border-gray-100 py-2 min-w-[160px]">
-                  {aboutItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="block px-4 py-2.5 text-[13px] text-gray-600 hover:text-[#8B7355] hover:bg-gray-50 transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* 가슴성형 */}
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('surgery')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="relative text-[14px] text-gray-600 hover:text-[#8B7355] transition-colors font-medium tracking-[-0.01em] py-6 group flex items-center gap-1">
+              </Link>
+              <Link
+                href="#"
+                className="px-8 py-6 text-[17px] text-[#333] hover:text-[#8B7355] transition-colors tracking-[-0.01em] font-medium"
+                onClick={(e) => e.preventDefault()}
+              >
                 가슴성형
-                <svg className={`w-3 h-3 transition-transform ${activeDropdown === 'surgery' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {activeDropdown === 'surgery' && (
-                <div className="absolute top-full left-0 bg-white shadow-lg border border-gray-100 py-2 min-w-[160px]">
-                  {surgeryItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="block px-4 py-2.5 text-[13px] text-gray-600 hover:text-[#8B7355] hover:bg-gray-50 transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+              </Link>
+              <Link
+                href="/before-after"
+                className="px-8 py-6 text-[17px] text-[#333] hover:text-[#8B7355] transition-colors tracking-[-0.01em] font-medium"
+              >
+                전후사진
+              </Link>
+            </nav>
+
+            {/* Unified Mega Menu Panel - Full Width */}
+            <div
+              className={`fixed top-[70px] left-0 w-screen transition-all duration-300 ${
+                showMegaMenu ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+              }`}
+            >
+              <div className="bg-white/95 backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.06)] border-t border-gray-100/50">
+                {/* Align columns with nav items above */}
+                <div className="flex justify-center py-5">
+                  <div className="flex">
+                    {/* Column 1: 병원 소개 - matches nav item width */}
+                    <div className="px-8 text-center">
+                      <div className="space-y-1">
+                        {aboutItems.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block py-1 text-[15px] text-[#444] hover:text-[#8B7355] transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Column 2: 가슴성형 */}
+                    <div className="px-8 text-center">
+                      <div className="space-y-1">
+                        {surgeryItems.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block py-1 text-[15px] text-[#444] hover:text-[#8B7355] transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Column 3: 전후사진 */}
+                    <div className="px-8 text-center">
+                      <div className="space-y-1">
+                        <Link
+                          href="/before-after"
+                          className="block py-1 text-[15px] text-[#444] hover:text-[#8B7355] transition-colors"
+                        >
+                          전후사진
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
+          </div>
 
-            {/* 수술 후기 */}
-            <Link
-              href="/before-after"
-              className="relative text-[14px] text-gray-600 hover:text-[#8B7355] transition-colors font-medium tracking-[-0.01em] py-6"
-            >
-              수술 후기
-            </Link>
-
-            {/* 커뮤니티 */}
-            <Link
-              href="/community"
-              className="relative text-[14px] text-[#8B7355] font-medium tracking-[-0.01em] py-6"
-            >
-              커뮤니티
-            </Link>
-          </nav>
+          {/* CTA Button - Right */}
+          <Link
+            href="http://pf.kakao.com/_QRNzxj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:block absolute right-6 lg:right-10 px-5 py-2 text-[14px] text-[#8B7355] border border-[#8B7355] hover:bg-[#8B7355] hover:text-white transition-all duration-300 tracking-[-0.01em]"
+          >
+            상담예약
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 -mr-2"
+            className="lg:hidden absolute right-6 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="메뉴"
           >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-[#333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -153,60 +167,76 @@ export default function Header() {
             </svg>
           </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-[500px] pb-4' : 'max-h-0'}`}>
-          <nav className="flex flex-col border-t border-gray-100 pt-4">
-            {/* 병원 소개 */}
-            <div className="py-2">
-              <p className="text-[13px] font-semibold text-gray-800 mb-2">병원 소개</p>
-              <div className="pl-3 space-y-1">
-                {aboutItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="block py-2 text-[14px] text-gray-600 hover:text-[#8B7355] transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
+      {/* Mobile Navigation */}
+      <div className={`lg:hidden bg-white overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-[600px]' : 'max-h-0'}`}>
+        <nav className="px-6 py-6 border-t border-gray-100">
+          {/* 병원 소개 */}
+          <div className="mb-6">
+            <p className="text-[12px] text-[#8B7355] mb-3 tracking-[0.1em]">ABOUT</p>
+            <div className="space-y-1">
+              {aboutItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="block py-2 text-[15px] text-[#333] hover:text-[#8B7355] transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
+          </div>
 
-            {/* 가슴성형 */}
-            <div className="py-2">
-              <p className="text-[13px] font-semibold text-gray-800 mb-2">가슴성형</p>
-              <div className="pl-3 space-y-1">
-                {surgeryItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="block py-2 text-[14px] text-gray-600 hover:text-[#8B7355] transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
+          {/* 가슴성형 */}
+          <div className="mb-6">
+            <p className="text-[12px] text-[#8B7355] mb-3 tracking-[0.1em]">SURGERY</p>
+            <div className="space-y-1">
+              {surgeryItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="block py-2 text-[15px] text-[#333] hover:text-[#8B7355] transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
+          </div>
 
+          {/* 전후사진 */}
+          <div className="mb-6 pt-4 border-t border-gray-100">
             <Link
               href="/before-after"
-              className="py-3 text-[14px] text-gray-600 hover:text-[#8B7355] transition-colors font-medium"
+              className="block py-2 text-[15px] text-[#333] hover:text-[#8B7355] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              수술 후기
+              전후사진
             </Link>
+          </div>
+
+          {/* Contact */}
+          <div className="pt-4 border-t border-gray-100">
             <Link
-              href="/community"
-              className="py-3 text-[14px] text-[#8B7355] font-medium"
+              href="tel:025126838"
+              className="flex items-center gap-3 py-3"
+            >
+              <span className="text-[18px] font-light text-[#333] tracking-wide">02-512-6838</span>
+            </Link>
+            <p className="text-[12px] text-gray-400 mb-4">평일 10:00-18:30 · 토 10:00-16:00</p>
+            <Link
+              href="http://pf.kakao.com/_QRNzxj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-3.5 bg-[#8B7355] text-white text-center text-[14px] tracking-wide"
               onClick={() => setIsMenuOpen(false)}
             >
-              커뮤니티
+              카카오톡 상담예약
             </Link>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
     </header>
   );

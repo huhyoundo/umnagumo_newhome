@@ -13,9 +13,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen pt-[70px] overflow-hidden">
+    <section className="relative min-h-screen pt-[70px] md:pt-0 overflow-hidden">
       {/* Full-screen Background Image with Zoom Animation */}
-      <div className="absolute inset-0 pt-[70px]">
+      <div className="absolute inset-0 pt-[70px] md:pt-0">
         <div
           className={`absolute inset-0 transition-transform duration-[2s] ease-out ${
             isLoaded ? 'scale-100' : 'scale-110'
@@ -27,6 +27,7 @@ export default function Hero() {
             fill
             className="object-cover object-center"
             priority
+            quality={100}
             sizes="100vw"
           />
         </div>

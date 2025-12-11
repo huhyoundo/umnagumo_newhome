@@ -11,7 +11,7 @@ export default function DoctorsPage() {
   return (
     <>
       <Header />
-      <main className="pt-[70px]">
+      <main className="pt-[70px] md:pt-0">
         {/* Hero Banner - 메인 상단 이미지 */}
         <section className="relative w-full">
           <Image
@@ -33,7 +33,7 @@ export default function DoctorsPage() {
             </h2>
             <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.9]">
               축적된 경험과 현대적 기술로 가장 자연스러운 아름다움을 실현합니다.<br />
-              체형 조건을 한 칩고도 디자인과 정확한 시술, 수술 이후의 모든 과정에서 한 분 한 분을 세심하게 돌보겠습니다.
+              체형 조건을 기반으로 한 정교한 디자인과 정확한 시술, 수술 이후의 모든 과정에서 한 분 한 분을 세심하게 돌보겠습니다.
             </p>
           </div>
         </section>
@@ -49,13 +49,14 @@ export default function DoctorsPage() {
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
               {/* Doctor Image */}
               <div className="flex justify-center lg:justify-start">
-                <div className="relative w-[300px] h-[400px] md:w-[360px] md:h-[480px]">
+                <div className="relative w-[340px] h-[450px] md:w-[420px] md:h-[560px]">
                   <Image
                     src="/의료진 페이지 사진/2(대표원장님).jpg"
                     alt="엄순천 대표원장"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 300px, 360px"
+                    quality={100}
+                    sizes="(max-width: 768px) 340px, 420px"
                   />
                 </div>
               </div>
@@ -110,13 +111,14 @@ export default function DoctorsPage() {
 
               {/* Doctor Image */}
               <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-                <div className="relative w-[300px] h-[400px] md:w-[360px] md:h-[480px]">
+                <div className="relative w-[340px] h-[450px] md:w-[420px] md:h-[560px]">
                   <Image
                     src="/의료진 페이지 사진/3(남정현-원장님).jpg"
                     alt="남정현 원장"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 300px, 360px"
+                    quality={100}
+                    sizes="(max-width: 768px) 340px, 420px"
                   />
                 </div>
               </div>
@@ -136,13 +138,14 @@ export default function DoctorsPage() {
                 100년을 향하는 엄나구모의 기술과 철학
               </p>
               {/* 역사 대표 이미지 */}
-              <div className="relative w-full max-w-[800px] mx-auto aspect-[16/9] mb-8">
+              <div className="relative w-full max-w-[1000px] mx-auto aspect-[16/9] mb-8">
                 <Image
                   src="/의료진 페이지 사진/4.jpg"
                   alt="엄나구모의 역사"
                   fill
                   className="object-cover rounded-lg"
-                  sizes="(max-width: 768px) 100vw, 800px"
+                  quality={100}
+                  sizes="(max-width: 768px) 100vw, 1000px"
                 />
               </div>
             </div>
@@ -161,6 +164,8 @@ export default function DoctorsPage() {
                       alt="나구모 의학 가문"
                       fill
                       className="object-contain"
+                      quality={100}
+                      sizes="240px"
                     />
                   </div>
                 </div>
@@ -221,6 +226,7 @@ export default function DoctorsPage() {
                       alt="엄나구모 병원"
                       fill
                       className="object-cover"
+                      quality={100}
                       sizes="260px"
                     />
                   </div>
@@ -262,7 +268,7 @@ export default function DoctorsPage() {
                   </div>
                   <div className="flex gap-4">
                     <span className="text-[#8B7355] font-medium min-w-[60px]">2017년</span>
-                    <span>게드웜이 발기 가슴수술 특화 시스템 구축</span>
+                    <span>겨드랑이 절개 가슴수술 특화 시스템 구축</span>
                   </div>
                   <div className="flex gap-4">
                     <span className="text-[#8B7355] font-medium min-w-[60px]">2018년</span>

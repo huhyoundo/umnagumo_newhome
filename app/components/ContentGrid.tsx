@@ -73,7 +73,8 @@ export default function ContentGrid() {
               alt="엄나구모 위치"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="33vw"
+              quality={100}
+              sizes="(max-width: 768px) 33vw, 350px"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           </div>
@@ -96,7 +97,8 @@ export default function ContentGrid() {
               alt="엄나구모 브랜딩"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="33vw"
+              quality={100}
+              sizes="(max-width: 768px) 33vw, 350px"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           </div>
@@ -122,7 +124,8 @@ export default function ContentGrid() {
               alt="엄나구모 인스타그램"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="33vw"
+              quality={100}
+              sizes="(max-width: 768px) 33vw, 350px"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-white/95 px-3 py-2 flex items-center gap-1.5 shadow-sm
@@ -153,7 +156,8 @@ export default function ContentGrid() {
               alt="엄나구모 조각상"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="33vw"
+              quality={100}
+              sizes="(max-width: 768px) 33vw, 350px"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           </div>
@@ -176,7 +180,8 @@ export default function ContentGrid() {
               alt="엄나구모 브랜드"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="33vw"
+              quality={100}
+              sizes="(max-width: 768px) 33vw, 350px"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           </div>
@@ -199,7 +204,8 @@ export default function ContentGrid() {
               alt="수술 장비"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="33vw"
+              quality={100}
+              sizes="(max-width: 768px) 33vw, 350px"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           </div>
@@ -222,7 +228,8 @@ export default function ContentGrid() {
               alt="엄나구모"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="33vw"
+              quality={100}
+              sizes="(max-width: 768px) 33vw, 350px"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           </div>

@@ -25,13 +25,13 @@ export default function DoctorSection() {
               엄나구모 의료진 소개
             </h2>
             <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.9] mb-8">
-              축적된 경험과 현대적 기술로 가장 자연스러운
+              축적된 경험과 전문적 기술로 가장 자연스러운
               <br />
-              아름다움을 실현합니다. 체형과 조건에 기반하여 한
+              아름다움을 실현하며, 체형과 균형을 기반으로 한
               <br />
-              분과 100번의 상담이 가능한 세심함으로 환자 한
+              정교한 디자인과 세심한 시술 과정 속에서 단 한 건
               <br />
-              분 한 분께 진심으로 다가갑니다.
+              한 건 최선의 결과를 돌봅니다.
             </p>
             <Link
               href="/doctors"
@@ -62,7 +62,8 @@ export default function DoctorSection() {
                 alt="엄나구모 의료진"
                 fill
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 600px"
+                quality={100}
+                sizes="(max-width: 1200px) 100vw, 800px"
               />
             </div>
           </div>
