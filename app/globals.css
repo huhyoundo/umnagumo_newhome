@@ -592,6 +592,521 @@ section {
   scroll-margin-top: 70px;
 }
 
+/* ===== Advanced Typography Animation System ===== */
+
+/* Glitch Text Effect */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch-text:hover::before {
+  animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
+  color: #8B7355;
+  opacity: 0.8;
+}
+
+.glitch-text:hover::after {
+  animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+  color: #C4A574;
+  opacity: 0.8;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 60% 0); transform: translate(var(--glitch-offset, 4px), 0); }
+  20% { clip-path: inset(60% 0 5% 0); transform: translate(calc(var(--glitch-offset, 4px) * -1), 0); }
+  40% { clip-path: inset(40% 0 40% 0); transform: translate(var(--glitch-offset, 4px), 0); }
+  60% { clip-path: inset(80% 0 5% 0); transform: translate(calc(var(--glitch-offset, 4px) * -1), 0); }
+  80% { clip-path: inset(10% 0 70% 0); transform: translate(var(--glitch-offset, 4px), 0); }
+  100% { clip-path: inset(50% 0 30% 0); transform: translate(calc(var(--glitch-offset, 4px) * -1), 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(60% 0 20% 0); transform: translate(calc(var(--glitch-offset, 4px) * -1), 0); }
+  20% { clip-path: inset(10% 0 70% 0); transform: translate(var(--glitch-offset, 4px), 0); }
+  40% { clip-path: inset(80% 0 5% 0); transform: translate(calc(var(--glitch-offset, 4px) * -1), 0); }
+  60% { clip-path: inset(30% 0 50% 0); transform: translate(var(--glitch-offset, 4px), 0); }
+  80% { clip-path: inset(70% 0 15% 0); transform: translate(calc(var(--glitch-offset, 4px) * -1), 0); }
+  100% { clip-path: inset(5% 0 85% 0); transform: translate(var(--glitch-offset, 4px), 0); }
+}
+
+/* Text Stroke Animation */
+.text-stroke-animate {
+  -webkit-text-stroke: 1px var(--primary-brown);
+  -webkit-text-fill-color: transparent;
+  transition: all 0.5s ease;
+}
+
+.text-stroke-animate:hover {
+  -webkit-text-fill-color: var(--primary-brown);
+}
+
+/* Magnetic Text Effect */
+@keyframes magnetic {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  75% { transform: translate(2px, 2px); }
+}
+
+.magnetic-text:hover {
+  animation: magnetic 0.3s ease-in-out infinite;
+}
+
+/* Character Dance Animation */
+@keyframes charDance {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-5px) rotate(-3deg); }
+  75% { transform: translateY(-5px) rotate(3deg); }
+}
+
+/* Text Reveal with Clip Path */
+@keyframes textRevealClip {
+  from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+.text-reveal-clip {
+  animation: textRevealClip 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Split Text Reveal */
+@keyframes splitRevealLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes splitRevealRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Typewriter Cursor */
+@keyframes blink {
+  0%, 50% { border-color: var(--primary-brown); }
+  51%, 100% { border-color: transparent; }
+}
+
+.typewriter-cursor::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--primary-brown);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+/* Text Gradient Shift */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-shift {
+  background: linear-gradient(
+    90deg,
+    var(--primary-brown) 0%,
+    var(--gold) 25%,
+    var(--primary-brown) 50%,
+    var(--gold) 75%,
+    var(--primary-brown) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* 3D Text Rotation */
+@keyframes rotate3DText {
+  0% { transform: perspective(500px) rotateX(-30deg) translateY(50px); opacity: 0; }
+  100% { transform: perspective(500px) rotateX(0) translateY(0); opacity: 1; }
+}
+
+.text-3d-rotate {
+  transform-style: preserve-3d;
+}
+
+.text-3d-rotate span {
+  display: inline-block;
+  animation: rotate3DText 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Wave Text Animation */
+@keyframes textWave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.wave-text span {
+  display: inline-block;
+  animation: textWave 1.5s ease-in-out infinite;
+}
+
+.wave-text span:nth-child(1) { animation-delay: 0s; }
+.wave-text span:nth-child(2) { animation-delay: 0.1s; }
+.wave-text span:nth-child(3) { animation-delay: 0.2s; }
+.wave-text span:nth-child(4) { animation-delay: 0.3s; }
+.wave-text span:nth-child(5) { animation-delay: 0.4s; }
+.wave-text span:nth-child(6) { animation-delay: 0.5s; }
+.wave-text span:nth-child(7) { animation-delay: 0.6s; }
+.wave-text span:nth-child(8) { animation-delay: 0.7s; }
+.wave-text span:nth-child(9) { animation-delay: 0.8s; }
+.wave-text span:nth-child(10) { animation-delay: 0.9s; }
+
+/* Blur Reveal */
+@keyframes blurReveal {
+  0% { filter: blur(20px); opacity: 0; transform: scale(0.8); }
+  100% { filter: blur(0); opacity: 1; transform: scale(1); }
+}
+
+.blur-reveal {
+  animation: blurReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Text Shadow Glow */
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(139, 115, 85, 0); }
+  50% { text-shadow: 0 0 30px rgba(139, 115, 85, 0.5), 0 0 60px rgba(139, 115, 85, 0.3); }
+}
+
+.text-glow-animate:hover {
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+/* Elastic Text Scale */
+@keyframes elasticScale {
+  0% { transform: scale(0); }
+  55% { transform: scale(1.1); }
+  70% { transform: scale(0.95); }
+  85% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.elastic-text {
+  display: inline-block;
+}
+
+.elastic-text span {
+  display: inline-block;
+  animation: elasticScale 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  opacity: 0;
+}
+
+/* Shake Text Effect */
+@keyframes textShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.text-shake:hover {
+  animation: textShake 0.5s ease-in-out;
+}
+
+/* Underline Grow Animation */
+.underline-grow {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-grow::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-brown);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.underline-grow:hover::after {
+  width: 100%;
+}
+
+/* Letter Spacing Animation */
+@keyframes letterSpread {
+  0% { letter-spacing: -0.5em; opacity: 0; }
+  40% { opacity: 0.6; }
+  100% { letter-spacing: normal; opacity: 1; }
+}
+
+.letter-spread {
+  animation: letterSpread 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Flip Text */
+@keyframes flipInX {
+  0% { transform: perspective(400px) rotateX(90deg); opacity: 0; }
+  40% { transform: perspective(400px) rotateX(-10deg); }
+  70% { transform: perspective(400px) rotateX(10deg); }
+  100% { transform: perspective(400px) rotateX(0deg); opacity: 1; }
+}
+
+.flip-text span {
+  display: inline-block;
+  animation: flipInX 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+}
+
+/* Bounce In Characters */
+@keyframes bounceInChar {
+  0% { opacity: 0; transform: scale(0.3) translateY(-60px); }
+  50% { transform: scale(1.05) translateY(0); }
+  70% { transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.bounce-text span {
+  display: inline-block;
+  animation: bounceInChar 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  opacity: 0;
+}
+
+/* ============================================
+   Hero Section Advanced Animations
+   ============================================ */
+
+/* Hero Wave Animation - 키네틱 웨이브 */
+@keyframes heroWave {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotateX(2deg);
+  }
+  75% {
+    transform: translateY(4px) rotateX(-2deg);
+  }
+}
+
+/* Glitch Text Effect - 글리치 효과 */
+@keyframes glitchText1 {
+  0%, 100% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(-3px, 2px);
+  }
+  40% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(3px, -2px);
+  }
+  60% {
+    clip-path: inset(20% 0 50% 0);
+    transform: translate(-2px, 1px);
+  }
+  80% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(2px, -1px);
+  }
+}
+
+@keyframes glitchText2 {
+  0%, 100% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: inset(30% 0 50% 0);
+    transform: translate(3px, -2px);
+  }
+  40% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translate(-3px, 2px);
+  }
+  60% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(2px, 1px);
+  }
+  80% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-2px, -1px);
+  }
+}
+
+/* Particle Float Animation - 파티클 부유 효과 */
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) scale(1.1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px) scale(1.05);
+    opacity: 0.35;
+  }
+}
+
+/* Scroll Indicator Bounce - 스크롤 인디케이터 */
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) translateY(12px);
+    opacity: 0.5;
+  }
+}
+
+/* Shimmer Effect - 버튼 쉬머 효과 */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  50%, 100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+/* Text Scramble Flash - 텍스트 스크램블 플래시 */
+@keyframes scrambleFlash {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+    text-shadow: 0 0 10px rgba(196, 165, 116, 0.5);
+  }
+}
+
+/* Magnetic Pulse - 마그네틱 펄스 */
+@keyframes magneticPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Loading Progress - 로딩 프로그레스 바 */
+@keyframes loadingProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Subtle Float - 미세 부유 효과 */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Reveal From Center - 중앙에서 펼쳐지기 */
+@keyframes revealFromCenter {
+  0% {
+    clip-path: inset(0 50% 0 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* 3D Flip Entrance - 3D 플립 입장 */
+@keyframes flip3DEntrance {
+  0% {
+    transform: perspective(1000px) rotateX(-90deg) translateY(50px);
+    opacity: 0;
+  }
+  60% {
+    transform: perspective(1000px) rotateX(10deg);
+  }
+  80% {
+    transform: perspective(1000px) rotateX(-5deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Pulse Glow - 펄스 글로우 */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(196, 165, 116, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(196, 165, 116, 0.6), 0 0 60px rgba(196, 165, 116, 0.3);
+  }
+}
+
+/* Typewriter Cursor - 타이프라이터 커서 */
+@keyframes typewriterCursor {
+  0%, 50% {
+    border-right-color: var(--primary-brown);
+  }
+  51%, 100% {
+    border-right-color: transparent;
+  }
+}
+
+/* Stagger Slide Up - 순차 슬라이드 업 */
+@keyframes staggerSlideUp {
+  0% {
+    transform: translateY(100%) rotateX(-15deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* Scale Bounce In - 스케일 바운스 인 */
+@keyframes scaleBounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -608,5 +1123,10 @@ section {
   .scroll-animate-scale {
     opacity: 1;
     transform: none;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    display: none;
   }
 }
