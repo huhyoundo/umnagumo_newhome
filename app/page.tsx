@@ -6,6 +6,7 @@ import StatsSection from './components/StatsSection';
 import TrustSystemSection from './components/TrustSystemSection';
 import BeforeAfterSection from './components/BeforeAfterSection';
 import ContentGrid from './components/ContentGrid';
+import YouTubeFeaturedSection from './components/YouTubeFeaturedSection';
 import Footer from './components/Footer';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <StatsSection />
         <TrustSystemSection />
         <DoctorSection />
+        <YouTubeFeaturedSection />
         <BeforeAfterSection />
         <ContentGrid />
       </main>

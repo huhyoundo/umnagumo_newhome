@@ -51,14 +51,14 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="absolute rounded-full bg-[#8B7355]/8"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
+          {particles.map((p) => (
+            <div
+              key={p.id}
+              className="absolute rounded-full bg-[var(--navy)]/8"
+              style={{
+                left: `${p.x}%`,
+                top: `${p.y}%`,
+                width: p.size,
             height: p.size,
             opacity: isVisible ? 0.5 : 0,
             animation: isVisible ? `particleFloat ${p.duration}s ease-in-out infinite` : 'none',
@@ -105,7 +105,6 @@ const clinicItems = [
     description: '구축, 비대칭, 모양 불만족 등 이전 수술의 문제를 정밀하게 교정합니다.',
     image: '/메인페이지 사진/2(가슴재수술).png',
     href: '/breast-revision',
-    accent: '#8B7355',
   },
   {
     number: '02',
@@ -114,7 +113,6 @@ const clinicItems = [
     description: '처진 유두와 유륜의 위치를 자연스럽게 교정하여 아름다운 형태를 만듭니다.',
     image: '/메인페이지 사진/3(유륜거상술).png',
     href: '/areola-lift',
-    accent: '#9B8365',
   },
   {
     number: '03',
@@ -123,7 +121,6 @@ const clinicItems = [
     description: '수술 전후 체계적인 관리 시스템으로 안전하고 빠른 회복을 도와드립니다.',
     image: '/메인페이지 사진/4(안전케어).jpg',
     href: '/safety-care',
-    accent: '#A99375',
   },
   {
     number: '04',
@@ -132,7 +129,6 @@ const clinicItems = [
     description: 'FDA 승인 정품 보형물의 종류와 특징을 상세히 안내해 드립니다.',
     image: '/메인페이지 사진/5(보형물가이드).jpg',
     href: '/implant-guide',
-    accent: '#B9A385',
   },
 ];
 
@@ -197,8 +193,8 @@ function ClinicCard({
       <div
         className="absolute inset-0 pointer-events-none z-20"
         style={{
-          background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(139,115,85,0.15) 0%, transparent 50%)`,
-          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, var(--navy) 0%, transparent 50%)`,
+          opacity: isHovered ? 0.15 : 0,
           transition: 'opacity 0.3s ease',
         }}
       />
@@ -236,7 +232,7 @@ function ClinicCard({
             }}
           >
             <div
-              className="w-10 h-10 bg-[#8B7355] flex items-center justify-center relative overflow-hidden"
+              className="w-10 h-10 bg-[var(--navy)] flex items-center justify-center relative overflow-hidden"
               style={{
                 transform: isHovered ? 'scale(1.1)' : 'scale(1)',
                 transition: 'transform 0.3s ease',
@@ -261,7 +257,7 @@ function ClinicCard({
               transition: 'all 0.3s ease',
             }}
           >
-            <span className="bg-white/90 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium text-[#8B7355] uppercase tracking-wider">
+            <span className="bg-white/90 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium text-[var(--navy)] uppercase tracking-wider">
               {item.subtitle}
             </span>
           </div>
@@ -273,13 +269,13 @@ function ClinicCard({
           <div
             className="absolute top-0 right-0 w-32 h-32 opacity-5"
             style={{
-              background: `radial-gradient(circle, ${item.accent} 1px, transparent 1px)`,
+              background: `radial-gradient(circle, var(--navy) 1px, transparent 1px)`,
               backgroundSize: '10px 10px',
             }}
           />
 
           <p
-            className="font-display text-[10px] tracking-[0.15em] text-[#8B7355] mb-2 uppercase"
+            className="font-display text-[10px] tracking-[0.15em] text-[var(--navy)] mb-2 uppercase"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateX(0)' : 'translateX(-20px)',
@@ -290,9 +286,9 @@ function ClinicCard({
           </p>
 
           <h3
-            className="text-[20px] md:text-[22px] font-semibold text-[#2a2a2a] mb-3 transition-colors duration-300"
+            className="text-[20px] md:text-[22px] font-semibold text-[var(--ink)] mb-3 transition-colors duration-300"
             style={{
-              color: isHovered ? '#8B7355' : '#2a2a2a',
+              color: isHovered ? 'var(--navy)' : 'var(--ink)',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(15px)',
               transition: `all 0.6s ease ${delay + 0.2}s, color 0.3s ease`,
@@ -314,7 +310,7 @@ function ClinicCard({
 
           {/* CTA with arrow animation */}
           <div
-            className="flex items-center gap-2 text-[12px] font-medium text-[#8B7355]"
+            className="flex items-center gap-2 text-[12px] font-medium text-[var(--navy)]"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(15px)',
@@ -324,7 +320,7 @@ function ClinicCard({
             <span className="relative">
               자세히 보기
               <span
-                className="absolute bottom-0 left-0 h-[1px] bg-[#8B7355]"
+                className="absolute bottom-0 left-0 h-[1px] bg-[var(--navy)]"
                 style={{
                   width: isHovered ? '100%' : '0%',
                   transition: 'width 0.3s ease',
@@ -351,7 +347,7 @@ function ClinicCard({
       <div
         className="absolute bottom-0 left-0 h-[3px]"
         style={{
-          background: `linear-gradient(90deg, ${item.accent}, ${item.accent}dd)`,
+          background: 'linear-gradient(90deg, var(--navy), var(--gold))',
           width: isHovered ? '100%' : '0%',
           transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
@@ -364,20 +360,20 @@ export default function ClinicSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.15);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-[#f8f6f3] relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-[var(--paper)] relative overflow-hidden">
       {/* Particle Background */}
       <ParticleBackground isVisible={isVisible} />
 
       {/* Decorative elements */}
       <div
-        className="absolute top-10 right-20 w-40 h-40 rounded-full bg-[#8B7355]/5"
+        className="absolute top-10 right-20 w-40 h-40 rounded-full bg-[var(--navy)]/5"
         style={{
           transform: isVisible ? 'scale(1) rotate(0deg)' : 'scale(0) rotate(-90deg)',
           transition: 'all 1s ease 0.3s',
         }}
       />
       <div
-        className="absolute bottom-40 left-10 w-24 h-24 rounded-full bg-[#C4A574]/5"
+        className="absolute bottom-40 left-10 w-24 h-24 rounded-full bg-[var(--gold)]/5"
         style={{
           transform: isVisible ? 'scale(1)' : 'scale(0)',
           transition: 'transform 1s ease 0.5s',
@@ -390,7 +386,7 @@ export default function ClinicSection() {
           <p
             className="font-display text-[11px] md:text-[12px] tracking-[0.2em] mb-4 uppercase"
             style={{
-              background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+              background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
               backgroundSize: '200% 100%',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
@@ -402,7 +398,7 @@ export default function ClinicSection() {
           >
             UMNAGUMO CLINIC
           </p>
-          <h2 className="text-[26px] md:text-[34px] font-semibold text-[#2a2a2a] mb-4 tracking-[-0.02em]">
+          <h2 className="text-[26px] md:text-[34px] font-semibold text-[var(--ink)] mb-4 tracking-[-0.02em]">
             <AnimatedTitle isVisible={isVisible}>
               엄나구모 가슴클리닉
             </AnimatedTitle>
@@ -442,7 +438,7 @@ export default function ClinicSection() {
             }}
           >
             <div
-              className="w-12 h-[1px] bg-gradient-to-r from-transparent to-[#8B7355]/30"
+              className="w-12 h-[1px] bg-gradient-to-r from-transparent to-[var(--navy)]/30"
               style={{
                 transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
                 transformOrigin: 'right',
@@ -450,14 +446,14 @@ export default function ClinicSection() {
               }}
             />
             <div
-              className="w-3 h-3 rotate-45 border border-[#8B7355]/30"
+              className="w-3 h-3 rotate-45 border border-[var(--navy)]/30"
               style={{
                 transform: isVisible ? 'scale(1) rotate(45deg)' : 'scale(0) rotate(45deg)',
                 transition: 'transform 0.4s ease 1.3s',
               }}
             />
             <div
-              className="w-12 h-[1px] bg-gradient-to-l from-transparent to-[#8B7355]/30"
+              className="w-12 h-[1px] bg-gradient-to-l from-transparent to-[var(--navy)]/30"
               style={{
                 transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
                 transformOrigin: 'left',

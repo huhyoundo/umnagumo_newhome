@@ -20,6 +20,7 @@ export default function ImplantRemovalPage() {
       ]}
       sculptureImage="/보형물제거 페이지 사진/2(조각상).jpg"
       surgeryImage="/보형물제거 페이지 사진/4(원장님-사진).jpg"
+      surgeryImageVariant="circle"
       specialBackgroundImage="/보형물제거 페이지 사진/3.jpg"
       explanationTitle="왜 보형물제거술이 필요할까요?"
       explanationContent={[

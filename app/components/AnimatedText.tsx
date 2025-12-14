@@ -374,7 +374,7 @@ export function HoverText({
       case 'rotate':
         return { ...baseStyle, transform: `rotate(${(index % 2 === 0 ? 1 : -1) * 10 * intensity}deg)` };
       case 'scale':
-        return { ...baseStyle, transform: `scale(${1 + 0.3 * intensity})`, color: '#8B7355' };
+        return { ...baseStyle, transform: `scale(${1 + 0.3 * intensity})`, color: 'var(--navy)' };
       default:
         return baseStyle;
     }

@@ -20,6 +20,7 @@ export default function AreolaLiftPage() {
       ]}
       sculptureImage="/유륜거상술 페이지 사진/2(조각상).jpg"
       surgeryImage="/유륜거상술 페이지 사진/4.jpg"
+      surgeryImageVariant="circle"
       specialBackgroundImage="/유륜거상술 페이지 사진/3.jpg"
       explanationTitle="유륜거상술이 필요한 이유!"
       explanationContent={[

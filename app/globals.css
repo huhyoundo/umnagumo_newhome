@@ -91,13 +91,23 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --primary-brown: #8B7355;
-  --primary-brown-light: #a08b70;
-  --primary-brown-dark: #6B5A45;
-  --gold: #C4A574;
-  --beige-bg: #f8f6f3;
+  /* Core */
+  --background: #f7f6f3;
+  --foreground: #171a1f;
+  --ink: #171a1f;
+  --ink-muted: #5b636e;
+  --paper: #f7f6f3;
+  --paper-2: #eef2f3;
+  --line: rgba(23, 26, 31, 0.12);
+
+  /* Brand (modern medical: deep teal + ice accent) */
+  --navy: #1f4d5a;
+  --primary-brown: #1f4d5a;
+  --primary-brown-light: #2c6a7a;
+  --primary-brown-dark: #163843;
+  --gold: #6ed6d0;
+
+  --beige-bg: #f7f6f3;
   --gray-50: #fafafa;
   --gray-100: #f5f5f5;
   --gray-200: #e5e5e5;
@@ -169,6 +179,26 @@ body {
 
 .bg-beige {
   background-color: var(--beige-bg);
+}
+
+.bg-paper {
+  background-color: var(--paper);
+}
+
+.bg-navy {
+  background-color: var(--navy);
+}
+
+.text-ink {
+  color: var(--ink);
+}
+
+.text-ink-muted {
+  color: var(--ink-muted);
+}
+
+.border-line {
+  border-color: var(--line);
 }
 
 .text-gold {
@@ -525,7 +555,7 @@ body {
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 30px rgba(139, 115, 85, 0.3);
+  box-shadow: 0 0 30px color-mix(in oklab, var(--navy) 30%, transparent);
 }
 
 /* Image Reveal Effect */
@@ -613,13 +643,13 @@ section {
 
 .glitch-text:hover::before {
   animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
-  color: #8B7355;
+  color: var(--navy);
   opacity: 0.8;
 }
 
 .glitch-text:hover::after {
   animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
-  color: #C4A574;
+  color: var(--gold);
   opacity: 0.8;
 }
 

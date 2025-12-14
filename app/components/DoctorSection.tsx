@@ -129,7 +129,7 @@ export default function DoctorSection() {
               <p
                 className="text-[12px] tracking-[0.2em] uppercase font-medium"
                 style={{
-                  background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+                  background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
                   backgroundSize: '200% 100%',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
@@ -184,8 +184,8 @@ export default function DoctorSection() {
             >
               <MagneticButton
                 href="/doctors"
-                className="inline-flex items-center gap-2 text-[13px] text-[#2a2a2a] border-b border-[#2a2a2a] pb-1
-                  hover:text-[#8B7355] hover:border-[#8B7355] transition-colors duration-300 font-medium group"
+                className="inline-flex items-center gap-2 text-[13px] text-[var(--ink)] border-b border-[var(--ink)] pb-1
+                  hover:text-[var(--navy)] hover:border-[var(--navy)] transition-colors duration-300 font-medium group"
               >
                 의료진 소개 자세히 보기
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" fill="currentColor" viewBox="0 0 20 20">
@@ -207,7 +207,7 @@ export default function DoctorSection() {
           >
             {/* Decorative frame */}
             <div
-              className="absolute -top-4 -right-4 w-full h-full border-2 border-[#8B7355]/20"
+              className="absolute -top-4 -right-4 w-full h-full border-2 border-[var(--navy)]/20"
               style={{
                 transform: isVisible ? 'translate(16px, 16px)' : 'translate(0, 0)',
                 transition: 'transform 1s ease 0.4s',
@@ -232,7 +232,7 @@ export default function DoctorSection() {
               />
 
               {/* Overlay gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Floating badge */}
               <div
@@ -243,8 +243,8 @@ export default function DoctorSection() {
                   transition: 'all 0.6s ease 0.8s',
                 }}
               >
-                <p className="text-[11px] text-[#8B7355] tracking-[0.15em] uppercase mb-1">Experience</p>
-                <p className="text-[18px] font-semibold text-[#2a2a2a]">20년+</p>
+                <p className="text-[11px] text-[var(--navy)] tracking-[0.15em] uppercase mb-1">Experience</p>
+                <p className="text-[18px] font-semibold text-[var(--ink)]">20년+</p>
               </div>
             </div>
           </div>

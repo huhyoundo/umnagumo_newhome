@@ -52,7 +52,7 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute rounded-full bg-[#8B7355]/10"
+          className="absolute rounded-full bg-[var(--navy)]/10"
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
@@ -146,7 +146,7 @@ function ProgressRing({
         fill="none"
         stroke="currentColor"
         strokeWidth={strokeWidth}
-        className="text-[#8B7355]/10"
+        className="text-[var(--navy)]/10"
       />
       {/* Progress circle */}
       <circle
@@ -157,7 +157,7 @@ function ProgressRing({
         stroke="currentColor"
         strokeWidth={strokeWidth}
         strokeLinecap="round"
-        className="text-[#8B7355]"
+        className="text-[var(--navy)]"
         style={{
           strokeDasharray: circumference,
           strokeDashoffset: circumference - (currentProgress / 100) * circumference,
@@ -282,8 +282,8 @@ function TrustCard({
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at ${glowPosition.x}% ${glowPosition.y}%, rgba(139,115,85,0.15) 0%, transparent 50%)`,
-          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(circle at ${glowPosition.x}% ${glowPosition.y}%, var(--navy) 0%, transparent 50%)`,
+          opacity: isHovered ? 0.15 : 0,
           transition: 'opacity 0.3s ease',
         }}
       />
@@ -292,8 +292,8 @@ function TrustCard({
       <div
         className="absolute top-0 right-0 w-20 h-20"
         style={{
-          background: 'linear-gradient(135deg, transparent 50%, rgba(196,165,116,0.1) 50%)',
-          opacity: isHovered ? 1 : 0,
+          background: 'linear-gradient(135deg, transparent 50%, var(--gold) 50%)',
+          opacity: isHovered ? 0.12 : 0,
           transition: 'opacity 0.3s ease',
         }}
       />
@@ -309,7 +309,7 @@ function TrustCard({
             delay={300 + index * 150}
           />
           <span
-            className="absolute inset-0 flex items-center justify-center font-display text-[28px] font-light text-[#8B7355]/40"
+            className="absolute inset-0 flex items-center justify-center font-display text-[28px] font-light text-[var(--navy)]/40"
             style={{
               opacity: isVisible ? 1 : 0,
               transition: `opacity 0.6s ease ${0.4 + index * 0.1}s`,
@@ -319,7 +319,7 @@ function TrustCard({
           </span>
         </div>
         <div
-          className="text-[#8B7355] transition-all duration-500"
+          className="text-[var(--navy)] transition-all duration-500"
           style={{
             transform: isHovered ? 'scale(1.15) rotate(5deg)' : 'scale(1) rotate(0)',
           }}
@@ -331,7 +331,7 @@ function TrustCard({
       {/* Content */}
       <div className="relative z-10">
         <p
-          className="font-display text-[10px] tracking-[0.15em] text-[#8B7355] mb-2 uppercase"
+          className="font-display text-[10px] tracking-[0.15em] text-[var(--navy)] mb-2 uppercase"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateX(0)' : 'translateX(-20px)',
@@ -341,7 +341,7 @@ function TrustCard({
           {item.subtitle}
         </p>
         <h3
-          className="text-[16px] md:text-[17px] font-semibold text-[#2a2a2a] mb-3"
+          className="text-[16px] md:text-[17px] font-semibold text-[var(--ink)] mb-3"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(15px)',
@@ -364,7 +364,7 @@ function TrustCard({
 
       {/* Bottom line accent */}
       <div
-        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[#8B7355] to-[#C4A574]"
+        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[var(--navy)] to-[var(--gold)]"
         style={{
           width: isHovered ? '100%' : '0%',
           transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -386,30 +386,30 @@ function ConnectionLine({ isVisible, index }: { isVisible: boolean; index: numbe
         transition: `opacity 0.6s ease ${0.5 + index * 0.15}s`,
       }}
     >
-      <div className="flex items-center gap-1">
-        <div
-          className="w-8 h-[1px] bg-[#8B7355]/30"
-          style={{
-            transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
-            transformOrigin: 'left',
-            transition: `transform 0.4s ease ${0.6 + index * 0.15}s`,
-          }}
-        />
-        <div
-          className="w-2 h-2 rounded-full border border-[#8B7355]/30"
-          style={{
-            transform: isVisible ? 'scale(1)' : 'scale(0)',
-            transition: `transform 0.3s ease ${0.7 + index * 0.15}s`,
-          }}
-        />
-        <div
-          className="w-8 h-[1px] bg-[#8B7355]/30"
-          style={{
-            transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
-            transformOrigin: 'right',
-            transition: `transform 0.4s ease ${0.8 + index * 0.15}s`,
-          }}
-        />
+        <div className="flex items-center gap-1">
+          <div
+            className="w-8 h-[1px] bg-[var(--navy)]/30"
+            style={{
+              transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
+              transformOrigin: 'left',
+              transition: `transform 0.4s ease ${0.6 + index * 0.15}s`,
+            }}
+          />
+          <div
+            className="w-2 h-2 rounded-full border border-[var(--navy)]/30"
+            style={{
+              transform: isVisible ? 'scale(1)' : 'scale(0)',
+              transition: `transform 0.3s ease ${0.7 + index * 0.15}s`,
+            }}
+          />
+          <div
+            className="w-8 h-[1px] bg-[var(--navy)]/30"
+            style={{
+              transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
+              transformOrigin: 'right',
+              transition: `transform 0.4s ease ${0.8 + index * 0.15}s`,
+            }}
+          />
       </div>
     </div>
   );
@@ -419,20 +419,20 @@ export default function TrustSystemSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.15);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-[#f8f6f3] relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-[var(--paper)] relative overflow-hidden">
       {/* Particle Background */}
       <ParticleBackground isVisible={isVisible} />
 
       {/* Decorative elements */}
       <div
-        className="absolute top-20 left-10 w-32 h-32 rounded-full bg-[#8B7355]/5"
+        className="absolute top-20 left-10 w-32 h-32 rounded-full bg-[var(--navy)]/5"
         style={{
           transform: isVisible ? 'scale(1)' : 'scale(0)',
           transition: 'transform 1s ease 0.5s',
         }}
       />
       <div
-        className="absolute bottom-20 right-10 w-48 h-48 rounded-full bg-[#C4A574]/5"
+        className="absolute bottom-20 right-10 w-48 h-48 rounded-full bg-[var(--gold)]/5"
         style={{
           transform: isVisible ? 'scale(1)' : 'scale(0)',
           transition: 'transform 1s ease 0.7s',
@@ -445,7 +445,7 @@ export default function TrustSystemSection() {
           <p
             className="font-display text-[11px] md:text-[12px] tracking-[0.2em] mb-4 uppercase"
             style={{
-              background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+              background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
               backgroundSize: '200% 100%',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
@@ -457,7 +457,7 @@ export default function TrustSystemSection() {
           >
             TRUST SYSTEM
           </p>
-          <h2 className="text-[24px] md:text-[32px] font-semibold text-[#2a2a2a] mb-4 tracking-[-0.02em]">
+          <h2 className="text-[24px] md:text-[32px] font-semibold text-[var(--ink)] mb-4 tracking-[-0.02em]">
             <AnimatedTitle isVisible={isVisible}>
               엄나구모 4가지 약속
             </AnimatedTitle>
@@ -504,7 +504,7 @@ export default function TrustSystemSection() {
             }}
           >
             <div
-              className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#8B7355]/30"
+              className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[var(--navy)]/30"
               style={{
                 transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
                 transformOrigin: 'right',
@@ -512,14 +512,14 @@ export default function TrustSystemSection() {
               }}
             />
             <div
-              className="w-2 h-2 rounded-full bg-[#8B7355]/30"
+              className="w-2 h-2 rounded-full bg-[var(--navy)]/30"
               style={{
                 transform: isVisible ? 'scale(1)' : 'scale(0)',
                 transition: 'transform 0.3s ease 1.1s',
               }}
             />
             <div
-              className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#8B7355]/30"
+              className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[var(--navy)]/30"
               style={{
                 transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
                 transformOrigin: 'left',

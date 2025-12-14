@@ -102,7 +102,7 @@ function ParticleOverlay({ isVisible }: { isVisible: boolean }) {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute rounded-full bg-[#C4A574]/20"
+          className="absolute rounded-full bg-[var(--gold)]/20"
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
@@ -182,7 +182,7 @@ function StatCard({
     >
       {/* Hover glow effect */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-[#C4A574]/20 to-transparent"
+        className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/20 to-transparent"
         style={{
           opacity: isHovered ? 1 : 0,
           transition: 'opacity 0.5s ease',
@@ -193,7 +193,7 @@ function StatCard({
       <div className="relative z-10">
         <div className="mb-4">
           <span className="font-display text-[48px] md:text-[56px] lg:text-[64px] font-light text-white tracking-tight">
-            {prefix}<span ref={ref} className="text-[#C4A574]">{count.toLocaleString()}</span>
+            {prefix}<span ref={ref} className="text-[var(--gold)]">{count.toLocaleString()}</span>
           </span>
           <span className="text-[18px] md:text-[20px] font-light text-white ml-1">{suffix}</span>
         </div>
@@ -209,8 +209,8 @@ function StatCard({
       <div
         className="absolute top-0 right-0 w-16 h-16"
         style={{
-          background: 'linear-gradient(135deg, transparent 50%, rgba(196,165,116,0.1) 50%)',
-          opacity: isHovered ? 1 : 0,
+          background: 'linear-gradient(135deg, transparent 50%, var(--gold) 50%)',
+          opacity: isHovered ? 0.12 : 0,
           transition: 'opacity 0.3s ease',
         }}
       />
@@ -271,7 +271,7 @@ export default function StatsSection() {
       <div
         className="absolute inset-0 opacity-30"
         style={{
-          background: 'radial-gradient(circle at 30% 50%, rgba(196,165,116,0.3) 0%, transparent 50%)',
+          background: 'radial-gradient(circle at 30% 50%, var(--gold) 0%, transparent 50%)',
           animation: isVisible ? 'subtleFloat 8s ease-in-out infinite' : 'none',
         }}
       />
@@ -286,7 +286,7 @@ export default function StatsSection() {
           <p
             className="font-display text-[11px] md:text-[12px] tracking-[0.2em] mb-4 uppercase"
             style={{
-              background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+              background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
               backgroundSize: '200% 100%',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',

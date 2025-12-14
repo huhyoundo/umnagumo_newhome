@@ -147,7 +147,7 @@ function AnimatedLink({
       <span className="relative">
         {children}
         <span
-          className="absolute bottom-0 left-0 h-[1px] bg-[#C4A574]"
+          className="absolute bottom-0 left-0 h-[1px] bg-[var(--gold)]"
           style={{
             width: isHovered ? '100%' : '0%',
             transition: 'width 0.3s ease',
@@ -175,7 +175,7 @@ function ContactLink({
   return (
     <Link
       href={href}
-      className="flex items-center gap-3 text-[14px] text-gray-300 hover:text-[#C4A574] transition-colors group"
+      className="flex items-center gap-3 text-[14px] text-gray-300 hover:text-[var(--gold)] transition-colors group"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateX(0)' : 'translateX(-20px)',
@@ -185,13 +185,15 @@ function ContactLink({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className="w-8 h-8 bg-[#8B7355]/20 rounded-full flex items-center justify-center transition-all duration-300"
+        className="w-8 h-8 bg-[var(--navy)]/20 rounded-full flex items-center justify-center transition-all duration-300"
         style={{
-          backgroundColor: isHovered ? 'rgba(139, 115, 85, 0.3)' : 'rgba(139, 115, 85, 0.2)',
+          backgroundColor: isHovered
+            ? 'color-mix(in oklab, var(--navy) 30%, transparent)'
+            : 'color-mix(in oklab, var(--navy) 20%, transparent)',
           transform: isHovered ? 'scale(1.1)' : 'scale(1)',
         }}
       >
-        <svg className="w-4 h-4 text-[#C4A574]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-[var(--gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
       </div>
@@ -276,17 +278,17 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#2a2a2a] relative overflow-hidden">
+    <footer ref={footerRef} className="bg-[var(--ink)] relative overflow-hidden">
       {/* Decorative background elements */}
       <div
-        className="absolute top-0 left-0 w-96 h-96 rounded-full bg-[#8B7355]/5"
+        className="absolute top-0 left-0 w-96 h-96 rounded-full bg-[var(--navy)]/5"
         style={{
           transform: isVisible ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0)',
           transition: 'transform 1.5s ease 0.3s',
         }}
       />
       <div
-        className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-[#C4A574]/5"
+        className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-[var(--gold)]/5"
         style={{
           transform: isVisible ? 'translate(30%, 30%) scale(1)' : 'translate(30%, 30%) scale(0)',
           transition: 'transform 1.5s ease 0.5s',
@@ -301,7 +303,7 @@ export default function Footer() {
             <h3
               className="font-display text-[11px] tracking-[0.2em] mb-4 uppercase"
               style={{
-                background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+                background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
                 backgroundSize: '200% 100%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
@@ -333,7 +335,7 @@ export default function Footer() {
                 }}
               >
                 <div className="flex flex-col items-center gap-3">
-                  <div className="w-8 h-8 border-2 border-[#C4A574] border-t-transparent rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-[var(--gold)] border-t-transparent rounded-full animate-spin" />
                   <span className="text-[12px] text-gray-400">지도 로딩중...</span>
                 </div>
               </div>
@@ -348,7 +350,7 @@ export default function Footer() {
                 <h3
                   className="font-display text-[11px] tracking-[0.2em] mb-4 uppercase"
                   style={{
-                    background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+                    background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
                     backgroundSize: '200% 100%',
                     WebkitBackgroundClip: 'text',
                     backgroundClip: 'text',
@@ -394,7 +396,7 @@ export default function Footer() {
                   <h3
                     className="font-display text-[11px] tracking-[0.2em] mb-4 uppercase"
                     style={{
-                      background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+                      background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
                       backgroundSize: '200% 100%',
                       WebkitBackgroundClip: 'text',
                       backgroundClip: 'text',
@@ -427,7 +429,7 @@ export default function Footer() {
                   <h3
                     className="font-display text-[11px] tracking-[0.2em] mb-4 uppercase"
                     style={{
-                      background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+                      background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
                       backgroundSize: '200% 100%',
                       WebkitBackgroundClip: 'text',
                       backgroundClip: 'text',
@@ -514,10 +516,10 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom - Copyright */}
-      <div className="border-t border-gray-700 bg-[#222] relative">
+      <div className="border-t border-white/10 bg-[rgba(0,0,0,0.20)] relative">
         {/* Animated border line */}
         <div
-          className="absolute top-0 left-0 h-[1px] bg-gradient-to-r from-[#8B7355] via-[#C4A574] to-[#8B7355]"
+          className="absolute top-0 left-0 h-[1px] bg-gradient-to-r from-[var(--navy)] via-[var(--gold)] to-[var(--navy)]"
           style={{
             width: isVisible ? '100%' : '0%',
             transition: 'width 1.5s ease 0.5s',
@@ -537,7 +539,7 @@ export default function Footer() {
               <span
                 className="font-display text-[14px] tracking-wide"
                 style={{
-                  background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 100%)',
+                  background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 100%)',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',

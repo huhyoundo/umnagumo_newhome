@@ -7,6 +7,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 
+import {
+  legacyBreastGalleryItems,
+  type GalleryFilter,
+  type LegacyBreastGalleryItem,
+} from '../data/legacyBreastGallery';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -35,34 +41,14 @@ function useScrollAnimation(threshold = 0.2) {
   return { ref, isVisible };
 }
 
-// 카테고리 정의
-const categories = [
-  { id: 'all', label: '전체보기', count: 17 },
-  { id: 'axillary', label: '겨드랑이 절개', count: 9 },
-  { id: 'inframammary', label: '밑선 절개', count: 4 },
-  { id: 'areola', label: '유륜 절개', count: 4 },
-];
+const primaryCount = legacyBreastGalleryItems.filter((item) => item.surgeryType === 'primary').length;
+const revisionCount = legacyBreastGalleryItems.filter((item) => item.surgeryType === 'revision').length;
 
-// 갤러리 이미지와 수술 정보
-const galleryImages = [
-  { id: 1, image: '/gallery/1_surgery.png', title: '겨드랑이 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 좌측 구축 양측 피막절제 및 밑선교정 시행', category: 'axillary' },
-  { id: 2, image: '/gallery/2_surgery.png', title: '밑선 절개 재수술', description: '세빈 보형물 양측 각각 스무스타입 및 양측 피막절제 및 포켓 재조정 시행', category: 'inframammary' },
-  { id: 3, image: '/gallery/3_surgery.png', title: '겨드랑이 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 우측 구축 양측 피막절제 및 밑선교정 시행', category: 'axillary' },
-  { id: 4, image: '/gallery/4_surgery.png', title: '유륜 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 양측 피막절제 및 포켓 재조정 시행', category: 'areola' },
-  { id: 5, image: '/gallery/5_surgery.png', title: '겨드랑이 절개 재수술', description: '세빈 보형물 양측 각각 마이크로타입 및 양측 피막절제 시행', category: 'axillary' },
-  { id: 6, image: '/gallery/6_surgery.png', title: '밑선 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 양측 구축 피막절제 및 밑선교정 시행', category: 'inframammary' },
-  { id: 7, image: '/gallery/7_surgery.png', title: '겨드랑이 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 좌측 구축 양측 피막절제 시행', category: 'axillary' },
-  { id: 8, image: '/gallery/8_surgery.png', title: '유륜 절개 재수술', description: '세빈 보형물 양측 각각 스무스타입 및 양측 피막절제 및 포켓 재조정 시행', category: 'areola' },
-  { id: 9, image: '/gallery/9_surgery.png', title: '겨드랑이 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 양측 피막절제 및 밑선교정 시행', category: 'axillary' },
-  { id: 10, image: '/gallery/10_surgery.png', title: '밑선 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 우측 구축 양측 피막절제 시행', category: 'inframammary' },
-  { id: 11, image: '/gallery/11_surgery.png', title: '겨드랑이 절개 재수술', description: '세빈 보형물 양측 각각 마이크로타입 및 양측 피막절제 및 포켓 재조정 시행', category: 'axillary' },
-  { id: 12, image: '/gallery/12_surgery.png', title: '유륜 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 좌측 구축 피막절제 및 밑선교정 시행', category: 'areola' },
-  { id: 13, image: '/gallery/13_surgery.png', title: '겨드랑이 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 양측 피막절제 시행', category: 'axillary' },
-  { id: 14, image: '/gallery/14_surgery.png', title: '밑선 절개 재수술', description: '세빈 보형물 양측 각각 스무스타입 및 양측 구축 피막절제 및 밑선교정 시행', category: 'inframammary' },
-  { id: 15, image: '/gallery/15_surgery.png', title: '겨드랑이 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 양측 피막절제 및 포켓 재조정 시행', category: 'axillary' },
-  { id: 16, image: '/gallery/16_surgery.png', title: '유륜 절개 재수술', description: '모티바 보형물 양측 각각 진라인 및 우측 구축 양측 피막절제 시행', category: 'areola' },
-  { id: 17, image: '/gallery/17_surgery.png', title: '겨드랑이 절개 재수술', description: '세빈 보형물 양측 각각 마이크로타입 및 양측 피막절제 및 밑선교정 시행', category: 'axillary' },
-];
+const categories = [
+  { id: 'all', label: '전체보기', count: legacyBreastGalleryItems.length },
+  { id: 'primary', label: '첫수술', count: primaryCount },
+  { id: 'revision', label: '재수술', count: revisionCount },
+] as const;
 
 // 애니메이션 텍스트 컴포넌트
 function AnimatedTitle({ children, isVisible }: { children: string; isVisible: boolean }) {
@@ -139,7 +125,7 @@ function CategoryTab({
       onClick={onClick}
       className={`relative px-5 md:px-6 py-2.5 text-[12px] md:text-[13px] font-medium transition-all duration-300 overflow-hidden group
         ${isActive
-          ? 'bg-[#8B7355] text-white'
+          ? 'bg-[var(--navy)] text-white'
           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
         }`}
       style={{
@@ -153,7 +139,7 @@ function CategoryTab({
       {/* Shimmer effect on hover */}
       <div
         className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700
-          ${isActive ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#8B7355]/10 to-transparent'}`}
+          ${isActive ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[var(--navy)]/10 to-transparent'}`}
       />
       <span className="relative z-10">{category.label}</span>
       {/* Count badge */}
@@ -172,7 +158,7 @@ function GalleryCard({
   item,
   isVisible,
 }: {
-  item: typeof galleryImages[0];
+  item: LegacyBreastGalleryItem;
   isVisible: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -208,11 +194,11 @@ function GalleryCard({
       onMouseEnter={() => setIsHovered(true)}
     >
       {/* 수술 제목 (상단) */}
-      <div className="py-3 px-4 border-b border-gray-100 bg-[#8B7355] relative overflow-hidden">
+      <div className="py-3 px-4 border-b border-gray-100 bg-[var(--navy)] relative overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
         />
-        <p className="text-[13px] md:text-[14px] font-medium text-white text-center relative z-10">
+        <p className="text-[13px] md:text-[14px] font-medium text-white text-center whitespace-pre-line relative z-10">
           {item.title}
         </p>
       </div>
@@ -248,7 +234,7 @@ function GalleryCard({
           <span className="bg-white/90 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-gray-700">
             BEFORE
           </span>
-          <span className="bg-[#8B7355]/90 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-white">
+          <span className="bg-[var(--navy)]/90 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-white">
             AFTER
           </span>
         </div>
@@ -256,7 +242,7 @@ function GalleryCard({
 
       {/* 수술 상세 정보 (하단) */}
       <div className="p-4 border-t border-gray-100 bg-white">
-        <p className="text-[11px] md:text-[12px] text-gray-600 leading-[1.7] text-center">
+        <p className="text-[11px] md:text-[12px] text-gray-600 leading-[1.7] text-center whitespace-pre-line">
           {item.description}
         </p>
       </div>
@@ -287,12 +273,12 @@ function ProgressIndicator({
       <span className="text-[12px] text-gray-500 font-medium">
         {String(current).padStart(2, '0')}
       </span>
-      <div className="w-40 h-[2px] bg-gray-200 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-[#8B7355] rounded-full transition-all duration-500 ease-out"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
+        <div className="w-40 h-[2px] bg-gray-200 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-[var(--navy)] rounded-full transition-all duration-500 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       <span className="text-[12px] text-gray-400">
         {String(total).padStart(2, '0')}
       </span>
@@ -353,19 +339,19 @@ function MagneticButton({ children, href }: { children: React.ReactNode; href: s
 }
 
 export default function BeforeAfterSection() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState<GalleryFilter>('all');
   const [currentSlide, setCurrentSlide] = useState(1);
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.15);
   const swiperRef = useRef<SwiperType | null>(null);
 
   const filteredImages = useMemo(() =>
     activeCategory === 'all'
-      ? galleryImages
-      : galleryImages.filter(item => item.category === activeCategory),
+      ? legacyBreastGalleryItems
+      : legacyBreastGalleryItems.filter((item) => item.surgeryType === activeCategory),
     [activeCategory]
   );
 
-  const handleCategoryChange = useCallback((categoryId: string) => {
+  const handleCategoryChange = useCallback((categoryId: GalleryFilter) => {
     setActiveCategory(categoryId);
     setCurrentSlide(1);
     if (swiperRef.current) {
@@ -382,7 +368,7 @@ export default function BeforeAfterSection() {
           <p
             className="font-display text-[11px] md:text-[12px] tracking-[0.2em] mb-4 uppercase"
             style={{
-              background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+              background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
               backgroundSize: '200% 100%',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
@@ -396,7 +382,7 @@ export default function BeforeAfterSection() {
           </p>
 
           {/* Animated title */}
-          <h2 className="text-[24px] md:text-[32px] font-semibold text-[#2a2a2a] mb-4 tracking-[-0.02em]">
+          <h2 className="text-[24px] md:text-[32px] font-semibold text-[var(--ink)] mb-4 tracking-[-0.02em]">
             <AnimatedTitle isVisible={isVisible}>
               엄나구모 전후 사진
             </AnimatedTitle>

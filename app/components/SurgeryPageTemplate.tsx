@@ -121,7 +121,7 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute rounded-full bg-[#C4A574]/30"
+          className="absolute rounded-full bg-[var(--gold)]/30"
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
@@ -285,7 +285,7 @@ function SectionTitle({
         <p
           className="text-[12px] tracking-[0.2em] uppercase font-medium"
           style={{
-            background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+            background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
             backgroundSize: '200% 100%',
             WebkitBackgroundClip: 'text',
             backgroundClip: 'text',
@@ -299,7 +299,7 @@ function SectionTitle({
           {subtitle}
         </p>
       </div>
-      <h2 className="text-[24px] md:text-[32px] font-semibold text-[#2a2a2a] tracking-[-0.02em]">
+      <h2 className="text-[24px] md:text-[32px] font-semibold text-[var(--ink)] tracking-[-0.02em]">
         <AnimatedText isVisible={isVisible} delay={0.1} type="word">
           {title}
         </AnimatedText>
@@ -407,7 +407,7 @@ function GlitchText({ children, isVisible }: { children: string; isVisible: bool
         {children}
       </span>
       <span
-        className="absolute inset-0 text-[#8B7355]/30"
+        className="absolute inset-0 text-[var(--navy)]/30"
         style={{
           clipPath: 'inset(10% 0 60% 0)',
           animation: isVisible ? 'glitchText1 2s infinite linear alternate-reverse' : 'none',
@@ -417,7 +417,7 @@ function GlitchText({ children, isVisible }: { children: string; isVisible: bool
         {children}
       </span>
       <span
-        className="absolute inset-0 text-[#C4A574]/30"
+        className="absolute inset-0 text-[var(--gold)]/30"
         style={{
           clipPath: 'inset(60% 0 10% 0)',
           animation: isVisible ? 'glitchText2 2s infinite linear alternate-reverse' : 'none',
@@ -522,7 +522,7 @@ export default function SurgeryPageTemplate({
         >
           {/* 로딩 프로그레스 바 */}
           <div
-            className="absolute top-0 left-0 h-1 bg-gradient-to-r from-[#8B7355] via-[#C4A574] to-[#8B7355] z-20"
+            className="absolute top-0 left-0 h-1 bg-gradient-to-r from-[var(--navy)] via-[var(--gold)] to-[var(--navy)] z-20"
             style={{
               width: `${loadStage * 25}%`,
               transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -555,7 +555,7 @@ export default function SurgeryPageTemplate({
 
           {/* 왼쪽 악센트 라인 */}
           <div
-            className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#8B7355] via-[#C4A574] to-transparent z-10"
+            className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[var(--navy)] via-[var(--gold)] to-transparent z-10"
             style={{
               opacity: loadStage >= 1 ? 0.7 : 0,
               transform: loadStage >= 1 ? 'scaleY(1)' : 'scaleY(0)',
@@ -609,7 +609,7 @@ export default function SurgeryPageTemplate({
                 {/* 애니메이션 라인 */}
                 <div className="relative h-[2px] w-24 overflow-hidden mb-8">
                   <div
-                    className="absolute inset-0 bg-gradient-to-r from-[#8B7355] via-[#C4A574] to-[#8B7355]"
+                    className="absolute inset-0 bg-gradient-to-r from-[var(--navy)] via-[var(--gold)] to-[var(--navy)]"
                     style={{
                       transform: loadStage >= 3 ? 'scaleX(1)' : 'scaleX(0)',
                       transformOrigin: 'left',
@@ -631,14 +631,14 @@ export default function SurgeryPageTemplate({
                     href="http://pf.kakao.com/_QRNzxj"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#8B7355] text-white text-[14px] font-medium overflow-hidden"
+                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[var(--navy)] text-white text-[14px] font-medium overflow-hidden"
                   >
                     <span className="relative z-10">상담 예약하기</span>
                     <svg className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                     <div
-                      className="absolute inset-0 bg-gradient-to-r from-[#7a6548] to-[#8B7355]"
+                      className="absolute inset-0 bg-gradient-to-r from-[var(--primary-brown-dark)] to-[var(--navy)]"
                       style={{
                         transform: 'translateX(-100%)',
                         transition: 'transform 0.3s ease',
@@ -702,7 +702,7 @@ export default function SurgeryPageTemplate({
                   }}
                 >
                   <div
-                    className="absolute -top-6 -left-6 w-36 h-36 border border-[#8B7355]/40"
+                    className="absolute -top-6 -left-6 w-36 h-36 border border-[var(--navy)]/40"
                     style={{
                       transform: concernsAnim.isVisible ? 'scale(1) rotate(0)' : 'scale(0.7) rotate(-5deg)',
                       opacity: concernsAnim.isVisible ? 1 : 0,
@@ -720,7 +720,7 @@ export default function SurgeryPageTemplate({
                     />
                   </div>
                   <div
-                    className="absolute -bottom-6 -right-6 w-36 h-36 border border-[#8B7355]/40"
+                    className="absolute -bottom-6 -right-6 w-36 h-36 border border-[var(--navy)]/40"
                     style={{
                       transform: concernsAnim.isVisible ? 'scale(1) rotate(0)' : 'scale(0.7) rotate(5deg)',
                       opacity: concernsAnim.isVisible ? 1 : 0,
@@ -747,7 +747,7 @@ export default function SurgeryPageTemplate({
                       className="group"
                     >
                       <div className="flex items-start gap-4 p-5 bg-[#faf9f7] hover:bg-[#f5f3f0] transition-all duration-300 cursor-default">
-                        <span className="flex-shrink-0 w-9 h-9 bg-[#8B7355] text-white text-[12px] font-medium flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <span className="flex-shrink-0 w-9 h-9 bg-[var(--navy)] text-white text-[12px] font-medium flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                           {String(index + 1).padStart(2, '0')}
                         </span>
                         <p className="text-[14px] md:text-[15px] text-[#444] leading-relaxed pt-1 group-hover:text-[#2a2a2a] transition-colors">
@@ -764,7 +764,7 @@ export default function SurgeryPageTemplate({
 
         {/* CTA Banner */}
         <section
-          className="relative py-16 md:py-20 bg-[#8B7355] overflow-hidden"
+          className="relative py-16 md:py-20 bg-[var(--navy)] overflow-hidden"
           ref={ctaAnim.ref}
         >
           <div
@@ -797,7 +797,7 @@ export default function SurgeryPageTemplate({
         </section>
 
         {/* Explanation Section */}
-        <section className="py-20 md:py-28 bg-[#f8f6f3]" ref={explanationAnim.ref}>
+        <section className="py-20 md:py-28 bg-[var(--paper)]" ref={explanationAnim.ref}>
           <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* 수술 이미지 */}
@@ -810,21 +810,32 @@ export default function SurgeryPageTemplate({
                 }}
               >
                 <div
-                  className={`absolute top-0 left-0 w-full h-full bg-[#8B7355]/15 ${isCircleSurgeryImage ? 'rounded-full' : ''}`}
+                  className={`absolute top-0 left-0 w-full h-full bg-[var(--navy)]/15 ${isCircleSurgeryImage ? 'rounded-full' : ''}`}
                   style={{
                     transform: explanationAnim.isVisible ? 'translate(20px, 20px)' : 'translate(0, 0)',
                     transition: 'transform 1s ease 0.3s',
                   }}
                 />
-                <div className={`relative overflow-hidden group ${isCircleSurgeryImage ? 'aspect-square rounded-full bg-[#f8f6f3]' : ''}`}>
-                  <Image
-                    src={surgeryImage}
-                    alt={koreanTitle}
-                    width={700}
-                    height={525}
-                    className={`w-full ${isCircleSurgeryImage ? 'h-full object-contain' : 'h-auto object-cover'} transition-transform duration-700 group-hover:scale-105`}
-                    quality={100}
-                  />
+                <div className={`relative overflow-hidden group ${isCircleSurgeryImage ? 'aspect-square rounded-full bg-[var(--paper)]' : ''}`}>
+                  {isCircleSurgeryImage ? (
+                    <Image
+                      src={surgeryImage}
+                      alt={koreanTitle}
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      quality={100}
+                    />
+                  ) : (
+                    <Image
+                      src={surgeryImage}
+                      alt={koreanTitle}
+                      width={700}
+                      height={525}
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      quality={100}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -839,23 +850,23 @@ export default function SurgeryPageTemplate({
                   }}
                 >
                   <div
-                    className="w-14 h-[1px] bg-[#8B7355]"
+                    className="w-14 h-[1px] bg-[var(--navy)]"
                     style={{
                       transform: explanationAnim.isVisible ? 'scaleX(1)' : 'scaleX(0)',
                       transformOrigin: 'left',
                       transition: 'transform 0.8s ease 0.2s',
                     }}
                   />
-                  <span className="text-[12px] text-[#8B7355] tracking-[0.2em] uppercase">About Surgery</span>
+                  <span className="text-[12px] text-[var(--navy)] tracking-[0.2em] uppercase">About Surgery</span>
                 </div>
-                <h2 className="text-[26px] md:text-[34px] font-semibold text-[#2a2a2a] leading-[1.3] tracking-[-0.02em]">
+                <h2 className="text-[26px] md:text-[34px] font-semibold text-[var(--ink)] leading-[1.3] tracking-[-0.02em]">
                   <AnimatedText isVisible={explanationAnim.isVisible} delay={0.2} type="split">
                     {explanationTitle}
                   </AnimatedText>
                 </h2>
                 {explanationSubtitle && (
                   <p
-                    className="text-[18px] md:text-[22px] font-medium text-[#8B7355] mt-2 mb-8"
+                    className="text-[18px] md:text-[22px] font-medium text-[var(--navy)] mt-2 mb-8"
                     style={{
                       opacity: explanationAnim.isVisible ? 1 : 0,
                       transition: 'opacity 0.6s ease 0.4s',
@@ -937,16 +948,16 @@ export default function SurgeryPageTemplate({
                   delay={0.3 + index * 0.15}
                   className="group"
                 >
-                  <div className="bg-white border border-gray-100 p-8 md:p-10 hover:border-[#8B7355]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-500">
+                  <div className="bg-white border border-gray-100 p-8 md:p-10 hover:border-[var(--navy)]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-500">
                     <div className="flex items-center justify-between mb-8">
-                      <div className="text-[#8B7355] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <div className="text-[var(--navy)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         {iconComponents[point.icon]}
                       </div>
-                      <span className="text-[44px] font-light text-gray-100 group-hover:text-[#8B7355]/20 transition-colors duration-300">
+                      <span className="text-[44px] font-light text-gray-100 group-hover:text-[var(--navy)]/20 transition-colors duration-300">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
-                    <h3 className="text-[18px] font-semibold text-[#2a2a2a] mb-3 group-hover:text-[#8B7355] transition-colors">
+                    <h3 className="text-[18px] font-semibold text-[var(--ink)] mb-3 group-hover:text-[var(--navy)] transition-colors">
                       {point.title}
                     </h3>
                     <p className="text-[14px] text-[#666] leading-relaxed">
@@ -960,7 +971,7 @@ export default function SurgeryPageTemplate({
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 md:py-28 bg-[#f8f6f3]" ref={faqAnim.ref}>
+        <section className="py-20 md:py-28 bg-[var(--paper)]" ref={faqAnim.ref}>
           <div className="max-w-[800px] mx-auto px-6 lg:px-10">
             <SectionTitle
               subtitle="FAQ"
@@ -985,15 +996,15 @@ export default function SurgeryPageTemplate({
                     className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="flex-shrink-0 text-[13px] font-medium text-[#8B7355]">
+                      <span className="flex-shrink-0 text-[13px] font-medium text-[var(--navy)]">
                         Q{String(index + 1).padStart(2, '0')}
                       </span>
-                      <span className="text-[15px] font-medium text-[#2a2a2a]">
+                      <span className="text-[15px] font-medium text-[var(--ink)]">
                         {faq.question}
                       </span>
                     </div>
                     <svg
-                      className={`w-5 h-5 text-[#8B7355] transition-transform duration-300 ${
+                      className={`w-5 h-5 text-[var(--navy)] transition-transform duration-300 ${
                         openFaq === index ? 'rotate-180' : ''
                       }`}
                       fill="none"
@@ -1009,7 +1020,7 @@ export default function SurgeryPageTemplate({
                     }`}
                   >
                     <div className="px-6 pb-6 pt-0">
-                      <div className="pl-12 border-l-2 border-[#8B7355]/30">
+                      <div className="pl-12 border-l-2 border-[var(--navy)]/30">
                         <p className="text-[14px] text-[#666] leading-[1.8]">
                           {faq.answer}
                         </p>
@@ -1028,7 +1039,7 @@ export default function SurgeryPageTemplate({
             <p
               className="text-[12px] tracking-[0.2em] uppercase mb-6"
               style={{
-                background: 'linear-gradient(90deg, #8B7355 0%, #C4A574 50%, #8B7355 100%)',
+                background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
                 backgroundSize: '200% 100%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
@@ -1068,7 +1079,7 @@ export default function SurgeryPageTemplate({
                 href="http://pf.kakao.com/_QRNzxj"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2 px-10 py-4 bg-[#8B7355] text-white text-[14px] font-medium overflow-hidden"
+                className="group relative inline-flex items-center gap-2 px-10 py-4 bg-[var(--navy)] text-white text-[14px] font-medium overflow-hidden"
               >
                 <span className="relative z-10">카카오톡 상담</span>
                 <svg className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

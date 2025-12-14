@@ -22,6 +22,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMegaMenu, setShowMegaMenu] = useState(false);
+  const desktopNavColumnClass = 'w-[220px] px-8';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,8 +36,8 @@ export default function Header() {
     <header
       className={`fixed md:sticky top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
         isScrolled
-          ? 'bg-white shadow-[0_1px_20px_rgba(0,0,0,0.08)]'
-          : 'bg-white/95'
+          ? 'bg-[rgba(248,246,243,0.92)] backdrop-blur-md shadow-[0_1px_18px_rgba(0,0,0,0.06)] border-b border-line'
+          : 'bg-[rgba(248,246,243,0.82)] backdrop-blur-md border-b border-line'
       }`}
     >
       {/* Main Header */}
@@ -65,21 +66,21 @@ export default function Header() {
             <nav className="flex items-center justify-center">
               <Link
                 href="#"
-                className="px-8 py-6 text-[17px] text-[#333] hover:text-[#8B7355] transition-colors tracking-[-0.01em] font-medium"
+                className={`${desktopNavColumnClass} py-6 text-[17px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors tracking-[-0.01em] font-medium text-center`}
                 onClick={(e) => e.preventDefault()}
               >
                 병원 소개
               </Link>
               <Link
                 href="#"
-                className="px-8 py-6 text-[17px] text-[#333] hover:text-[#8B7355] transition-colors tracking-[-0.01em] font-medium"
+                className={`${desktopNavColumnClass} py-6 text-[17px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors tracking-[-0.01em] font-medium text-center`}
                 onClick={(e) => e.preventDefault()}
               >
                 가슴성형
               </Link>
               <Link
                 href="/before-after"
-                className="px-8 py-6 text-[17px] text-[#333] hover:text-[#8B7355] transition-colors tracking-[-0.01em] font-medium"
+                className={`${desktopNavColumnClass} py-6 text-[17px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors tracking-[-0.01em] font-medium text-center`}
               >
                 전후사진
               </Link>
@@ -91,18 +92,18 @@ export default function Header() {
                 showMegaMenu ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
               }`}
             >
-              <div className="bg-white/95 backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.06)] border-t border-gray-100/50">
+              <div className="bg-[rgba(248,246,243,0.92)] backdrop-blur-md shadow-[0_8px_28px_rgba(0,0,0,0.06)] border-t border-line">
                 {/* Align columns with nav items above */}
                 <div className="flex justify-center py-5">
                   <div className="flex">
                     {/* Column 1: 병원 소개 - matches nav item width */}
-                    <div className="px-8 text-center">
+                    <div className={`${desktopNavColumnClass} text-center`}>
                       <div className="space-y-1">
                         {aboutItems.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="block py-1 text-[15px] text-[#444] hover:text-[#8B7355] transition-colors"
+                            className="block py-1 text-[15px] text-[var(--ink-muted)] hover:text-[var(--navy)] transition-colors"
                           >
                             {item.name}
                           </Link>
@@ -111,13 +112,13 @@ export default function Header() {
                     </div>
 
                     {/* Column 2: 가슴성형 */}
-                    <div className="px-8 text-center">
+                    <div className={`${desktopNavColumnClass} text-center`}>
                       <div className="space-y-1">
                         {surgeryItems.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="block py-1 text-[15px] text-[#444] hover:text-[#8B7355] transition-colors"
+                            className="block py-1 text-[15px] text-[var(--ink-muted)] hover:text-[var(--navy)] transition-colors"
                           >
                             {item.name}
                           </Link>
@@ -126,11 +127,11 @@ export default function Header() {
                     </div>
 
                     {/* Column 3: 전후사진 */}
-                    <div className="px-8 text-center">
+                    <div className={`${desktopNavColumnClass} text-center`}>
                       <div className="space-y-1">
                         <Link
                           href="/before-after"
-                          className="block py-1 text-[15px] text-[#444] hover:text-[#8B7355] transition-colors"
+                          className="block py-1 text-[15px] text-[var(--ink-muted)] hover:text-[var(--navy)] transition-colors"
                         >
                           전후사진
                         </Link>
@@ -147,7 +148,8 @@ export default function Header() {
             href="http://pf.kakao.com/_QRNzxj"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden lg:block absolute right-6 lg:right-10 px-5 py-2 text-[14px] text-[#8B7355] border border-[#8B7355] hover:bg-[#8B7355] hover:text-white transition-all duration-300 tracking-[-0.01em]"
+            className="hidden lg:block absolute right-6 lg:right-10 px-6 py-2.5 rounded-full text-[14px] font-semibold tracking-[-0.01em]
+              bg-[var(--navy)] text-white hover:shadow-[0_18px_45px_rgba(29,35,86,0.30)] transition-shadow"
           >
             상담예약
           </Link>
@@ -158,7 +160,7 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="메뉴"
           >
-            <svg className="w-6 h-6 text-[#333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-[var(--ink)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -170,17 +172,17 @@ export default function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`lg:hidden bg-white overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-[600px]' : 'max-h-0'}`}>
-        <nav className="px-6 py-6 border-t border-gray-100">
+      <div className={`lg:hidden bg-[var(--paper)] overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-[600px]' : 'max-h-0'}`}>
+        <nav className="px-6 py-6 border-t border-line">
           {/* 병원 소개 */}
           <div className="mb-6">
-            <p className="text-[12px] text-[#8B7355] mb-3 tracking-[0.1em]">ABOUT</p>
+            <p className="text-[12px] text-[var(--navy)] mb-3 tracking-[0.1em]">ABOUT</p>
             <div className="space-y-1">
               {aboutItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block py-2 text-[15px] text-[#333] hover:text-[#8B7355] transition-colors"
+                  className="block py-2 text-[15px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -191,13 +193,13 @@ export default function Header() {
 
           {/* 가슴성형 */}
           <div className="mb-6">
-            <p className="text-[12px] text-[#8B7355] mb-3 tracking-[0.1em]">SURGERY</p>
+            <p className="text-[12px] text-[var(--navy)] mb-3 tracking-[0.1em]">SURGERY</p>
             <div className="space-y-1">
               {surgeryItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block py-2 text-[15px] text-[#333] hover:text-[#8B7355] transition-colors"
+                  className="block py-2 text-[15px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -207,10 +209,10 @@ export default function Header() {
           </div>
 
           {/* 전후사진 */}
-          <div className="mb-6 pt-4 border-t border-gray-100">
+          <div className="mb-6 pt-4 border-t border-line">
             <Link
               href="/before-after"
-              className="block py-2 text-[15px] text-[#333] hover:text-[#8B7355] transition-colors"
+              className="block py-2 text-[15px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               전후사진
@@ -218,19 +220,19 @@ export default function Header() {
           </div>
 
           {/* Contact */}
-          <div className="pt-4 border-t border-gray-100">
+          <div className="pt-4 border-t border-line">
             <Link
               href="tel:025126838"
               className="flex items-center gap-3 py-3"
             >
-              <span className="text-[18px] font-light text-[#333] tracking-wide">02-512-6838</span>
+              <span className="text-[18px] font-light text-[var(--ink)] tracking-wide">02-512-6838</span>
             </Link>
-            <p className="text-[12px] text-gray-400 mb-4">평일 10:00-18:30 · 토 10:00-16:00</p>
+            <p className="text-[12px] text-[var(--ink-muted)] mb-4">평일 10:00-18:30 · 토 10:00-16:00</p>
             <Link
               href="http://pf.kakao.com/_QRNzxj"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full py-3.5 bg-[#8B7355] text-white text-center text-[14px] tracking-wide"
+              className="block w-full py-3.5 rounded-full bg-[var(--navy)] text-white text-center text-[14px] font-semibold tracking-wide"
               onClick={() => setIsMenuOpen(false)}
             >
               카카오톡 상담예약

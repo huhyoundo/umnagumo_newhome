@@ -20,6 +20,7 @@ export default function ReductionLiftPage() {
       ]}
       sculptureImage="/축소거상 페이지 사진/2(조각상).jpg"
       surgeryImage="/축소거상 페이지 사진/4(원장님).jpg"
+      surgeryImageVariant="circle"
       specialBackgroundImage="/축소거상 페이지 사진/3.jpg"
       explanationTitle="축소거상술이 까다로운 이유"
       explanationContent={[
