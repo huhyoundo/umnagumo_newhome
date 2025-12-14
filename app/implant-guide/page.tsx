@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { createPageMetadata } from '../lib/seo';
 
-export const metadata = {
-  title: '보형물 가이드 | 엄나구모 성형외과',
-  description: '가슴의 본질을 결정하는 보형물 선택 - 20년 임상 경험으로 가장 안전하고 정확한 기준을 제시합니다.',
-};
+export const metadata: Metadata = createPageMetadata({
+  title: '보형물 가이드',
+  description: '가슴의 본질을 결정하는 보형물 선택. 20년 임상 경험으로 가장 안전하고 정확한 기준을 제시합니다.',
+  path: '/implant-guide',
+});
 
 const implantComparison = [
   { label: '핵심 느낌', motiva: '부드럽고 자연스러운 촉감', boost: '균형 잡힌 탄력 & 안정감', xtra: '확실한 볼륨·탄탄한 형태' },
@@ -280,4 +283,3 @@ export default function ImplantGuidePage() {
     </>
   );
 }
-

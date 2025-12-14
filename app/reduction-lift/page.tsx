@@ -1,9 +1,13 @@
 import SurgeryPageTemplate from '../components/SurgeryPageTemplate';
+import type { Metadata } from 'next';
+import { createPageMetadata } from '../lib/seo';
 
-export const metadata = {
-  title: '축소거상 | 엄나구모 성형외과',
-  description: '엄나구모 축소거상술 - 과도하게 큰 가슴으로 인해 통증·거북함·처짐·자세 불균형이 생기는 문제를 동시에 해결하는 볼륨 축소 + 처짐 교정 복합 수술',
-};
+export const metadata: Metadata = createPageMetadata({
+  title: '축소거상',
+  description:
+    '엄나구모 축소거상술. 과도하게 큰 가슴으로 인한 통증·거북함·처짐 등을 해결하는 볼륨 축소 + 처짐 교정 복합 수술입니다.',
+  path: '/reduction-lift',
+});
 
 export default function ReductionLiftPage() {
   return (

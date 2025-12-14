@@ -1,9 +1,13 @@
 import SurgeryPageTemplate from '../components/SurgeryPageTemplate';
+import type { Metadata } from 'next';
+import { createPageMetadata } from '../lib/seo';
 
-export const metadata = {
-  title: '유륜거상술 | 엄나구모 성형외과',
-  description: '엄나구모 유륜거상술 - 늘어진 가슴, 처짐(처진 조기), 출산·수유 후 변화로 인해 유륜이 아래로 내려간 경우 자연스럽고 탄탄하게 올려주는 교정술',
-};
+export const metadata: Metadata = createPageMetadata({
+  title: '유륜거상술',
+  description:
+    '엄나구모 유륜거상술. 출산·수유 후 변화로 유륜이 아래로 내려간 경우 자연스럽고 탄탄하게 올려주는 교정술입니다.',
+  path: '/areola-lift',
+});
 
 export default function AreolaLiftPage() {
   return (

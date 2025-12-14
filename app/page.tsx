@@ -8,6 +8,12 @@ import BeforeAfterSection from './components/BeforeAfterSection';
 import ContentGrid from './components/ContentGrid';
 import YouTubeFeaturedSection from './components/YouTubeFeaturedSection';
 import Footer from './components/Footer';
+import type { Metadata } from 'next';
+import { createPageMetadata } from './lib/seo';
+
+export const metadata: Metadata = createPageMetadata({
+  path: '/',
+});
 
 export default function Home() {
   return (

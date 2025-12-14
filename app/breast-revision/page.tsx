@@ -1,9 +1,12 @@
 import SurgeryPageTemplate from '../components/SurgeryPageTemplate';
+import type { Metadata } from 'next';
+import { createPageMetadata } from '../lib/seo';
 
-export const metadata = {
-  title: '가슴재수술 | 엄나구모 성형외과',
-  description: '엄나구모 가슴재수술 - 구축, 파손, 비대칭, 변형 등 문제를 해결하기 위한 정밀 교정 수술',
-};
+export const metadata: Metadata = createPageMetadata({
+  title: '가슴 재수술',
+  description: '엄나구모 가슴 재수술. 구축·파손·비대칭·변형 등 문제를 해결하기 위한 정밀 교정 수술입니다.',
+  path: '/breast-revision',
+});
 
 export default function BreastRevisionPage() {
   return (

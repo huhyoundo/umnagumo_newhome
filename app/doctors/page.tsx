@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { createPageMetadata } from '../lib/seo';
 
-export const metadata = {
-  title: '의료진 소개 | 엄나구모 성형외과',
-  description: '엄나구모 성형외과 의료진 - 축적된 경험과 전문적 기술로 가장 자연스러운 아름다움을 완성합니다.',
-};
+export const metadata: Metadata = createPageMetadata({
+  title: '의료진 소개',
+  description: '엄나구모 성형외과 의료진 소개. 축적된 경험과 전문적 기술로 가장 자연스러운 아름다움을 완성합니다.',
+  path: '/doctors',
+});
 
 type TimelineItem = { year: string; text: string };
 
@@ -340,4 +343,3 @@ export default function DoctorsPage() {
     </>
   );
 }
-
