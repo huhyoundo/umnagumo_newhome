@@ -240,47 +240,20 @@ interface GlitchTextProps {
 }
 
 function GlitchText({ children, isVisible, delay = 0, className = '' }: GlitchTextProps) {
-  const [glitchActive, setGlitchActive] = useState(false);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => setGlitchActive(true), delay * 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible, delay]);
-
   return (
     <span
-      className={`relative inline-block ${className}`}
+      className={`inline-block ${className}`}
       style={{
-        opacity: glitchActive ? 1 : 0,
-        transform: glitchActive ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(14px)',
+        filter: isVisible ? 'blur(0px)' : 'blur(6px)',
+        transitionProperty: 'opacity, transform, filter',
+        transitionDuration: '900ms',
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        transitionDelay: `${delay}s`,
       }}
     >
-      <span className="relative z-10">{children}</span>
-      {glitchActive && (
-        <>
-          <span
-            className="absolute top-0 left-0 w-full h-full text-[var(--gold)] opacity-80"
-            style={{
-              animation: 'glitchText1 2.5s infinite',
-              clipPath: 'inset(40% 0 40% 0)',
-            }}
-          >
-            {children}
-          </span>
-          <span
-            className="absolute top-0 left-0 w-full h-full text-[var(--navy)] opacity-80"
-            style={{
-              animation: 'glitchText2 2.5s infinite',
-              clipPath: 'inset(60% 0 20% 0)',
-            }}
-          >
-            {children}
-          </span>
-        </>
-      )}
+      {children}
     </span>
   );
 }

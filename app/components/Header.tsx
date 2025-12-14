@@ -54,6 +54,9 @@ export default function Header() {
               priority
               quality={100}
             />
+            <span className="ml-3 text-[14px] md:text-[15px] font-semibold tracking-[-0.01em] text-[var(--ink)]">
+              엄나구모 성형외과
+            </span>
           </Link>
 
           {/* Desktop Navigation - Center */}
