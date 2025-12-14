@@ -20,6 +20,7 @@ export default function NippleReductionPage() {
       ]}
       sculptureImage="/유두축소 페이지 사진/2(조각상).jpg"
       surgeryImage="/유두축소 페이지 사진/4(원장님사진).jpg"
+      surgeryImageVariant="circle"
       specialBackgroundImage="/유두축소 페이지 사진/3.jpg"
       explanationTitle="유두축소술이 필요한 이유"
       explanationContent={[
@@ -37,12 +38,12 @@ export default function NippleReductionPage() {
         {
           icon: 'time',
           title: '수술시간',
-          description: '약 60~120분',
+          description: '약 30분',
         },
         {
           icon: 'feature',
           title: '수술 특징',
-          description: '안전성 최우선 · 변형·구축 개선 · 라인 재구성',
+          description: '안전성 최우선 · 가슴과의 조화',
         },
       ]}
       faqTitle="유두축소술 FAQ"
@@ -57,7 +58,7 @@ export default function NippleReductionPage() {
         },
         {
           question: '회복 기간은 얼마나 걸리나요?',
-          answer: '일상 생활은 3일 내, 샤워는 3~5일 후, 운동은 2~3주 후부터 가능합니다.',
+          answer: '일상 생활 및 샤워는 당일 가능, 운동은 2~3주 후부터 가능합니다.',
         },
         {
           question: '통증은 어떤가요?',

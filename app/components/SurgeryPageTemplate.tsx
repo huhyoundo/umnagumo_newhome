@@ -19,6 +19,7 @@ interface SurgeryPageProps {
   ctaBackgroundImage?: string;
   sculptureImage: string;
   surgeryImage: string;
+  surgeryImageVariant?: 'default' | 'circle';
   explanationTitle: string;
   explanationSubtitle?: string;
   explanationContent: string[];
@@ -436,6 +437,7 @@ export default function SurgeryPageTemplate({
   concerns,
   sculptureImage,
   surgeryImage,
+  surgeryImageVariant = 'default',
   explanationTitle,
   explanationSubtitle,
   explanationContent,
@@ -450,6 +452,7 @@ export default function SurgeryPageTemplate({
   const [loadStage, setLoadStage] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLElement>(null);
+  const isCircleSurgeryImage = surgeryImageVariant === 'circle';
 
   // 스크롤 애니메이션 훅
   const concernsAnim = useScrollAnimation(0.2);
@@ -807,19 +810,19 @@ export default function SurgeryPageTemplate({
                 }}
               >
                 <div
-                  className="absolute top-0 left-0 w-full h-full bg-[#8B7355]/15"
+                  className={`absolute top-0 left-0 w-full h-full bg-[#8B7355]/15 ${isCircleSurgeryImage ? 'rounded-full' : ''}`}
                   style={{
                     transform: explanationAnim.isVisible ? 'translate(20px, 20px)' : 'translate(0, 0)',
                     transition: 'transform 1s ease 0.3s',
                   }}
                 />
-                <div className="relative overflow-hidden group">
+                <div className={`relative overflow-hidden group ${isCircleSurgeryImage ? 'aspect-square rounded-full bg-[#f8f6f3]' : ''}`}>
                   <Image
                     src={surgeryImage}
                     alt={koreanTitle}
                     width={700}
                     height={525}
-                    className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={`w-full ${isCircleSurgeryImage ? 'h-full object-contain' : 'h-auto object-cover'} transition-transform duration-700 group-hover:scale-105`}
                     quality={100}
                   />
                 </div>

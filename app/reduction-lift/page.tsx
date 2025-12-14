@@ -37,19 +37,19 @@ export default function ReductionLiftPage() {
         {
           icon: 'time',
           title: '수술시간',
-          description: '약 60~120분',
+          description: '약 180분',
         },
         {
           icon: 'feature',
           title: '수술 특징',
-          description: '안전성 최우선 · 변형·구축 개선 · 라인 재구성',
+          description: '안전성 최우선 · 신체 밸런스의 조화',
         },
       ]}
       faqTitle="축소거상술 FAQ"
       faqs={[
         {
           question: '흉터는 많이 남나요?',
-          answer: '절개 범위는 줄이는 양에 따라 다르지만, 엄나구모는 유륜·세로·아래주름선 흉터를 최소화하는 디자인과 섬세한 봉합으로 시간이 지나면 자연스럽게 옅어지는 형태로 진행합니다.',
+          answer: '절개 또는 절개 범위에 따라 다르며, 살성에 의해 차이가 있습니다. 2-3개월 후부터 차츰 옅어집니다. 6개월~1년이 지나면서 실선처럼 남아 눈에 잘 띄지 않습니다.',
         },
         {
           question: '수유 기능에 영향이 있나요?',
@@ -57,7 +57,7 @@ export default function ReductionLiftPage() {
         },
         {
           question: '회복 기간은 얼마나 걸리나요?',
-          answer: '일상 복귀는 5~7일, 가벼운 운동은 3~4주 후, 흉터는 3~6개월에 걸쳐 점점 연해집니다.',
+          answer: '일상복귀는 5-7일, 가벼운 운동은 4주 후 가능합니다.',
         },
         {
           question: '축소와 거상을 동시에 해야 하나요?',
