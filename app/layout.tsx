@@ -9,10 +9,15 @@ const DEFAULT_NAVER_SITE_VERIFICATIONS = [
   "291831b97ca6960a865b13e1bfa7230bc005cff3",
 ] as const;
 
+const DEFAULT_NAVER_ANALYTICS_WA = "129a7727af9df60";
+
 const NAVER_SITE_VERIFICATION = process.env.NAVER_SITE_VERIFICATION;
 const NAVER_SITE_VERIFICATIONS = NAVER_SITE_VERIFICATION
   ? NAVER_SITE_VERIFICATION.split(/[\s,]+/g).filter(Boolean)
   : [...DEFAULT_NAVER_SITE_VERIFICATIONS];
+
+const NAVER_ANALYTICS_WA = process.env.NAVER_ANALYTICS_WA ?? DEFAULT_NAVER_ANALYTICS_WA;
+const ENABLE_NAVER_ANALYTICS = process.env.NODE_ENV === "production" && Boolean(NAVER_ANALYTICS_WA);
 
 export const viewport: Viewport = {
   themeColor: "#1f4d5a",
@@ -83,6 +88,33 @@ export default function RootLayout({
           src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=wrifnr3bub"
           strategy="beforeInteractive"
         />
+        {ENABLE_NAVER_ANALYTICS ? (
+          <>
+            <Script src="https://wcs.pstatic.net/wcslog.js" strategy="afterInteractive" />
+            <Script id="naver-analytics" strategy="afterInteractive">
+              {`(function () {
+  if (!window.wcs_add) window.wcs_add = {};
+  window.wcs_add["wa"] = "${NAVER_ANALYTICS_WA}";
+
+  function send() {
+    if (window.wcs && typeof window.wcs_do === "function") {
+      window.wcs_do();
+      return true;
+    }
+    return false;
+  }
+
+  if (send()) return;
+
+  var tries = 0;
+  var timer = window.setInterval(function () {
+    tries += 1;
+    if (send() || tries >= 50) window.clearInterval(timer);
+  }, 100);
+})();`}
+            </Script>
+          </>
+        ) : null}
         {NAVER_SITE_VERIFICATIONS.map((token) => (
           <meta key={token} name="naver-site-verification" content={token} />
         ))}
