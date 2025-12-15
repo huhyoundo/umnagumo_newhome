@@ -88,6 +88,7 @@ export default function RootLayout({
           src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=wrifnr3bub"
           strategy="beforeInteractive"
         />
+        <meta name="apple-mobile-web-app-title" content="Umnagumo" />
         {ENABLE_NAVER_ANALYTICS ? (
           <>
             <Script src="https://wcs.pstatic.net/wcslog.js" strategy="afterInteractive" />
