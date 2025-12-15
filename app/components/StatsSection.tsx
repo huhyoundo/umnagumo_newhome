@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from './SafeImage';
 import { useState, useEffect, useRef } from 'react';
 
 // 스크롤 애니메이션 훅

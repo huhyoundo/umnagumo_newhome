@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "./lib/seo";
 
+export const dynamic = "force-static";
+
 type Entry = Omit<MetadataRoute.Sitemap[number], "url"> & { url: string };
 
 const ROUTES: Entry[] = [
@@ -20,4 +22,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   return ROUTES.map((entry) => ({ ...entry, lastModified }));
 }
-

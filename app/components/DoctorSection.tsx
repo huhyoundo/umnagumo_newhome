@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from './SafeImage';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
