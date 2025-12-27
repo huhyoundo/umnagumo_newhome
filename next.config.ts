@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: "standalone",
+  images: {
+    qualities: [75, 95, 100],
+  },
   turbopack: {
     root: process.cwd(),
   },

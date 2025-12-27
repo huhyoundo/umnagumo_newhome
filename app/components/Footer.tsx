@@ -34,8 +34,6 @@ function useScrollAnimation(threshold = 0.2) {
 }
 
 const quickLinks = [
-  { label: '가슴재수술', href: '/breast-revision' },
-  { label: '유륜거상술', href: '/areola-lift' },
   { label: '안전케어', href: '/safety-care' },
   { label: '보형물가이드', href: '/implant-guide' },
   { label: '의료진소개', href: '/doctors' },
@@ -374,8 +372,7 @@ export default function Footer() {
                       엄나구모성형외과의원
                     </p>
                     <div className="space-y-1 text-[13px] text-gray-400">
-                      <p>서울특별시 강남구 도산대로 318</p>
-                      <p>SBI타워 6층</p>
+                      <p>서울특별시 강남구 도산대로 318 SB타워6층</p>
                     </div>
                   </div>
                   <div className="space-y-2">

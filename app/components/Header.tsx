@@ -5,11 +5,10 @@ import Image from './SafeImage';
 import { useState, useEffect } from 'react';
 
 const surgeryItems = [
-  { name: '가슴재수술', href: '/breast-revision' },
-  { name: '보형물제거', href: '/implant-removal' },
-  { name: '유두축소', href: '/nipple-reduction' },
-  { name: '유륜거상술', href: '/areola-lift' },
-  { name: '축소거상', href: '/reduction-lift' },
+  { name: '가슴 첫수술', href: '/breast-augmentation' },
+  { name: '가슴 재수술', href: '/breast-revision' },
+  { name: '가슴 축소/거상술', href: '/reduction-lift' },
+  { name: '가슴 재건술', href: '/breast-reconstruction' },
 ];
 
 const aboutItems = [

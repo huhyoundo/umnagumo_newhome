@@ -244,7 +244,7 @@ export default function DoctorSection() {
                 }}
               >
                 <p className="text-[11px] text-[var(--navy)] tracking-[0.15em] uppercase mb-1">Experience</p>
-                <p className="text-[18px] font-semibold text-[var(--ink)]">20년+</p>
+                <p className="text-[18px] font-semibold text-[var(--ink)]">25년+</p>
               </div>
             </div>
           </div>

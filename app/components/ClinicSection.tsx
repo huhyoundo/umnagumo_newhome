@@ -100,35 +100,35 @@ function AnimatedTitle({ children, isVisible }: { children: string; isVisible: b
 const clinicItems = [
   {
     number: '01',
-    title: '가슴재수술',
-    subtitle: 'Breast Revision',
+    title: '가슴 첫수술',
+    subtitle: 'Primary Surgery',
+    description: '체형·조직·원하는 이미지에 맞춘 보형물 선택과 라인 디자인으로 자연스럽게 볼륨을 완성합니다.',
+    image: '/보형물제거 페이지 사진/1(메인-상단).jpg',
+    href: '/breast-augmentation',
+  },
+  {
+    number: '02',
+    title: '가슴 재수술',
+    subtitle: 'Revision Surgery',
     description: '구축, 비대칭, 모양 불만족 등 이전 수술의 문제를 정밀하게 교정합니다.',
     image: '/메인페이지 사진/2(가슴재수술).png',
     href: '/breast-revision',
   },
   {
-    number: '02',
-    title: '유륜거상술',
-    subtitle: 'Areola Lift',
-    description: '처진 유두와 유륜의 위치를 자연스럽게 교정하여 아름다운 형태를 만듭니다.',
-    image: '/메인페이지 사진/3(유륜거상술).png',
-    href: '/areola-lift',
-  },
-  {
     number: '03',
-    title: '안전케어',
-    subtitle: 'Safety Care',
-    description: '수술 전후 체계적인 관리 시스템으로 안전하고 빠른 회복을 도와드립니다.',
-    image: '/메인페이지 사진/4(안전케어).jpg',
-    href: '/safety-care',
+    title: '가슴 축소/거상술',
+    subtitle: 'Reduction & Lift',
+    description: '과도한 볼륨과 처짐을 함께 개선해 더 가볍고 탄탄한 라인과 균형을 만들어드립니다.',
+    image: '/축소거상 페이지 사진/1(메인_상단).jpg',
+    href: '/reduction-lift',
   },
   {
     number: '04',
-    title: '보형물가이드',
-    subtitle: 'Implant Guide',
-    description: 'FDA 승인 정품 보형물의 종류와 특징을 상세히 안내해 드립니다.',
-    image: '/메인페이지 사진/5(보형물가이드).jpg',
-    href: '/implant-guide',
+    title: '가슴 재건술',
+    subtitle: 'Reconstruction',
+    description: '조직 상태와 목표에 맞춘 맞춤 재건 계획으로 자연스러운 라인과 균형 회복을 돕습니다.',
+    image: '/메인페이지 사진/12(콘텐츠-이미지5).jpg',
+    href: '/breast-reconstruction',
   },
 ];
 
@@ -411,7 +411,7 @@ export default function ClinicSection() {
               transition: 'all 0.6s ease 0.5s',
             }}
           >
-            20년 이상의 경험과 노하우로 완성하는<br className="md:hidden" />
+            25년 이상의 경험과 노하우로 완성하는<br className="md:hidden" />
             자연스러운 아름다움
           </p>
         </div>

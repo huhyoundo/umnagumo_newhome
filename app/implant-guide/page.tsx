@@ -7,47 +7,48 @@ import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
   title: '보형물 가이드',
-  description: '가슴의 본질을 결정하는 보형물 선택. 20년 임상 경험으로 가장 안전하고 정확한 기준을 제시합니다.',
+  description: '가슴의 본질을 결정하는 보형물 선택. 25년 임상 경험으로 가장 안전하고 정확한 기준을 제시합니다.',
   path: '/implant-guide',
 });
 
 const implantComparison = [
-  { label: '핵심 느낌', motiva: '부드럽고 자연스러운 촉감', boost: '균형 잡힌 탄력 & 안정감', xtra: '확실한 볼륨·탄탄한 형태' },
-  { label: '적합한 체형', motiva: '피부 얇음', boost: '보통 체형', xtra: '피부 두꺼움·근육형' },
-  { label: '원하는 스타일', motiva: '자연스러움', boost: '무난한 중간 볼륨', xtra: '또렷한 라인·글래머러스' },
-  { label: '촉감', motiva: '가장 부드러움', boost: '중간', xtra: '탄력 지지력 가장 높음' },
-  { label: '재수술 적합도', motiva: '구축 위험 낮음', boost: '보통', xtra: '매우 안정적' },
-  { label: '추천 대상', motiva: '부드럽고 자연스러운\n볼륨을 원하는 분', boost: '탄력과 안정감을\n균형 있게 원하는 분', xtra: '선명한 라인과\n탄탄한 볼륨감을 원하는 분' },
+  { label: '적합한 체형', motiva: '마르고 타이트한 체형', boost: '마르고 타이트한 체형', xtra: '연부조직이 충분한 체형' },
+  { label: '원하는 스타일', motiva: '물방울형태의 자연스러움', boost: '윗가슴 볼륨 ↑', xtra: '자연스러운 볼륨' },
+  { label: '촉감', motiva: '자연스럽고 탄력있는 촉감', boost: '탄력있고 탱탱한 촉감', xtra: '자연스럽고 부드러운 촉감' },
+  { label: '추천 대상', motiva: '자연스러운면서도 탄력있는\n촉감을 선호하는 분', boost: '마르고 리플링이 걱정되시는분,\n윗가슴 볼륨이 없는분', xtra: '연부조직이 충분하며\n부드러운 촉감을 선호하는 분' },
 ] as const;
 
 const implantDetails = [
   {
-    title: '모티바',
-    subtitle: '(Motiva)',
+    title: '모티바 어고노믹스',
+    subtitle: '(Motiva Ergonomix)',
     image: '/보형물 가이드 페이지 사진/모티바.png',
     paragraphs: [
       '모티바 보형물은 인체의 움직임에 따라 자연스럽게 형태가 변하도록 설계된 유동형 보형물입니다. 누워 있을 때는 완만하게 퍼지고, 서 있을 때는 물방울 형태로 모양이 잡혀 실제 가슴과 유사한 자연스러운 실루엣을 만들어냅니다.',
       '보형물 내부 젤은 매우 부드럽고 신축성이 뛰어나 촉감이 자연스러우며, 피부가 얇은 분들도 경계가 없이 편안한 결과를 기대하실 수 있습니다.',
       '또한 6겹 외피 구조와 블루씰(BlueSeal) 기술이 적용되어 젤 누출과 구형 구축의 발생 가능성을 낮추는 데 도움을 줍니다.',
     ],
+    link: 'https://blog.naver.com/umnagumo/223793118420'
   },
   {
     title: '멘토 부스트',
     subtitle: '(Mentor MemoryGel BOOST)',
     image: '/보형물 가이드 페이지 사진/멘토부스트.png',
     paragraphs: [
-      '멘토 부스트 보형물은 자연스러움과 형태 유지력의 균형이 뛰어난 제품입니다. 기존 멘토 젤보다 탄성과 응집력이 높아 조물거리거나 지나치게 단단하지 않으며, 가슴 보형물이 자연스럽게 놓이는 것이 특징입니다.',
-      '또한 일상 활동이 많은 분들도 형태가 안정적으로 유지되며, 부드러움과 적당한 탄탄함 사이의 밸런스를 원하는 분들께 특히 잘 맞는 보형물입니다.',
+      '멘토 부스트보형물은 기존 멘토 보형물보다 형태 유지력과 촉감의 조화를 강화한 혁신적인 제품입니다. 특히 1:1 비율의 고점탄성 크로스링커(Crosslinker) 실리콘 젤이 적용되어 보다 견고하면서도 안정감 있는 촉감, 상단 볼륨 표현과 함께 자연스러운 라인, 리플링 현상의 감소 등개선된 특성을 제공합니다.',
+      '이러한 설계는 특히 윗가슴 볼륨이 부족한 체형이나 보다 탄력 있는 모양과 촉감을 원하는 분들에게 적합합니다.',
     ],
+    link: 'https://blog.naver.com/umnagumo/223793214162'
   },
   {
     title: '멘토 엑스트라무스',
     subtitle: '(Mentor MemoryGel Xtra)',
     image: '/보형물 가이드 페이지 사진/멘토엑스트라무스.png',
     paragraphs: [
-      '멘토 엑스트라무스 보형물은 선명한 볼륨과 뛰어난 형태 유지력이 가장 큰 장점인 제품입니다. 고강도 응집력 젤을 적용해 가슴 전체 라인을 탄탄하게 지지하며, 움직임이 많아도 모양이 쉽게 흐트러지지 않습니다.',
-      '특히 둥기능 볼륨 표현이 무결해 드레스나 비키니 착용 시 라인이 예쁘게 살아나는 보형물이며, 조직이 부족하거나 탄력이 약한 경우에도 형태를 안정적으로 잡아주는 점을 갖고 있습니다.',
+      '멘토 엑스트라 스무스는 매끈한 표면과 착용 시 보다 부드럽고 자연스러운 감촉을 제공합니다. 스무스 표면 특성상 주변 조직과의 움직임이 자연스럽고, 유연한 라인과 촉감으로 본연의 가슴 조직처럼 느껴지는 것이 장점입니다.',
+      '멘토 엑스트라 스무스는 자연스러움과 편안함을 우선시하는 분들에게 적합합니다.',
     ],
+    link: 'https://blog.naver.com/umnagumo/223793214162'
   },
 ] as const;
 
@@ -104,12 +105,12 @@ export default function ImplantGuidePage() {
                     IMPLANT GUIDE
                   </p>
                   <h1 className="text-[32px] md:text-[50px] font-semibold tracking-[-0.03em] text-[var(--ink)] leading-[1.12] mt-5">
-                    가슴의 본질을 결정하는
+                    개인 체형에 최적화된
                     <br />
                     보형물 선택
                   </h1>
                   <p className="text-[14px] md:text-[16px] text-[var(--ink-muted)] leading-relaxed mt-6">
-                    20년 임상 경험으로 가장 안전하고 정확한 기준을 제시합니다.
+                    25년 임상 경험으로 가장 안전하고 정확한 기준을 제시합니다.
                     <br />
                     체형·조직·촉감까지 고려한 맞춤 보형물 솔루션!
                   </p>
@@ -222,7 +223,7 @@ export default function ImplantGuidePage() {
           <div className="max-w-[1200px] mx-auto px-6 lg:px-10">
             <div className="grid lg:grid-cols-3 gap-6">
               {implantDetails.map((implant) => (
-                <article key={implant.title} className="rounded-[26px] border border-line bg-white p-8 md:p-9">
+                <article key={implant.title} className="rounded-[26px] border border-line bg-white p-8 md:p-9 flex flex-col h-full">
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-2xl bg-[var(--paper)] border border-line flex items-center justify-center">
                       <Image src={implant.image} alt={implant.title} width={56} height={40} className="object-contain" quality={95} />
@@ -241,6 +242,23 @@ export default function ImplantGuidePage() {
                       </p>
                     ))}
                   </div>
+                  {implant.link ? (
+                    <div className="mt-auto pt-6">
+                      <Link
+                        href={implant.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[var(--navy)] text-white text-[12px] font-semibold tracking-wide
+                          hover:shadow-[0_18px_45px_rgba(29,35,86,0.25)] transition-shadow"
+                        aria-label={`${implant.title} 더보기`}
+                      >
+                        더보기
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
+                  ) : null}
                 </article>
               ))}
             </div>

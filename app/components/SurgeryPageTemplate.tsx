@@ -1064,7 +1064,7 @@ export default function SurgeryPageTemplate({
                 transition: 'all 0.6s ease 0.3s',
               }}
             >
-              20년 이상의 경험을 가진 전문의가 직접 상담해 드립니다.<br />
+              25년 이상의 경험을 가진 전문의가 직접 상담해 드립니다.<br />
               개인별 맞춤 진단과 최적의 수술 계획을 제안받으세요.
             </p>
             <div

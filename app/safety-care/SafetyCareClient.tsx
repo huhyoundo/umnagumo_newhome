@@ -137,7 +137,7 @@ export default function SafetyCarePage() {
                   <p className="text-[14px] md:text-[16px] text-white/85 leading-relaxed mt-6">
                     정교함을 완성하는 힘은 ‘안전’입니다.
                     <br />
-                    20년 임상 경험으로 구축한 엄나구모 안전 시스템을 확인하세요.
+                    25년 임상 경험으로 구축한 엄나구모 안전 시스템을 확인하세요.
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-3 mt-10">

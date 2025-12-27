@@ -427,7 +427,7 @@ export default function Hero() {
                   delay={0.35}
                   className="text-[15px] md:text-[17px] text-[var(--ink-muted)] leading-relaxed"
                 >
-                  20년 노하우의 정교한 기술력으로
+                  25년 노하우의 정교한 기술력으로
                 </GlitchText>
                 <br />
                 <GlitchText
