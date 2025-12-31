@@ -57,29 +57,31 @@ function SplitText({ children, isVisible, delay = 0, className = '' }: SplitText
   const midPoint = Math.floor(chars.length / 2);
 
   return (
-    <span className={`inline-flex justify-center ${className}`}>
-      {chars.map((char, index) => {
-        const distanceFromMid = index - midPoint;
-        const initialX = distanceFromMid * 50;
+    <span className={`inline-flex justify-center ${className}`} aria-label={children}>
+      <span aria-hidden="true">
+        {chars.map((char, index) => {
+          const distanceFromMid = index - midPoint;
+          const initialX = distanceFromMid * 50;
 
-        return (
-          <span
-            key={index}
-            className="inline-block will-change-transform"
-            style={{
-              transform: isVisible
-                ? 'translateX(0) scale(1) rotateY(0deg)'
-                : `translateX(${initialX}px) scale(0) rotateY(${distanceFromMid * 30}deg)`,
-              opacity: isVisible ? 1 : 0,
-              filter: isVisible ? 'blur(0px)' : 'blur(8px)',
-              transition: `all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)`,
-              transitionDelay: `${delay + Math.abs(distanceFromMid) * 0.05}s`,
-            }}
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </span>
-        );
-      })}
+          return (
+            <span
+              key={index}
+              className="inline-block will-change-transform"
+              style={{
+                transform: isVisible
+                  ? 'translateX(0) scale(1) rotateY(0deg)'
+                  : `translateX(${initialX}px) scale(0) rotateY(${distanceFromMid * 30}deg)`,
+                opacity: isVisible ? 1 : 0,
+                filter: isVisible ? 'blur(0px)' : 'blur(8px)',
+                transition: `all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)`,
+                transitionDelay: `${delay + Math.abs(distanceFromMid) * 0.05}s`,
+              }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          );
+        })}
+      </span>
     </span>
   );
 }
@@ -104,24 +106,26 @@ function WaveText({ children, isVisible, delay = 0, className = '' }: WaveTextPr
   }, [isVisible, delay]);
 
   return (
-    <span className={className}>
-      {chars.map((char, index) => (
-        <span
-          key={index}
-          className="inline-block will-change-transform"
-          style={{
-            transform: isVisible
-              ? 'translateY(0) rotateX(0deg)'
-              : 'translateY(100%) rotateX(-90deg)',
-            opacity: isVisible ? 1 : 0,
-            transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1)`,
-            transitionDelay: `${delay + index * 0.03}s`,
-            animation: waveActive ? `heroWave 3s ease-in-out ${index * 0.1}s infinite` : 'none',
-          }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
+    <span className={className} aria-label={children}>
+      <span aria-hidden="true">
+        {chars.map((char, index) => (
+          <span
+            key={index}
+            className="inline-block will-change-transform"
+            style={{
+              transform: isVisible
+                ? 'translateY(0) rotateX(0deg)'
+                : 'translateY(100%) rotateX(-90deg)',
+              opacity: isVisible ? 1 : 0,
+              transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1)`,
+              transitionDelay: `${delay + index * 0.03}s`,
+              animation: waveActive ? `heroWave 3s ease-in-out ${index * 0.1}s infinite` : 'none',
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </span>
     </span>
   );
 }
@@ -179,19 +183,22 @@ function MagneticText({ children, className = '' }: MagneticTextProps) {
       className={`inline-block ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      aria-label={children}
     >
-      {chars.map((char, index) => (
-        <span
-          key={index}
-          className="magnetic-char inline-block transition-all duration-200 ease-out cursor-default"
-          style={{
-            transform: `translate(${charPositions[index]?.x || 0}px, ${charPositions[index]?.y || 0}px) scale(${1 + Math.abs(charPositions[index]?.y || 0) * 0.01})`,
-            color: Math.abs(charPositions[index]?.y || 0) > 3 ? 'var(--gold)' : undefined,
-          }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
+      <span aria-hidden="true">
+        {chars.map((char, index) => (
+          <span
+            key={index}
+            className="magnetic-char inline-block transition-all duration-200 ease-out cursor-default"
+            style={{
+              transform: `translate(${charPositions[index]?.x || 0}px, ${charPositions[index]?.y || 0}px) scale(${1 + Math.abs(charPositions[index]?.y || 0) * 0.01})`,
+              color: Math.abs(charPositions[index]?.y || 0) > 3 ? 'var(--gold)' : undefined,
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </span>
     </span>
   );
 }

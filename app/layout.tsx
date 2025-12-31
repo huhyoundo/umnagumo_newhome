@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import FloatingContactButton from "./components/FloatingContactButton";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "./lib/seo";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, generateOrganizationSchema } from "./lib/seo";
 
 const DEFAULT_NAVER_SITE_VERIFICATIONS = [
   "fb15418bc68a30db2f6246177dfa6bd350527ede",
@@ -72,14 +72,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
-    sameAs: ["https://www.youtube.com/@umnagumo"],
-  };
+  const organizationStructuredData = generateOrganizationSchema();
 
   return (
     <html lang="ko">

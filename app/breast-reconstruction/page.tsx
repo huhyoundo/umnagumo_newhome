@@ -11,6 +11,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function BreastReconstructionPage() {
   return (
     <SurgeryPageTemplate
+      showTimeline={true}
       englishTitle="BREAST RECONSTRUCTION"
       koreanTitle="엄나구모 가슴 재건술"
       heroImage="/메인페이지 사진/12(콘텐츠-이미지5).jpg"
@@ -22,7 +23,8 @@ export default function BreastReconstructionPage() {
         '회복과 관리 과정이 궁금해요.',
       ]}
       sculptureImage="/가슴재수술 페이지 사진/2(조각상).jpg"
-      surgeryImage="/메인페이지 사진/6(원장님).jpg"
+      surgeryImage="/메인페이지 사진/reconst_model.jpg"
+      surgeryImageVariant="circle"
       explanationTitle="가슴 재건술,"
       explanationSubtitle="개인별 조건에 맞춘 계획이 핵심입니다."
       explanationContent={[

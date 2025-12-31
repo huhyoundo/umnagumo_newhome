@@ -73,24 +73,26 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
 function AnimatedTitle({ children, isVisible }: { children: string; isVisible: boolean }) {
   const chars = children.split('');
   return (
-    <span style={{ perspective: '1000px' }}>
-      {chars.map((char, index) => (
-        <span
-          key={index}
-          className="inline-block will-change-transform"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible
-              ? 'translateY(0) rotateX(0)'
-              : 'translateY(40px) rotateX(-60deg)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-            transitionDelay: `${0.3 + index * 0.03}s`,
-            transformOrigin: 'center bottom',
-          }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
+    <span aria-label={children}>
+      <span aria-hidden="true" style={{ perspective: '1000px' }}>
+        {chars.map((char, index) => (
+          <span
+            key={index}
+            className="inline-block will-change-transform"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible
+                ? 'translateY(0) rotateX(0)'
+                : 'translateY(40px) rotateX(-60deg)',
+              transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
+              transitionDelay: `${0.3 + index * 0.03}s`,
+              transformOrigin: 'center bottom',
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </span>
     </span>
   );
 }
@@ -386,30 +388,30 @@ function ConnectionLine({ isVisible, index }: { isVisible: boolean; index: numbe
         transition: `opacity 0.6s ease ${0.5 + index * 0.15}s`,
       }}
     >
-        <div className="flex items-center gap-1">
-          <div
-            className="w-8 h-[1px] bg-[var(--navy)]/30"
-            style={{
-              transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
-              transformOrigin: 'left',
-              transition: `transform 0.4s ease ${0.6 + index * 0.15}s`,
-            }}
-          />
-          <div
-            className="w-2 h-2 rounded-full border border-[var(--navy)]/30"
-            style={{
-              transform: isVisible ? 'scale(1)' : 'scale(0)',
-              transition: `transform 0.3s ease ${0.7 + index * 0.15}s`,
-            }}
-          />
-          <div
-            className="w-8 h-[1px] bg-[var(--navy)]/30"
-            style={{
-              transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
-              transformOrigin: 'right',
-              transition: `transform 0.4s ease ${0.8 + index * 0.15}s`,
-            }}
-          />
+      <div className="flex items-center gap-1">
+        <div
+          className="w-8 h-[1px] bg-[var(--navy)]/30"
+          style={{
+            transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
+            transformOrigin: 'left',
+            transition: `transform 0.4s ease ${0.6 + index * 0.15}s`,
+          }}
+        />
+        <div
+          className="w-2 h-2 rounded-full border border-[var(--navy)]/30"
+          style={{
+            transform: isVisible ? 'scale(1)' : 'scale(0)',
+            transition: `transform 0.3s ease ${0.7 + index * 0.15}s`,
+          }}
+        />
+        <div
+          className="w-8 h-[1px] bg-[var(--navy)]/30"
+          style={{
+            transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
+            transformOrigin: 'right',
+            transition: `transform 0.4s ease ${0.8 + index * 0.15}s`,
+          }}
+        />
       </div>
     </div>
   );

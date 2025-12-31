@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { createPageMetadata } from '../lib/seo';
+import ApprenticeshipValues from '../components/ApprenticeshipValues';
 
 export const metadata: Metadata = createPageMetadata({
   title: '의료진 소개',
@@ -43,18 +44,24 @@ const doctors = [
       '대한 미용성형외과학회 정회원',
       '대한 성형외과 유방성형연구회 학술위원',
     ],
+    namStyleLink: '/nam-style',
   },
 ] as const;
 
 const japanTimeline: readonly TimelineItem[] = [
-  { year: '1903년', text: '일본 나구모 의학 가문 창립, 도쿄의 의학교육 시작' },
-  { year: '1920년', text: '나구모 가문 2대, 외과 전문의로 확립' },
-  { year: '1945년', text: '전후 재건성형외과 봉사 개척' },
-  { year: '1960년', text: '나구모 가문 3대, 일본 최초 가슴전문 외과 출범' },
-  { year: '1975년', text: '도쿄 나구모 클리닉 본원 설립' },
-  { year: '1985년', text: '나고야, 오사카 분원 개원' },
-  { year: '1995년', text: '후쿠오카 분원 개원, 일본 4대 도시 네트워크 완성' },
+  { year: '1988년', text: '도쿄 우에노(上野)에 「나구모미용외과」 개원 — 나구모 요시노리 원장 창업' },
+  { year: '1990년', text: '의료법인 인가, 의료법인사단 나구모회 나구모클리닉 설립 (도쿄 니시고탄다)' },
+  { year: '1994년', text: '오사카원 개원' },
+  { year: '1995년', text: '후쿠오카원 개원 / 원장 유방전문의 자격 취득' },
+  { year: '1999년 7월', text: '도쿄원 오사키(大崎)로 이전, 유방전용 검사장비 확충' },
+  { year: '2009년', text: '나고야원 개원' },
+  { year: '2012년 11월', text: '삿포로원 개원' },
+  { year: '2014년 3월', text: '도쿄원 치요다구 산반초 「유방재건센터」로 이전' },
+
+  { year: '현재', text: '전국 4개원 운영 (도쿄·나고야·오사카·후쿠오카)' },
 ];
+
+
 
 const koreaTimeline: readonly TimelineItem[] = [
   { year: '1999년', text: '엄순찬 원장, 일본 교토대학교 의학박사 박사과정학위 취득' },
@@ -63,8 +70,12 @@ const koreaTimeline: readonly TimelineItem[] = [
   { year: '2001년', text: '한국 성형외과 전문의 취득' },
   { year: '2001년', text: '대한성형외과학회 정회원 등록' },
   { year: '2001년', text: '대한미용성형외과학회 창립회원 등록' },
-  { year: '2003년', text: '서울 강남 논현동 엄나구모성형외과 개원' },
+  { year: '2003년', text: '서울 강남 논현동 엄나구모성형외과 개원 (서울 강남)' },
   { year: '2005년', text: '겨드랑이 절개 가슴수술 특화 시스템 구축' },
+  { year: '2009년', text: '유방성형 학술논문 발표 (엄나구모 성형외과 소속)' },
+  { year: '2018년', text: '대한성형외과학회 유방성형연구회 운영위원 위촉' },
+  { year: '2020년', text: '유방성형 KCI 학술논문 저자 등재' },
+
 ];
 
 function Timeline({ items }: { items: readonly TimelineItem[] }) {
@@ -98,12 +109,14 @@ function DoctorCard({
   name,
   image,
   credentials,
+  namStyleLink,
   reverse = false,
 }: {
   role: string;
   name: string;
   image: string;
   credentials: readonly string[];
+  namStyleLink?: string;
   reverse?: boolean;
 }) {
   return (
@@ -121,7 +134,7 @@ function DoctorCard({
             />
           </div>
         </div>
-        <div className="p-8 md:p-10 lg:p-12">
+        <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
           <p className="text-[12px] tracking-[0.28em] uppercase font-medium text-[var(--navy)]">
             {role}
           </p>
@@ -130,7 +143,7 @@ function DoctorCard({
           </h2>
           <div className="w-10 h-[1px] bg-[var(--line)] mt-5" />
 
-          <ul className="mt-7 space-y-3 text-[13px] md:text-[14px] text-[var(--ink-muted)] leading-relaxed">
+          <ul className="mt-7 space-y-3 text-[13px] md:text-[14px] text-[var(--ink-muted)] leading-relaxed mb-8">
             {credentials.map((c) => (
               <li key={c} className="flex gap-3">
                 <span className="mt-[10px] w-1.5 h-1.5 rounded-full bg-[var(--navy)]/70 shrink-0" aria-hidden="true" />
@@ -138,9 +151,24 @@ function DoctorCard({
               </li>
             ))}
           </ul>
+
+          {namStyleLink && (
+            <Link
+              href={namStyleLink}
+              className="inline-flex items-center self-start gap-4 px-6 py-3 rounded-full border border-[#C9A962] text-[#C9A962] hover:bg-[#C9A962] hover:text-white transition-all duration-300 group"
+            >
+              <div className="flex flex-col items-start">
+                <span className="text-[10px] uppercase tracking-[0.2em] opacity-80 font-medium">Internal Sculpting</span>
+                <span className="text-[14px] font-semibold tracking-[-0.03em]">남정현 스타일</span>
+              </div>
+              <span className="w-6 h-6 rounded-full border border-current flex items-center justify-center group-hover:bg-white/20">
+                <svg className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+              </span>
+            </Link>
+          )}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
@@ -273,21 +301,23 @@ export default function DoctorsPage() {
               </div>
             </div>
 
+            <ApprenticeshipValues />
+
             <div className="grid lg:grid-cols-2 gap-6 md:gap-8 mt-10">
               <div className="rounded-[26px] border border-line bg-white p-8 md:p-10">
                 <div className="flex items-start justify-between gap-6">
                   <div>
                     <h3 className="text-[16px] md:text-[18px] font-semibold text-[var(--ink)]">
-                      일본 나구모 의학 가문
+                      구모클리닉(ナグモクリニック) 연혁
                     </h3>
                     <p className="text-[13px] text-[var(--ink-muted)] mt-2">
-                      1903-현재
+                      창업 37년 / 법인설립 35년
                     </p>
                   </div>
                   <div className="relative w-[120px] h-[120px] shrink-0">
                     <Image
                       src="/의료진 페이지 사진/5(확인증).jpg"
-                      alt="나구모 의학 가문 확인증"
+                      alt="나구모 연혁"
                       fill
                       className="object-contain"
                       quality={95}
@@ -297,6 +327,9 @@ export default function DoctorsPage() {
                 </div>
                 <div className="mt-8">
                   <Timeline items={japanTimeline} />
+                  <p className="text-[14px] text-[var(--navy)] font-medium mt-6 text-center">
+                    일본 유방전문 클리닉의 선두주자
+                  </p>
                 </div>
               </div>
 
@@ -307,7 +340,7 @@ export default function DoctorsPage() {
                       한국 엄나구모성형외과
                     </h3>
                     <p className="text-[13px] text-[var(--ink-muted)] mt-2">
-                      1999-현재
+                      2003-현재
                     </p>
                   </div>
                   <div className="relative w-[160px] h-[120px] shrink-0 rounded-[14px] overflow-hidden border border-line bg-[var(--paper)]">
@@ -323,6 +356,9 @@ export default function DoctorsPage() {
                 </div>
                 <div className="mt-8">
                   <Timeline items={koreaTimeline} />
+                  <p className="text-[14px] text-[var(--navy)] font-medium mt-6 text-center">
+                    한국 유방전문 클리닉의 선두주자
+                  </p>
                 </div>
               </div>
             </div>

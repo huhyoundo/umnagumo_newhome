@@ -123,24 +123,26 @@ function ParticleOverlay({ isVisible }: { isVisible: boolean }) {
 function AnimatedTitle({ children, isVisible }: { children: string; isVisible: boolean }) {
   const chars = children.split('');
   return (
-    <span style={{ perspective: '1000px' }}>
-      {chars.map((char, index) => (
-        <span
-          key={index}
-          className="inline-block will-change-transform"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible
-              ? 'translateY(0) rotateX(0)'
-              : 'translateY(40px) rotateX(-60deg)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-            transitionDelay: `${0.3 + index * 0.03}s`,
-            transformOrigin: 'center bottom',
-          }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
+    <span aria-label={children}>
+      <span aria-hidden="true" style={{ perspective: '1000px' }}>
+        {chars.map((char, index) => (
+          <span
+            key={index}
+            className="inline-block will-change-transform"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible
+                ? 'translateY(0) rotateX(0)'
+                : 'translateY(40px) rotateX(-60deg)',
+              transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
+              transitionDelay: `${0.3 + index * 0.03}s`,
+              transformOrigin: 'center bottom',
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </span>
     </span>
   );
 }
@@ -193,7 +195,13 @@ function StatCard({
       <div className="relative z-10">
         <div className="mb-4">
           <span className="font-display text-[48px] md:text-[56px] lg:text-[64px] font-light text-white tracking-tight">
-            {prefix}<span ref={ref} className="text-[var(--gold)]">{count.toLocaleString()}</span>
+            {prefix}
+            {/* Screen Reader / SEO Only Value */}
+            <span className="sr-only">{value.toLocaleString()}</span>
+            {/* Visual Animated Counter */}
+            <span ref={ref} className="text-[var(--gold)]" aria-hidden="true">
+              {count.toLocaleString()}
+            </span>
           </span>
           <span className="text-[18px] md:text-[20px] font-light text-white ml-1">{suffix}</span>
         </div>

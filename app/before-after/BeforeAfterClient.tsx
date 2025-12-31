@@ -282,43 +282,48 @@ export default function BeforeAfterPage() {
           <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredReviews.map((review) => (
-                <article
+                <Link
                   key={review.id}
-                  className="rounded-[22px] border border-line bg-white overflow-hidden hover:shadow-[0_18px_48px_rgba(0,0,0,0.10)] transition-shadow"
+                  href={`/before-after/${review.id}`}
+                  className="block group"
                 >
-                  <div className="px-5 py-4 border-b border-line bg-[var(--paper)]">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--navy)]/8 text-[var(--navy)] text-[12px] font-semibold">
-                        {categoryLabelById[review.surgeryType]}
-                      </span>
-                      <span className="text-[12px] text-[var(--ink-muted)] font-display tracking-[0.18em] uppercase">
-                        CASE
-                      </span>
+                  <article
+                    className="rounded-[22px] border border-line bg-white overflow-hidden group-hover:shadow-[0_18px_48px_rgba(0,0,0,0.10)] transition-shadow h-full flex flex-col"
+                  >
+                    <div className="px-5 py-4 border-b border-line bg-[var(--paper)]">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--navy)]/8 text-[var(--navy)] text-[12px] font-semibold">
+                          {categoryLabelById[review.surgeryType]}
+                        </span>
+                        <span className="text-[12px] text-[var(--ink-muted)] font-display tracking-[0.18em] uppercase">
+                          CASE
+                        </span>
+                      </div>
+                      <h3 className="text-[16px] font-semibold text-[var(--ink)] mt-3 tracking-[-0.02em] whitespace-pre-line group-hover:text-[var(--navy)] transition-colors">
+                        {review.title}
+                      </h3>
                     </div>
-                    <h3 className="text-[16px] font-semibold text-[var(--ink)] mt-3 tracking-[-0.02em] whitespace-pre-line">
-                      {review.title}
-                    </h3>
-                  </div>
 
-                  <div className="relative bg-[var(--paper)]">
-                    <div className="relative aspect-[4/3]">
-                      <Image
-                        src={review.image}
-                        alt={`${review.title} 수술 전후`}
-                        fill
-                        className="object-contain"
-                        quality={100}
-                        sizes="(min-width: 1024px) 33vw, 100vw"
-                      />
+                    <div className="relative bg-[var(--paper)]">
+                      <div className="relative aspect-[4/3]">
+                        <Image
+                          src={review.image}
+                          alt={`${review.title} 수술 전후`}
+                          fill
+                          className="object-contain"
+                          quality={100}
+                          sizes="(min-width: 1024px) 33vw, 100vw"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="p-5">
-                    <p className="text-[12px] md:text-[13px] text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">
-                      {review.description}
-                    </p>
-                  </div>
-                </article>
+                    <div className="p-5 flex-1">
+                      <p className="text-[12px] md:text-[13px] text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">
+                        {review.description}
+                      </p>
+                    </div>
+                  </article>
+                </Link>
               ))}
             </div>
           </div>

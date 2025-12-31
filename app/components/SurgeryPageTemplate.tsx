@@ -11,6 +11,11 @@ interface FAQ {
   answer: string;
 }
 
+import PostOpTimeline from './PostOpTimeline';
+import InteractiveSculpture from './InteractiveSculpture';
+import { generateFaqSchema } from '../lib/seo';
+import Script from 'next/script';
+
 interface SurgeryPageProps {
   englishTitle: string;
   koreanTitle: string;
@@ -33,6 +38,11 @@ interface SurgeryPageProps {
   }[];
   faqTitle: string;
   faqs: FAQ[];
+  showTimeline?: boolean;
+  timelineSteps?: {
+    period: string;
+    items: string[];
+  }[];
 }
 
 // ===== 고급 스크롤 애니메이션 훅 =====
@@ -306,9 +316,8 @@ function SectionTitle({
       </h2>
       {description && (
         <p
-          className={`text-[14px] md:text-[15px] text-[#666] leading-relaxed mt-5 ${
-            align === 'center' ? 'max-w-[700px] mx-auto' : ''
-          }`}
+          className={`text-[14px] md:text-[15px] text-[#666] leading-relaxed mt-5 ${align === 'center' ? 'max-w-[700px] mx-auto' : ''
+            }`}
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -447,6 +456,8 @@ export default function SurgeryPageTemplate({
   specialPoints,
   faqTitle,
   faqs,
+  showTimeline = false,
+  timelineSteps,
 }: SurgeryPageProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [loadStage, setLoadStage] = useState(0);
@@ -511,8 +522,17 @@ export default function SurgeryPageTemplate({
     ),
   };
 
+  // Schema Generation
+  const faqSchema = useMemo(() => (faqs ? generateFaqSchema(faqs) : null), [faqs]);
+
   return (
     <>
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <Header />
       <main className="pt-[70px] md:pt-0">
         {/* Hero Section - 고급 인터랙티브 */}
@@ -586,24 +606,27 @@ export default function SurgeryPageTemplate({
                 <h1
                   className="text-[34px] md:text-[48px] lg:text-[56px] font-bold text-white tracking-[-0.02em] leading-[1.15] mb-6"
                   style={{ perspective: '1000px' }}
+                  aria-label={koreanTitle}
                 >
-                  {koreanTitle.split('').map((char, index) => (
-                    <span
-                      key={index}
-                      className="inline-block will-change-transform"
-                      style={{
-                        opacity: loadStage >= 2 ? 1 : 0,
-                        transform: loadStage >= 2
-                          ? 'perspective(500px) rotateX(0) translateY(0) scale(1)'
-                          : 'perspective(500px) rotateX(-90deg) translateY(50px) scale(0.8)',
-                        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-                        transitionDelay: `${0.6 + index * 0.04}s`,
-                        transformOrigin: 'center bottom',
-                      }}
-                    >
-                      {char === ' ' ? '\u00A0' : char}
-                    </span>
-                  ))}
+                  <span aria-hidden="true">
+                    {koreanTitle.split('').map((char, index) => (
+                      <span
+                        key={index}
+                        className="inline-block will-change-transform"
+                        style={{
+                          opacity: loadStage >= 2 ? 1 : 0,
+                          transform: loadStage >= 2
+                            ? 'perspective(500px) rotateX(0) translateY(0) scale(1)'
+                            : 'perspective(500px) rotateX(-90deg) translateY(50px) scale(0.8)',
+                          transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+                          transitionDelay: `${0.6 + index * 0.04}s`,
+                          transformOrigin: 'center bottom',
+                        }}
+                      >
+                        {char === ' ' ? '\u00A0' : char}
+                      </span>
+                    ))}
+                  </span>
                 </h1>
 
                 {/* 애니메이션 라인 */}
@@ -692,41 +715,17 @@ export default function SurgeryPageTemplate({
           <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* 조각상 이미지 */}
-              <div className="flex justify-center order-2 lg:order-1">
+              {/* 조각상 이미지 - Interactive Component */}
+              <div className="flex justify-center order-2 lg:order-1 h-[450px]">
                 <div
-                  className="relative"
+                  className="relative w-full h-full"
                   style={{
                     opacity: concernsAnim.isVisible ? 1 : 0,
-                    transform: concernsAnim.isVisible ? 'translateX(0) rotate(0)' : 'translateX(-60px) rotate(-3deg)',
+                    transform: concernsAnim.isVisible ? 'translateX(0)' : 'translateX(-60px)',
                     transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
                   }}
                 >
-                  <div
-                    className="absolute -top-6 -left-6 w-36 h-36 border border-[var(--navy)]/40"
-                    style={{
-                      transform: concernsAnim.isVisible ? 'scale(1) rotate(0)' : 'scale(0.7) rotate(-5deg)',
-                      opacity: concernsAnim.isVisible ? 1 : 0,
-                      transition: 'all 0.8s ease 0.4s',
-                    }}
-                  />
-                  <div className="relative w-[280px] h-[380px] md:w-[340px] md:h-[460px] overflow-hidden">
-                    <Image
-                      src={sculptureImage}
-                      alt="조각상"
-                      fill
-                      className="object-contain"
-                      quality={100}
-                      sizes="(max-width: 768px) 280px, 340px"
-                    />
-                  </div>
-                  <div
-                    className="absolute -bottom-6 -right-6 w-36 h-36 border border-[var(--navy)]/40"
-                    style={{
-                      transform: concernsAnim.isVisible ? 'scale(1) rotate(0)' : 'scale(0.7) rotate(5deg)',
-                      opacity: concernsAnim.isVisible ? 1 : 0,
-                      transition: 'all 0.8s ease 0.5s',
-                    }}
-                  />
+                  <InteractiveSculpture imageSrc={sculptureImage} />
                 </div>
               </div>
 
@@ -970,6 +969,8 @@ export default function SurgeryPageTemplate({
           </div>
         </section>
 
+        {showTimeline && <PostOpTimeline steps={timelineSteps} />}
+
         {/* FAQ Section */}
         <section className="py-20 md:py-28 bg-[var(--paper)]" ref={faqAnim.ref}>
           <div className="max-w-[800px] mx-auto px-6 lg:px-10">
@@ -1004,9 +1005,8 @@ export default function SurgeryPageTemplate({
                       </span>
                     </div>
                     <svg
-                      className={`w-5 h-5 text-[var(--navy)] transition-transform duration-300 ${
-                        openFaq === index ? 'rotate-180' : ''
-                      }`}
+                      className={`w-5 h-5 text-[var(--navy)] transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1015,9 +1015,8 @@ export default function SurgeryPageTemplate({
                     </svg>
                   </button>
                   <div
-                    className={`overflow-hidden transition-all duration-400 ease-out ${
-                      openFaq === index ? 'max-h-[500px]' : 'max-h-0'
-                    }`}
+                    className={`overflow-hidden transition-all duration-400 ease-out ${openFaq === index ? 'max-h-[500px]' : 'max-h-0'
+                      }`}
                   >
                     <div className="px-6 pb-6 pt-0">
                       <div className="pl-12 border-l-2 border-[var(--navy)]/30">

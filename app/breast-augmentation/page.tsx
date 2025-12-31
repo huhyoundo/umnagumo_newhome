@@ -11,6 +11,8 @@ export const metadata: Metadata = createPageMetadata({
 export default function BreastAugmentationPage() {
   return (
     <SurgeryPageTemplate
+      // Updated surgery time
+      showTimeline={true}
       englishTitle="PRIMARY BREAST SURGERY"
       koreanTitle="엄나구모 가슴 첫수술"
       heroImage="/보형물제거 페이지 사진/1(메인-상단).jpg"
@@ -22,7 +24,7 @@ export default function BreastAugmentationPage() {
         '흉터와 회복, 통증이 걱정돼요.',
       ]}
       sculptureImage="/보형물제거 페이지 사진/2(조각상).jpg"
-      surgeryImage="/보형물제거 페이지 사진/4(원장님-사진).jpg"
+      surgeryImage="/메인페이지 사진/aug_model.jpg"
       surgeryImageVariant="circle"
       explanationTitle="가슴 첫수술,"
       explanationSubtitle="나에게 맞는 디자인이 가장 중요합니다."
@@ -42,7 +44,7 @@ export default function BreastAugmentationPage() {
         {
           icon: 'time',
           title: '수술시간',
-          description: '약 60~120분 (개인별 상이)',
+          description: '50분',
         },
         {
           icon: 'feature',

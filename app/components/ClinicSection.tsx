@@ -51,14 +51,14 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {particles.map((p) => (
-            <div
-              key={p.id}
-              className="absolute rounded-full bg-[var(--navy)]/8"
-              style={{
-                left: `${p.x}%`,
-                top: `${p.y}%`,
-                width: p.size,
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="absolute rounded-full bg-[var(--navy)]/8"
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
             height: p.size,
             opacity: isVisible ? 0.5 : 0,
             animation: isVisible ? `particleFloat ${p.duration}s ease-in-out infinite` : 'none',
@@ -75,24 +75,26 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
 function AnimatedTitle({ children, isVisible }: { children: string; isVisible: boolean }) {
   const chars = children.split('');
   return (
-    <span style={{ perspective: '1000px' }}>
-      {chars.map((char, index) => (
-        <span
-          key={index}
-          className="inline-block will-change-transform"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible
-              ? 'translateY(0) rotateX(0)'
-              : 'translateY(40px) rotateX(-60deg)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-            transitionDelay: `${0.3 + index * 0.03}s`,
-            transformOrigin: 'center bottom',
-          }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
+    <span aria-label={children}>
+      <span aria-hidden="true" style={{ perspective: '1000px' }}>
+        {chars.map((char, index) => (
+          <span
+            key={index}
+            className="inline-block will-change-transform"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible
+                ? 'translateY(0) rotateX(0)'
+                : 'translateY(40px) rotateX(-60deg)',
+              transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
+              transitionDelay: `${0.3 + index * 0.03}s`,
+              transformOrigin: 'center bottom',
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </span>
     </span>
   );
 }
@@ -103,8 +105,10 @@ const clinicItems = [
     title: '가슴 첫수술',
     subtitle: 'Primary Surgery',
     description: '체형·조직·원하는 이미지에 맞춘 보형물 선택과 라인 디자인으로 자연스럽게 볼륨을 완성합니다.',
-    image: '/보형물제거 페이지 사진/1(메인-상단).jpg',
+    image: '/메인페이지 사진/aug_model.jpg',
     href: '/breast-augmentation',
+    imagePosition: '50% 12%',
+    scale: 1.6,
   },
   {
     number: '02',
@@ -119,7 +123,7 @@ const clinicItems = [
     title: '가슴 축소/거상술',
     subtitle: 'Reduction & Lift',
     description: '과도한 볼륨과 처짐을 함께 개선해 더 가볍고 탄탄한 라인과 균형을 만들어드립니다.',
-    image: '/축소거상 페이지 사진/1(메인_상단).jpg',
+    image: '/메인페이지 사진/3(유륜거상술).png',
     href: '/reduction-lift',
   },
   {
@@ -127,7 +131,7 @@ const clinicItems = [
     title: '가슴 재건술',
     subtitle: 'Reconstruction',
     description: '조직 상태와 목표에 맞춘 맞춤 재건 계획으로 자연스러운 라인과 균형 회복을 돕습니다.',
-    image: '/메인페이지 사진/12(콘텐츠-이미지5).jpg',
+    image: '/메인페이지 사진/reconst_model.jpg',
     href: '/breast-reconstruction',
   },
 ];
@@ -208,7 +212,10 @@ function ClinicCard({
             fill
             className="object-cover transition-transform duration-700"
             style={{
-              transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+              transform: isHovered
+                ? `scale(${(item as any).scale ? (item as any).scale * 1.1 : 1.1})`
+                : `scale(${(item as any).scale || 1})`,
+              objectPosition: (item as any).imagePosition || 'center',
             }}
             quality={100}
             sizes="(max-width: 768px) 100vw, 400px"

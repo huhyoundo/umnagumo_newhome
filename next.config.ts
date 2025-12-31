@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+// Force restart 2024-12-30
+
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: "standalone",

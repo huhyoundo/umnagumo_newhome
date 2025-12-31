@@ -12,6 +12,8 @@ export const metadata: Metadata = createPageMetadata({
 export default function ReductionLiftPage() {
   return (
     <SurgeryPageTemplate
+      // Updated timeline and time
+      showTimeline={true}
       englishTitle="REDUCTION SURGERY"
       koreanTitle="엄나구모 축소거상술"
       heroImage="/축소거상 페이지 사진/1(메인_상단).jpg"
@@ -67,6 +69,20 @@ export default function ReductionLiftPage() {
         {
           question: '축소와 거상을 동시에 해야 하나요?',
           answer: '가슴이 크면서 처짐이 있는 경우 대부분 축소+거상이 함께 적용되어야 모양·기능·지속력 모두 개선됩니다.',
+        },
+      ]}
+      timelineSteps={[
+        {
+          period: '10일차',
+          items: ['상태 및 경과체크', '수술부위 실밥제거', '염증반응 혈액검사 진행'],
+        },
+        {
+          period: '3주차',
+          items: ['상태 및 경과 체크', '흉터관리 안내 지도'],
+        },
+        {
+          period: '2달차',
+          items: ['상태 및 경과 체크'],
         },
       ]}
     />

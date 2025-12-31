@@ -3,6 +3,7 @@
 import Image from './SafeImage';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import InteractiveLogoPoster from './InteractiveLogoPoster';
 
 // 스크롤 애니메이션 훅
 function useScrollAnimation(threshold = 0.2) {
@@ -195,58 +196,25 @@ export default function DoctorSection() {
             </div>
           </div>
 
-          {/* Right Image */}
+          {/* Right Image - Interactive Brand Logo Poster */}
           <div
-            ref={imageRef}
             className="relative"
             style={{
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateX(0) rotate(0)' : 'translateX(60px) rotate(2deg)',
+              transform: isVisible ? 'translateX(0)' : 'translateX(60px)',
               transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
             }}
           >
-            {/* Decorative frame */}
+            {/* Decorative frame - external to the 3D card */}
             <div
-              className="absolute -top-4 -right-4 w-full h-full border-2 border-[var(--navy)]/20"
+              className="absolute -top-6 -right-6 w-full h-full border-2 border-[var(--navy)]/10"
               style={{
-                transform: isVisible ? 'translate(16px, 16px)' : 'translate(0, 0)',
+                transform: isVisible ? 'translate(0, 0)' : 'translate(-20px, -20px)',
                 transition: 'transform 1s ease 0.4s',
               }}
             />
 
-            {/* Image container with parallax */}
-            <div
-              className="relative w-full aspect-[16/11] overflow-hidden group"
-              style={{
-                transform: `perspective(1000px) rotateX(${mousePosition.y * 3}deg) rotateY(${mousePosition.x * -3}deg)`,
-                transition: 'transform 0.3s ease-out',
-              }}
-            >
-              <Image
-                src="/메인페이지 사진/6(원장님).jpg"
-                alt="엄나구모 의료진"
-                fill
-                className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
-                quality={100}
-                sizes="(max-width: 1200px) 100vw, 800px"
-              />
-
-              {/* Overlay gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* Floating badge */}
-              <div
-                className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm px-5 py-3 shadow-lg"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                  transition: 'all 0.6s ease 0.8s',
-                }}
-              >
-                <p className="text-[11px] text-[var(--navy)] tracking-[0.15em] uppercase mb-1">Experience</p>
-                <p className="text-[18px] font-semibold text-[var(--ink)]">25년+</p>
-              </div>
-            </div>
+            <InteractiveLogoPoster />
           </div>
         </div>
       </div>
