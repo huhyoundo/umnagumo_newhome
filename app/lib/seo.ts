@@ -6,7 +6,7 @@ export const SITE_NAME = "엄나구모 성형외과";
 export const AUTHOR_NAME = "Dr. Eom Soon-chan & Dr. Nam Jung-hyun";
 
 export const SITE_DESCRIPTION =
-  "강남 논현동 가슴성형 전문 엄나구모 성형외과. 20년 무사고, 12,000례 이상의 풍부한 임상 경험. 가슴확대, 축소, 거상, 재수술 및 유방재건 전문 병원.";
+  "강남 논현동 가슴성형 전문 엄나구모 성형외과. 12,000례 이상의 풍부한 임상 경험. 가슴확대, 축소, 거상, 재수술 및 유방재건 전문 병원.";
 
 // Schema Generators
 export function generateOrganizationSchema() {
