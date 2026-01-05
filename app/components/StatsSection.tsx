@@ -229,7 +229,7 @@ function StatCard({
 export default function StatsSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
 
-  const stats = [
+  const [stats, setStats] = useState([
     {
       title: '가슴성형 전문 경력',
       subtitle: '성형외과 전문의로서',
@@ -254,7 +254,44 @@ export default function StatsSection() {
       suffix: '일',
       prefix: 'D+',
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    const today = new Date();
+    const openingDate = new Date('2003-01-10');
+    const caseBaseDate = new Date('2026-01-03');
+    const caseBaseCount = 12163;
+    const casesPerDay = 3;
+
+    // Calculate D-Day (Days since opening)
+    const diffTimeDDay = Math.abs(today.getTime() - openingDate.getTime());
+    const diffDaysDDay = Math.ceil(diffTimeDDay / (1000 * 60 * 60 * 24));
+
+    // Calculate Case Count
+    // Calculate Case Count based on calendar days
+    const todayMidnight = new Date(today);
+    todayMidnight.setHours(0, 0, 0, 0);
+    const baseMidnight = new Date(caseBaseDate);
+    baseMidnight.setHours(0, 0, 0, 0);
+
+    const diffTimeCases = todayMidnight.getTime() - baseMidnight.getTime();
+    const diffDaysCases = Math.floor(diffTimeCases / (1000 * 60 * 60 * 24));
+
+    // Ensure we don't subtract cases if system time is somehow before base date
+    const currentCases = caseBaseCount + (diffDaysCases > 0 ? diffDaysCases * casesPerDay : 0);
+
+    setStats(prev => [
+      prev[0], // Keep experience static for now or manual update
+      {
+        ...prev[1],
+        value: currentCases
+      },
+      {
+        ...prev[2],
+        value: diffDaysDDay
+      }
+    ]);
+  }, []);
 
   return (
     <section ref={sectionRef} className="relative py-20 md:py-28 overflow-hidden">

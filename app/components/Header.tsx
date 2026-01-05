@@ -33,11 +33,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed md:sticky top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
-        isScrolled
+      className={`fixed md:sticky top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${isScrolled
           ? 'bg-[rgba(248,246,243,0.92)] backdrop-blur-md shadow-[0_1px_18px_rgba(0,0,0,0.06)] border-b border-line'
           : 'bg-[rgba(248,246,243,0.82)] backdrop-blur-md border-b border-line'
-      }`}
+        }`}
     >
       {/* Main Header */}
       <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-10">
@@ -86,13 +85,20 @@ export default function Header() {
               >
                 전후사진
               </Link>
+              <Link
+                href="https://blog.naver.com/umnagumo/223849151079"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${desktopNavColumnClass} py-6 text-[17px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors tracking-[-0.01em] font-medium text-center`}
+              >
+                체크 리스트
+              </Link>
             </nav>
 
             {/* Unified Mega Menu Panel - Full Width */}
             <div
-              className={`fixed top-[70px] left-0 w-screen transition-all duration-300 ${
-                showMegaMenu ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-              }`}
+              className={`fixed top-[70px] left-0 w-screen transition-all duration-300 ${showMegaMenu ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}
             >
               <div className="bg-[rgba(248,246,243,0.92)] backdrop-blur-md shadow-[0_8px_28px_rgba(0,0,0,0.06)] border-t border-line">
                 {/* Align columns with nav items above */}
@@ -136,6 +142,20 @@ export default function Header() {
                           className="block py-1 text-[15px] text-[var(--ink-muted)] hover:text-[var(--navy)] transition-colors"
                         >
                           전후사진
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Column 4: 체크 리스트 */}
+                    <div className={`${desktopNavColumnClass} text-center`}>
+                      <div className="space-y-1">
+                        <Link
+                          href="https://blog.naver.com/umnagumo/223849151079"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block py-1 text-[15px] text-[var(--ink-muted)] hover:text-[var(--navy)] transition-colors"
+                        >
+                          체크 리스트
                         </Link>
                       </div>
                     </div>
@@ -218,6 +238,19 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               전후사진
+            </Link>
+          </div>
+
+          {/* 체크 리스트 */}
+          <div className="mb-6 pt-4 border-t border-line">
+            <Link
+              href="https://blog.naver.com/umnagumo/223849151079"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block py-2 text-[15px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              체크 리스트
             </Link>
           </div>
 

@@ -44,7 +44,7 @@ export default function BreastAugmentationPage() {
         {
           icon: 'time',
           title: '수술시간',
-          description: '50분',
+          description: '40분-1시간',
         },
         {
           icon: 'feature',

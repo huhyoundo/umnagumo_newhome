@@ -17,7 +17,7 @@ type TimelineItem = { year: string; text: string };
 const doctors = [
   {
     role: '대표원장',
-    name: '엄순찬',
+    name: '엄 순 찬',
     image: '/의료진 페이지 사진/2(대표원장님).jpg',
     credentials: [
       '순천향대학교 의과대학 졸업',
@@ -33,7 +33,7 @@ const doctors = [
   },
   {
     role: '원장',
-    name: '남정현',
+    name: '남 정 현',
     image: '/의료진 페이지 사진/3(남정현-원장님).jpg',
     credentials: [
       '순천향대학교 의과대학 졸업',
@@ -53,10 +53,10 @@ const japanTimeline: readonly TimelineItem[] = [
   { year: '1990년', text: '의료법인 인가, 의료법인사단 나구모회 나구모클리닉 설립 (도쿄 니시고탄다)' },
   { year: '1994년', text: '오사카원 개원' },
   { year: '1995년', text: '후쿠오카원 개원 / 원장 유방전문의 자격 취득' },
-  { year: '1999년 7월', text: '도쿄원 오사키(大崎)로 이전, 유방전용 검사장비 확충' },
+  { year: '1999년', text: '도쿄원 오사키(大崎)로 이전, 유방전용 검사장비 확충' },
   { year: '2009년', text: '나고야원 개원' },
-  { year: '2012년 11월', text: '삿포로원 개원' },
-  { year: '2014년 3월', text: '도쿄원 치요다구 산반초 「유방재건센터」로 이전' },
+  { year: '2012년', text: '삿포로원 개원' },
+  { year: '2014년', text: '도쿄원 치요다구 산반초 「유방재건센터」로 이전' },
 
   { year: '현재', text: '전국 4개원 운영 (도쿄·나고야·오사카·후쿠오카)' },
 ];

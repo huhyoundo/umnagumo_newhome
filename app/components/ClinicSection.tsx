@@ -130,7 +130,7 @@ const clinicItems = [
     number: '04',
     title: '가슴 재건술',
     subtitle: 'Reconstruction',
-    description: '조직 상태와 목표에 맞춘 맞춤 재건 계획으로 자연스러운 라인과 균형 회복을 돕습니다.',
+    description: '조직 상태에 따른 맞춤 재건으로 자연스럽고 균형잡힌 가슴으로 만들어드립니다.',
     image: '/메인페이지 사진/reconst_model.jpg',
     href: '/breast-reconstruction',
   },

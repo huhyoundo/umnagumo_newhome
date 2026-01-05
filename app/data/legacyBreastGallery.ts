@@ -13,33 +13,9 @@ export interface LegacyBreastGalleryItem {
 }
 
 export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
-  {
-    id: 27,
-    legacyNewsId: "NEWS_000000000000027",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "양측 벌어진 모양 및 어색한 라인\n양측 피막 절제술 및 밑선라인 교정",
-    image: "/assets/before-after/revision/NEWS_000000000000027-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000027-modal.png",
-  },
-  {
-    id: 26,
-    legacyNewsId: "NEWS_000000000000026",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "양측 각진 내측라인\n양측 피막 절제 및 밑선라인 교정",
-    image: "/assets/before-after/revision/NEWS_000000000000026-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000026-modal.png",
-  },
-  {
-    id: 25,
-    legacyNewsId: "NEWS_000000000000025",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "우측 구축 및 좌측 어색한 라인\n양측 피막 절제 및 절개 후 밑선라인 교정",
-    image: "/assets/before-after/revision/NEWS_000000000000025-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000025-modal.png",
-  },
+
+
+
   {
     id: 24,
     legacyNewsId: "NEWS_000000000000024",
@@ -49,24 +25,8 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
     image: "/assets/before-after/revision/NEWS_000000000000024-preview.png",
     modalImage: "/assets/before-after/revision/NEWS_000000000000024-modal.png",
   },
-  {
-    id: 23,
-    legacyNewsId: "NEWS_000000000000023",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "양측 각진라인 및 좌측 구축\n양측 피막절제 및 밑선교정 시행",
-    image: "/assets/before-after/revision/NEWS_000000000000023-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000023-modal.png",
-  },
-  {
-    id: 22,
-    legacyNewsId: "NEWS_000000000000022",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n멘토 보형물",
-    description: "양측 불분명한 밑선라인\n양측 하방박리 및 밑선교정 시행",
-    image: "/assets/before-after/revision/NEWS_000000000000022-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000022-modal.png",
-  },
+
+
   {
     id: 21,
     legacyNewsId: "NEWS_000000000000021",
@@ -76,33 +36,9 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
     image: "/assets/before-after/revision/NEWS_000000000000021-preview.png",
     modalImage: "/assets/before-after/revision/NEWS_000000000000021-modal.png",
   },
-  {
-    id: 20,
-    legacyNewsId: "NEWS_000000000000020",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "양측 어색한 라인 및 벌어진 모양\n양측 피막절제 및 박리 후 사이즈 업",
-    image: "/assets/before-after/revision/NEWS_000000000000020-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000020-modal.png",
-  },
-  {
-    id: 19,
-    legacyNewsId: "NEWS_000000000000019",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "좌측 보형물 파손 및 구축\n좌측 피막 전절제 및 우측 피막 부분절제 시행",
-    image: "/assets/before-after/revision/NEWS_000000000000019-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000019-modal.png",
-  },
-  {
-    id: 18,
-    legacyNewsId: "NEWS_000000000000018",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "좌측 보형물 파손 및 구축\n양측 피막 부분절제술 및 피막 절개 시행",
-    image: "/assets/before-after/revision/NEWS_000000000000018-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000018-modal.png",
-  },
+
+
+
   {
     id: 17,
     legacyNewsId: "NEWS_000000000000017",
@@ -121,24 +57,8 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
     image: "/assets/before-after/primary/NEWS_000000000000016-preview.png",
     modalImage: "/assets/before-after/primary/NEWS_000000000000016-modal.jpg",
   },
-  {
-    id: 15,
-    legacyNewsId: "NEWS_000000000000015",
-    surgeryType: "primary",
-    title: "겨드랑이 절개하 첫수술\n모티바 보형물",
-    description: "",
-    image: "/assets/before-after/primary/NEWS_000000000000015-preview.png",
-    modalImage: "/assets/before-after/primary/NEWS_000000000000015-modal.jpg",
-  },
-  {
-    id: 14,
-    legacyNewsId: "NEWS_000000000000014",
-    surgeryType: "primary",
-    title: "겨드랑이 절개하 첫수술\n모티바 보형물",
-    description: "",
-    image: "/assets/before-after/primary/NEWS_000000000000014-preview.png",
-    modalImage: "/assets/before-after/primary/NEWS_000000000000014-modal.jpg",
-  },
+
+
   {
     id: 13,
     legacyNewsId: "NEWS_000000000000013",
@@ -175,24 +95,8 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
     image: "/assets/before-after/primary/NEWS_000000000000010-preview.png",
     modalImage: "/assets/before-after/primary/NEWS_000000000000010-modal.jpg",
   },
-  {
-    id: 9,
-    legacyNewsId: "NEWS_000000000000009",
-    surgeryType: "primary",
-    title: "겨드랑이 절개하 첫수술\n멘토 보형물",
-    description: "",
-    image: "/assets/before-after/primary/NEWS_000000000000009-preview.png",
-    modalImage: "/assets/before-after/primary/NEWS_000000000000009-modal.jpg",
-  },
-  {
-    id: 8,
-    legacyNewsId: "NEWS_000000000000008",
-    surgeryType: "primary",
-    title: "겨드랑이 절개하 첫수술\n멘토 보형물",
-    description: "",
-    image: "/assets/before-after/primary/NEWS_000000000000008-preview.png",
-    modalImage: "/assets/before-after/primary/NEWS_000000000000008-modal.jpg",
-  },
+
+
   {
     id: 7,
     legacyNewsId: "NEWS_000000000000007",
@@ -220,15 +124,7 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
     image: "/assets/before-after/primary/NEWS_000000000000005-preview.png",
     modalImage: "/assets/before-after/primary/NEWS_000000000000005-modal.jpg",
   },
-  {
-    id: 4,
-    legacyNewsId: "NEWS_000000000000004",
-    surgeryType: "primary",
-    title: "겨드랑이 절개하 첫수술\n모티바 보형물",
-    description: "",
-    image: "/assets/before-after/primary/NEWS_000000000000004-preview.png",
-    modalImage: "/assets/before-after/primary/NEWS_000000000000004-modal.jpg",
-  },
+
   {
     id: 3,
     legacyNewsId: "NEWS_000000000000003",

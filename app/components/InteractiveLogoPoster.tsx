@@ -52,7 +52,7 @@ export default function InteractiveLogoPoster() {
     // Rolling number animation for year
     const [year, setYear] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
-    const targetYear = 1988;
+    const targetYear = 2003;
 
     useEffect(() => {
         const observer = new IntersectionObserver(

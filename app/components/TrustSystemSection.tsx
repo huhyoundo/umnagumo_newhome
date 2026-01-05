@@ -207,7 +207,7 @@ const trustItems = [
     number: '02',
     title: '안전 수술 시스템',
     subtitle: 'Safety',
-    description: '대학병원급 마취 시스템과 응급 대응 체계로 안전한 수술 환경을 제공합니다.',
+    description: '대학병원급 마취 시스템과 응급대응으로 안전한 수술 환경을 제공합니다.',
     icon: 'safety' as const,
     progress: 100,
   },
@@ -222,7 +222,7 @@ const trustItems = [
   {
     number: '04',
     title: '체계적 사후관리',
-    subtitle: 'Aftercare',
+    subtitle: 'After Care',
     description: '수술 후 정기 검진과 회복 프로그램으로 최상의 결과를 유지합니다.',
     icon: 'aftercare' as const,
     progress: 100,
