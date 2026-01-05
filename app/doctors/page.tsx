@@ -129,7 +129,7 @@ function DoctorCard({
               alt={name}
               fill
               className="object-cover"
-              quality={100}
+
               sizes="(min-width: 1024px) 520px, 100vw"
             />
           </div>
@@ -190,7 +190,7 @@ export default function DoctorsPage() {
                 fill
                 className="object-cover object-center"
                 priority
-                quality={95}
+
                 sizes="100vw"
               />
               <div
@@ -295,7 +295,7 @@ export default function DoctorsPage() {
                   alt="엄나구모의 역사"
                   fill
                   className="object-cover"
-                  quality={95}
+
                   sizes="(min-width: 1024px) 1200px, 100vw"
                 />
               </div>
@@ -320,7 +320,7 @@ export default function DoctorsPage() {
                       alt="나구모 연혁"
                       fill
                       className="object-contain"
-                      quality={95}
+
                       sizes="120px"
                     />
                   </div>
@@ -349,7 +349,7 @@ export default function DoctorsPage() {
                       alt="엄나구모 병원"
                       fill
                       className="object-cover"
-                      quality={95}
+
                       sizes="160px"
                     />
                   </div>

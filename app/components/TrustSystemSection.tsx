@@ -229,7 +229,7 @@ const trustItems = [
   },
 ];
 
-// 3D 틸트 카드 컴포넌트
+// 3D 틸트 카드 컴포넌트 (최적화됨)
 function TrustCard({
   item,
   index,
@@ -240,24 +240,66 @@ function TrustCard({
   isVisible: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [transform, setTransform] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
-  const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });
+  const glowRef = useRef<HTMLDivElement>(null);
+  const accentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const bottomLineRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
+
+  // 애니메이션 상태를 위한 Ref (렌더링 유발 X)
+  const isHoveredRef = useRef(false);
+  const rafId = useRef<number | null>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    const rotateX = (y - 0.5) * -10;
-    const rotateY = (x - 0.5) * 10;
-    setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`);
-    setGlowPosition({ x: x * 100, y: y * 100 });
+    if (!cardRef.current || !isHoveredRef.current) return;
+
+    // RAF를 사용하여 프레임 드롭 방지
+    if (rafId.current) return;
+
+    rafId.current = requestAnimationFrame(() => {
+      if (!cardRef.current || !glowRef.current) return;
+
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rotateX = (y - 0.5) * -10;
+      const rotateY = (x - 0.5) * 10;
+
+      // Direct DOM update
+      cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      glowRef.current.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, var(--navy) 0%, transparent 50%)`;
+
+      rafId.current = null;
+    });
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    isHoveredRef.current = true;
+    if (cardRef.current) {
+      cardRef.current.style.transition = 'transform 0.2s ease-out, box-shadow 0.3s ease';
+      cardRef.current.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.15)';
+    }
+    if (glowRef.current) glowRef.current.style.opacity = '0.15';
+    if (accentRef.current) accentRef.current.style.opacity = '0.12';
+    if (bottomLineRef.current) bottomLineRef.current.style.width = '100%';
+    if (iconRef.current) iconRef.current.style.transform = 'scale(1.15) rotate(5deg)';
   }, []);
 
   const handleMouseLeave = useCallback(() => {
-    setTransform('perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)');
-    setIsHovered(false);
+    isHoveredRef.current = false;
+    if (rafId.current) {
+      cancelAnimationFrame(rafId.current);
+      rafId.current = null;
+    }
+
+    if (cardRef.current) {
+      cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+      cardRef.current.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+    }
+    if (glowRef.current) glowRef.current.style.opacity = '0';
+    if (accentRef.current) accentRef.current.style.opacity = '0';
+    if (bottomLineRef.current) bottomLineRef.current.style.width = '0%';
+    if (iconRef.current) iconRef.current.style.transform = 'scale(1) rotate(0)';
   }, []);
 
   return (
@@ -267,35 +309,33 @@ function TrustCard({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible
-          ? transform || 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'
+          ? 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'
           : 'translateY(60px) scale(0.95)',
-        transition: isHovered
-          ? 'transform 0.2s ease-out, box-shadow 0.3s ease'
-          : `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`,
-        boxShadow: isHovered
-          ? '0 25px 50px -12px rgba(0, 0, 0, 0.15)'
-          : '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+        transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`,
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={handleMouseEnter}
     >
       {/* Glow effect that follows cursor */}
       <div
+        ref={glowRef}
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at ${glowPosition.x}% ${glowPosition.y}%, var(--navy) 0%, transparent 50%)`,
-          opacity: isHovered ? 0.15 : 0,
+          background: `radial-gradient(circle at 50% 50%, var(--navy) 0%, transparent 50%)`,
+          opacity: 0,
           transition: 'opacity 0.3s ease',
         }}
       />
 
       {/* Corner accent */}
       <div
+        ref={accentRef}
         className="absolute top-0 right-0 w-20 h-20"
         style={{
           background: 'linear-gradient(135deg, transparent 50%, var(--gold) 50%)',
-          opacity: isHovered ? 0.12 : 0,
+          opacity: 0,
           transition: 'opacity 0.3s ease',
         }}
       />
@@ -321,17 +361,15 @@ function TrustCard({
           </span>
         </div>
         <div
+          ref={iconRef}
           className="text-[var(--navy)] transition-all duration-500"
-          style={{
-            transform: isHovered ? 'scale(1.15) rotate(5deg)' : 'scale(1) rotate(0)',
-          }}
         >
           {icons[item.icon]}
         </div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10" ref={contentRef}>
         <p
           className="font-display text-[10px] tracking-[0.15em] text-[var(--navy)] mb-2 uppercase"
           style={{
@@ -366,9 +404,10 @@ function TrustCard({
 
       {/* Bottom line accent */}
       <div
+        ref={bottomLineRef}
         className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[var(--navy)] to-[var(--gold)]"
         style={{
-          width: isHovered ? '100%' : '0%',
+          width: '0%',
           transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       />

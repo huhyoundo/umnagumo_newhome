@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "엄나구모 성형외과 | 강남 논현 가슴성형 전문",
+    default: "엄나구모 성형외과 | 강남 논현 가슴성형 25년 | 모티바·멘토 재수술 전문",
     template: "%s | 엄나구모 성형외과",
   },
   description: SITE_DESCRIPTION,
@@ -86,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </Script>
         <Script
           src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=wrifnr3bub"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
         <meta name="apple-mobile-web-app-title" content="Umnagumo" />
         {ENABLE_NAVER_ANALYTICS ? (

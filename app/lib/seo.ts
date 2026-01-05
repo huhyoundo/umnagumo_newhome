@@ -6,7 +6,7 @@ export const SITE_NAME = "엄나구모 성형외과";
 export const AUTHOR_NAME = "Dr. Eom Soon-chan & Dr. Nam Jung-hyun";
 
 export const SITE_DESCRIPTION =
-  "강남 논현동 가슴성형 전문 엄나구모 성형외과. 12,000례 이상의 풍부한 임상 경험. 가슴확대, 축소, 거상, 재수술 및 유방재건 전문 병원.";
+  "강남 논현동 가슴성형 전문 엄나구모 성형외과. 25년 경력, 12,000례 이상의 임상 경험. 모티바, 멘토 보형물을 이용한 가슴확대, 축소, 거상, 재수술 전문. 1:1 맞춤 상담.";
 
 // Schema Generators
 export function generateOrganizationSchema() {
@@ -103,7 +103,7 @@ export function createPageMetadata({
 }): Metadata {
   const canonicalUrl = new URL(path, SITE_URL);
   const resolvedDescription = description ?? SITE_DESCRIPTION;
-  const resolvedOgTitle = title ? `${title} | ${SITE_NAME}` : "엄나구모 성형외과 | 강남 논현 가슴성형 전문";
+  const resolvedOgTitle = title ? `${title} | ${SITE_NAME}` : "엄나구모 성형외과 | 강남 논현 가슴성형 25년 | 모티바·멘토 재수술 전문";
 
   return {
     ...(title ? { title } : {}),
