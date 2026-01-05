@@ -26,13 +26,23 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         };
     }
 
+    const normalizedTitle = item.title.replace(/\n/g, ' ');
+    const normalizedDescription = item.description.replace(/\n/g, ' ');
+    const pageTitle = `${normalizedTitle} | 엄나구모 성형외과`;
+
     return {
-        title: `${item.title.replace(/\n/g, ' ')} | 엄나구모 성형외과`,
-        description: `${item.description.replace(/\n/g, ' ')} - 엄나구모 성형외과 가슴성형 전후사진 케이스 상세`,
+        title: pageTitle,
+        description: `${normalizedDescription} - 엄나구모 성형외과 가슴성형 전후사진 케이스 상세`,
         openGraph: {
-            title: `${item.title.replace(/\n/g, ' ')} | 엄나구모 성형외과`,
-            description: item.description.replace(/\n/g, ' '),
+            title: pageTitle,
+            description: normalizedDescription,
             images: [item.image], // Using the preview image for OG share
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: pageTitle,
+            description: normalizedDescription,
+            images: [item.image],
         },
     };
 }

@@ -19,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const item = legacyBreastGalleryItems.find((i) => i.id.toString() === id);
 
     if (!item) {
-        return { title: '페이지를 찾을 수 없습니다' };
+        return {
+            title: '페이지를 찾을 수 없습니다',
+            robots: { index: false, follow: false },
+        };
     }
 
     return {
         title: `${item.title.replace(/\n/g, ' ')} | 엄나구모 성형외과`,
         description: item.description.replace(/\n/g, ' '),
+        alternates: { canonical: `/before-after/${id}` },
+        robots: { index: false, follow: true },
     };
 }
 

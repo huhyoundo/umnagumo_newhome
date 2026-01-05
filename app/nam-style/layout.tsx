@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Noto_Serif_KR, Montserrat } from 'next/font/google';
+import { SITE_NAME, createPageMetadata } from '../lib/seo';
 
 const cormorant = Cormorant_Garamond({
     subsets: ['latin'],
@@ -23,8 +24,12 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-    title: 'Internal Sculpting Breast | 엄나구모 성형외과',
-    description: '체형·조직·원하는 이미지에 맞춘 보형물 선택과 라인 디자인으로 자연스러운 볼륨을 완성합니다.',
+    ...createPageMetadata({
+        title: 'Internal Sculpting Breast',
+        description: '체형·조직·원하는 이미지에 맞춘 보형물 선택과 라인 디자인으로 자연스러운 볼륨을 완성합니다.',
+        path: '/nam-style',
+    }),
+    title: { absolute: `Internal Sculpting Breast | ${SITE_NAME}` },
 };
 
 export default function NamStyleLayout({
