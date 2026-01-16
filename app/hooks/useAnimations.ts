@@ -168,13 +168,12 @@ export function useTextScramble(
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    if (!isActive) {
-      setDisplayText('');
-      setIsComplete(false);
-      return;
-    }
+    if (!isActive) return;
 
     const timeout = setTimeout(() => {
+      setDisplayText('');
+      setIsComplete(false);
+
       const startTime = Date.now();
       const textLength = text.length;
 
@@ -210,7 +209,10 @@ export function useTextScramble(
     return () => clearTimeout(timeout);
   }, [text, isActive, chars, duration, delay]);
 
-  return { displayText, isComplete };
+  return {
+    displayText: isActive ? displayText : '',
+    isComplete: isActive ? isComplete : false,
+  };
 }
 
 // ===== 스태거 애니메이션 훅 =====
@@ -333,12 +335,10 @@ export function useProgressAnimation(
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (!isVisible) {
-      setProgress(0);
-      return;
-    }
+    if (!isVisible) return;
 
     const timeout = setTimeout(() => {
+      setProgress(0);
       const startTime = Date.now();
 
       const animate = () => {
@@ -358,7 +358,7 @@ export function useProgressAnimation(
     return () => clearTimeout(timeout);
   }, [isVisible, targetValue, duration, delay]);
 
-  return progress;
+  return isVisible ? progress : 0;
 }
 
 // ===== 타이핑 효과 훅 =====
@@ -422,16 +422,21 @@ interface Particle {
 }
 
 export function useParticles(count: number = 20) {
+  const pseudoRandom = useCallback((seed: number) => {
+    const value = Math.sin(seed) * 10000;
+    return value - Math.floor(value);
+  }, []);
+
   const particles = useMemo<Particle[]>(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 4 + 2,
-      opacity: Math.random() * 0.5 + 0.1,
-      duration: Math.random() * 20 + 10,
-      delay: Math.random() * -20,
-    })), [count]);
+      x: pseudoRandom((i + 1) * 12.9898) * 100,
+      y: pseudoRandom((i + 1) * 78.233) * 100,
+      size: pseudoRandom((i + 1) * 45.164) * 4 + 2,
+      opacity: pseudoRandom((i + 1) * 93.989) * 0.5 + 0.1,
+      duration: pseudoRandom((i + 1) * 12.345) * 20 + 10,
+      delay: pseudoRandom((i + 1) * 67.89) * -20,
+    })), [count, pseudoRandom]);
 
   return particles;
 }

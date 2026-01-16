@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import FooterDeferred from '../../components/deferred/FooterDeferred';
 import Image from '../../components/SafeImage';
 import Link from 'next/link';
 import { legacyBreastGalleryItems } from '../../data/legacyBreastGallery';
@@ -124,7 +124,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
                     </div>
                 </article>
             </main>
-            <Footer />
+            <FooterDeferred />
         </>
     );
 }

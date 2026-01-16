@@ -1,13 +1,13 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
-import ClinicSection from './components/ClinicSection';
-import DoctorSection from './components/DoctorSection';
-import StatsSection from './components/StatsSection';
-import TrustSystemSection from './components/TrustSystemSection';
-import BeforeAfterSection from './components/BeforeAfterSection';
-import ContentGrid from './components/ContentGrid';
-import YouTubeFeaturedSection from './components/YouTubeFeaturedSection';
-import Footer from './components/Footer';
+import YouTubeFeaturedSectionDeferred from './components/deferred/YouTubeFeaturedSectionDeferred';
+import BeforeAfterSectionDeferred from './components/deferred/BeforeAfterSectionDeferred';
+import ClinicSectionDeferred from './components/deferred/ClinicSectionDeferred';
+import ContentGridDeferred from './components/deferred/ContentGridDeferred';
+import DoctorSectionDeferred from './components/deferred/DoctorSectionDeferred';
+import FooterDeferred from './components/deferred/FooterDeferred';
+import StatsSectionDeferred from './components/deferred/StatsSectionDeferred';
+import TrustSystemSectionDeferred from './components/deferred/TrustSystemSectionDeferred';
 import type { Metadata } from 'next';
 import { createPageMetadata } from './lib/seo';
 
@@ -21,15 +21,15 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <ClinicSection />
-        <StatsSection />
-        <TrustSystemSection />
-        <DoctorSection />
-        <YouTubeFeaturedSection />
-        <BeforeAfterSection />
-        <ContentGrid />
+        <ClinicSectionDeferred />
+        <StatsSectionDeferred />
+        <TrustSystemSectionDeferred />
+        <DoctorSectionDeferred />
+        <YouTubeFeaturedSectionDeferred />
+        <BeforeAfterSectionDeferred />
+        <ContentGridDeferred />
       </main>
-      <Footer />
+      <FooterDeferred />
     </>
   );
 }

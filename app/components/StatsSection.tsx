@@ -83,16 +83,19 @@ function ParticleOverlay({ isVisible }: { isVisible: boolean }) {
 
   useEffect(() => {
     // 클라이언트에서만 파티클 생성 (hydration 불일치 방지)
-    setParticles(
-      Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        duration: Math.random() * 15 + 10,
-        delay: Math.random() * -10,
-      }))
-    );
+    const raf = requestAnimationFrame(() => {
+      setParticles(
+        Array.from({ length: 20 }, (_, i) => ({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 3 + 1,
+          duration: Math.random() * 15 + 10,
+          delay: Math.random() * -10,
+        }))
+      );
+    });
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   if (particles.length === 0) return null;
@@ -257,40 +260,43 @@ export default function StatsSection() {
   ]);
 
   useEffect(() => {
-    const today = new Date();
-    const openingDate = new Date('2003-01-10');
-    const caseBaseDate = new Date('2026-01-03');
-    const caseBaseCount = 12163;
-    const casesPerDay = 3;
+    const raf = requestAnimationFrame(() => {
+      const today = new Date();
+      const openingDate = new Date('2003-01-10');
+      const caseBaseDate = new Date('2026-01-03');
+      const caseBaseCount = 12163;
+      const casesPerDay = 3;
 
-    // Calculate D-Day (Days since opening)
-    const diffTimeDDay = Math.abs(today.getTime() - openingDate.getTime());
-    const diffDaysDDay = Math.ceil(diffTimeDDay / (1000 * 60 * 60 * 24));
+      // Calculate D-Day (Days since opening)
+      const diffTimeDDay = Math.abs(today.getTime() - openingDate.getTime());
+      const diffDaysDDay = Math.ceil(diffTimeDDay / (1000 * 60 * 60 * 24));
 
-    // Calculate Case Count
-    // Calculate Case Count based on calendar days
-    const todayMidnight = new Date(today);
-    todayMidnight.setHours(0, 0, 0, 0);
-    const baseMidnight = new Date(caseBaseDate);
-    baseMidnight.setHours(0, 0, 0, 0);
+      // Calculate Case Count based on calendar days
+      const todayMidnight = new Date(today);
+      todayMidnight.setHours(0, 0, 0, 0);
+      const baseMidnight = new Date(caseBaseDate);
+      baseMidnight.setHours(0, 0, 0, 0);
 
-    const diffTimeCases = todayMidnight.getTime() - baseMidnight.getTime();
-    const diffDaysCases = Math.floor(diffTimeCases / (1000 * 60 * 60 * 24));
+      const diffTimeCases = todayMidnight.getTime() - baseMidnight.getTime();
+      const diffDaysCases = Math.floor(diffTimeCases / (1000 * 60 * 60 * 24));
 
-    // Ensure we don't subtract cases if system time is somehow before base date
-    const currentCases = caseBaseCount + (diffDaysCases > 0 ? diffDaysCases * casesPerDay : 0);
+      // Ensure we don't subtract cases if system time is somehow before base date
+      const currentCases = caseBaseCount + (diffDaysCases > 0 ? diffDaysCases * casesPerDay : 0);
 
-    setStats(prev => [
-      prev[0], // Keep experience static for now or manual update
-      {
-        ...prev[1],
-        value: currentCases
-      },
-      {
-        ...prev[2],
-        value: diffDaysDDay
-      }
-    ]);
+      setStats((prev) => [
+        prev[0], // Keep experience static for now or manual update
+        {
+          ...prev[1],
+          value: currentCases,
+        },
+        {
+          ...prev[2],
+          value: diffDaysDDay,
+        },
+      ]);
+    });
+
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (

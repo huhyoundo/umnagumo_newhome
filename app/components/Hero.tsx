@@ -1,19 +1,18 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useEffect, useState, useRef, useCallback } from 'react';
-import LiquidRevealCanvas from './LiquidRevealCanvas';
+
+const LiquidRevealCanvas = dynamic(() => import('./LiquidRevealCanvas'), { ssr: false });
 
 // 텍스트 스크램블 효과 (해커 스타일)
 function useTextScramble(text: string, isActive: boolean, delay: number = 0) {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState(isActive ? text : '');
   const chars = '가나다라마바사아자차카타파하';
 
   useEffect(() => {
-    if (!isActive) {
-      setDisplayText('');
-      return;
-    }
+    if (!isActive) return;
 
     const timeout = setTimeout(() => {
       let iteration = 0;
@@ -41,7 +40,7 @@ function useTextScramble(text: string, isActive: boolean, delay: number = 0) {
     return () => clearTimeout(timeout);
   }, [text, isActive, delay]);
 
-  return displayText;
+  return isActive ? displayText : '';
 }
 
 // 스플릿 텍스트 애니메이션 (글자가 펼쳐지며 등장)
@@ -138,12 +137,10 @@ interface MagneticTextProps {
 
 function MagneticText({ children, className = '' }: MagneticTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
-  const [charPositions, setCharPositions] = useState<{ x: number; y: number }[]>([]);
+  const [charPositions, setCharPositions] = useState<{ x: number; y: number }[]>(() =>
+    children.split('').map(() => ({ x: 0, y: 0 }))
+  );
   const chars = children.split('');
-
-  useEffect(() => {
-    setCharPositions(chars.map(() => ({ x: 0, y: 0 })));
-  }, [children]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -174,8 +171,8 @@ function MagneticText({ children, className = '' }: MagneticTextProps) {
   }, []);
 
   const handleMouseLeave = useCallback(() => {
-    setCharPositions(chars.map(() => ({ x: 0, y: 0 })));
-  }, [chars.length]);
+    setCharPositions((prev) => prev.map(() => ({ x: 0, y: 0 })));
+  }, []);
 
   return (
     <span
@@ -270,7 +267,8 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number }>>([]);
 
   useEffect(() => {
-    if (isVisible) {
+    if (!isVisible) return;
+    const raf = requestAnimationFrame(() => {
       const newParticles = Array.from({ length: 20 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
@@ -279,7 +277,8 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
         delay: Math.random() * 2,
       }));
       setParticles(newParticles);
-    }
+    });
+    return () => cancelAnimationFrame(raf);
   }, [isVisible]);
 
   return (
@@ -331,21 +330,54 @@ function ScrollIndicator({ isVisible }: { isVisible: boolean }) {
 }
 
 export default function Hero() {
-  const [loadStage, setLoadStage] = useState(0);
+  const loadStage = 5;
+  const [showLiquidReveal, setShowLiquidReveal] = useState(false);
+
+  useEffect(() => {
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    let didStart = false;
+    let interactionTimeout: number | null = null;
+    let fallbackTimeout: number | null = null;
+
+    const start = () => {
+      if (didStart) return;
+      didStart = true;
+      setShowLiquidReveal(true);
+    };
+
+    const scheduleFromInteraction = () => {
+      if (interactionTimeout !== null) return;
+      interactionTimeout = window.setTimeout(start, 3500);
+    };
+
+    const interactionEvents: Array<keyof WindowEventMap> = ['pointerdown', 'touchstart', 'wheel'];
+    const interactionHandler = () => {
+      scheduleFromInteraction();
+      for (const eventName of interactionEvents) {
+        window.removeEventListener(eventName, interactionHandler);
+      }
+    };
+
+    if (isCoarsePointer) {
+      for (const eventName of interactionEvents) {
+        window.addEventListener(eventName, interactionHandler, { passive: true });
+      }
+
+      fallbackTimeout = window.setTimeout(start, 15000);
+    } else {
+      fallbackTimeout = window.setTimeout(start, 15000);
+    }
+
+    return () => {
+      for (const eventName of interactionEvents) {
+        window.removeEventListener(eventName, interactionHandler);
+      }
+      if (interactionTimeout !== null) window.clearTimeout(interactionTimeout);
+      if (fallbackTimeout !== null) window.clearTimeout(fallbackTimeout);
+    };
+  }, []);
 
   const scrambledSubtitle = useTextScramble('UMNAGUMO PLASTIC SURGERY', loadStage >= 1, 200);
-
-  // 단계별 로딩 애니메이션
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setLoadStage(1), 100),
-      setTimeout(() => setLoadStage(2), 600),
-      setTimeout(() => setLoadStage(3), 1200),
-      setTimeout(() => setLoadStage(4), 1800),
-      setTimeout(() => setLoadStage(5), 2400),
-    ];
-    return () => timers.forEach(clearTimeout);
-  }, []);
 
   const title1 = '가슴성형의 클래식,';
   const title2 = '현대적 혁신을 더하다.';
@@ -366,13 +398,23 @@ export default function Hero() {
         >
           {/* Background */}
           <div className="absolute inset-0">
-            <LiquidRevealCanvas
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              imageSrc="/메인페이지 사진/1(메인).jpg"
-              introHoldMs={700}
-              introFadeMs={1400}
-              opacity={loadStage >= 1 ? 1 : 0}
+            <img
+              src={encodeURI('/메인페이지 사진/1(메인).jpg')}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              decoding="async"
+              loading="eager"
+              fetchPriority="high"
             />
+            {showLiquidReveal ? (
+              <LiquidRevealCanvas
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                imageSrc="/메인페이지 사진/1(메인).jpg"
+                introHoldMs={700}
+                introFadeMs={1400}
+                opacity={0.92}
+              />
+            ) : null}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{

@@ -60,7 +60,7 @@ export function useStaggerAnimation<T extends HTMLElement = HTMLDivElement>(
       ([entry]) => {
         if (entry.isIntersecting) {
           // Stagger the visibility of each item
-          visibleItems.forEach((_, index) => {
+          Array.from({ length: itemCount }, (_, index) => {
             setTimeout(() => {
               setVisibleItems((prev) => {
                 const newState = [...prev];
@@ -128,8 +128,8 @@ export function useCounterAnimation(
 
   useEffect(() => {
     if (!startOnVisible) {
-      startCounting();
-      return;
+      const rafId = requestAnimationFrame(() => startCounting());
+      return () => cancelAnimationFrame(rafId);
     }
 
     const element = ref.current;

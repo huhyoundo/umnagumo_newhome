@@ -83,9 +83,9 @@ export default function NamStylePage() {
                 </div>
 
                 <div className="text-center z-10 px-4">
-                    <p className="font-montserrat text-[11px] tracking-[8px] text-[var(--gold)] uppercase mb-[30px] opacity-0 animate-fadeInUp delay-200">
-                        Dr. Nam Jung-Hyun's Breast Philosophy
-                    </p>
+	                    <p className="font-montserrat text-[11px] tracking-[8px] text-[var(--gold)] uppercase mb-[30px] opacity-0 animate-fadeInUp delay-200">
+	                        Dr. Nam Jung-Hyun&apos;s Breast Philosophy
+	                    </p>
                     <h1 className="font-cormorant text-[42px] md:text-[80px] font-light tracking-[6px] leading-[1.2] mb-[40px] opacity-0 animate-fadeInUp delay-400">
                         Internal Sculpting<br />
                         <span className="italic text-[var(--gold)]">Breast</span>
@@ -118,9 +118,9 @@ export default function NamStylePage() {
             <section className="py-[150px] px-[30px] md:px-[60px] text-center relative bg-gradient-to-b from-[var(--charcoal)] to-[var(--black)]">
                 <p className="font-noto text-[20px] md:text-[28px] font-light leading-[2] max-w-[800px] mx-auto mb-[60px] text-[#F8F6F3]/90">
                     엄나구모의 가슴은<br />
-                    <strong className="font-normal text-[var(--gold)]">'보이는 예쁨'</strong>이 아닌<br />
-                    <strong className="font-normal text-[var(--gold)]">'느껴지는 자연스러움'</strong>을 목표로 합니다.
-                </p>
+	                    <strong className="font-normal text-[var(--gold)]">&apos;보이는 예쁨&apos;</strong>이 아닌<br />
+	                    <strong className="font-normal text-[var(--gold)]">&apos;느껴지는 자연스러움&apos;</strong>을 목표로 합니다.
+	                </p>
                 <div className="flex flex-col items-center gap-[15px]">
                     <div className="w-[60px] h-[1px] bg-[var(--gold)] mb-[20px]" />
                     <span className="font-noto text-[18px] tracking-[4px] font-normal">남 정 현</span>

@@ -3,7 +3,7 @@
 import Image from '../components/SafeImage';
 import Link from 'next/link';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import FooterDeferred from '../components/deferred/FooterDeferred';
 import { useMemo, useState } from 'react';
 
 import {
@@ -332,7 +332,7 @@ export default function BeforeAfterPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <FooterDeferred />
     </>
   );
 }

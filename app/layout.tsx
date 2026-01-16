@@ -1,8 +1,56 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import FloatingContactButton from "./components/FloatingContactButton";
+import PretendardFullLoader from "./components/PretendardFullLoader";
+import ThirdPartyScripts from "./components/ThirdPartyScripts";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, generateOrganizationSchema } from "./lib/seo";
+
+const pretendardInitial = localFont({
+  src: [
+    {
+      path: "../public/폰트/Pretendard-1.3.9/web/static/woff2-initial/Pretendard-Regular.initial.woff2",
+      style: "normal",
+      weight: "400",
+    },
+    {
+      path: "../public/폰트/Pretendard-1.3.9/web/static/woff2-initial/Pretendard-SemiBold.initial.woff2",
+      style: "normal",
+      weight: "600",
+    },
+  ],
+  display: "swap",
+  preload: false,
+  variable: "--font-pretendard",
+  fallback: ["-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
+});
+
+const pretendardFull = localFont({
+  src: [
+    {
+      path: "../public/폰트/Pretendard-1.3.9/web/static/woff2-subset/Pretendard-Regular.subset.woff2",
+      style: "normal",
+      weight: "400",
+    },
+    {
+      path: "../public/폰트/Pretendard-1.3.9/web/static/woff2-subset/Pretendard-SemiBold.subset.woff2",
+      style: "normal",
+      weight: "600",
+    },
+  ],
+  display: "swap",
+  preload: false,
+  variable: "--font-pretendard-full",
+  fallback: ["-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+  weight: ["400", "600", "700"],
+});
 
 const DEFAULT_NAVER_SITE_VERIFICATIONS = [
   "fb15418bc68a30db2f6246177dfa6bd350527ede",
@@ -75,47 +123,15 @@ export default function RootLayout({
   const organizationStructuredData = generateOrganizationSchema();
 
   return (
-    <html lang="ko">
+    <html lang="ko" className={`${pretendardInitial.variable} ${pretendardFull.variable} ${montserrat.variable}`}>
       <head>
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TG7KZ92W');`}
-        </Script>
-        <Script
-          src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=wrifnr3bub"
-          strategy="afterInteractive"
-        />
         <meta name="apple-mobile-web-app-title" content="Umnagumo" />
-        {ENABLE_NAVER_ANALYTICS ? (
-          <>
-            <Script src="https://wcs.pstatic.net/wcslog.js" strategy="afterInteractive" />
-            <Script id="naver-analytics" strategy="afterInteractive">
-              {`(function () {
-  if (!window.wcs_add) window.wcs_add = {};
-  window.wcs_add["wa"] = "${NAVER_ANALYTICS_WA}";
-
-  function send() {
-    if (window.wcs && typeof window.wcs_do === "function") {
-      window.wcs_do();
-      return true;
-    }
-    return false;
-  }
-
-  if (send()) return;
-
-  var tries = 0;
-  var timer = window.setInterval(function () {
-    tries += 1;
-    if (send() || tries >= 50) window.clearInterval(timer);
-  }, 100);
-})();`}
-            </Script>
-          </>
-        ) : null}
+        <link
+          rel="preload"
+          as="image"
+          href={encodeURI("/메인페이지 사진/1(메인).jpg")}
+          fetchPriority="high"
+        />
         {NAVER_SITE_VERIFICATIONS.map((token) => (
           <meta key={token} name="naver-site-verification" content={token} />
         ))}
@@ -134,6 +150,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ></iframe>
         </noscript>
         {children}
+        <ThirdPartyScripts
+          gtmId="GTM-TG7KZ92W"
+          enableNaverAnalytics={ENABLE_NAVER_ANALYTICS}
+          naverAnalyticsWa={NAVER_ANALYTICS_WA}
+        />
+        <PretendardFullLoader />
         <FloatingContactButton />
       </body>
     </html>

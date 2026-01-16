@@ -2,7 +2,7 @@ import Image from '../components/SafeImage';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import FooterDeferred from '../components/deferred/FooterDeferred';
 import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
@@ -297,7 +297,7 @@ export default function ImplantGuidePage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <FooterDeferred />
     </>
   );
 }

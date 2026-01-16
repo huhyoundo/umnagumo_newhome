@@ -70,10 +70,7 @@ export default function InteractiveLogoPoster() {
     }, []);
 
     useEffect(() => {
-        if (!isVisible) {
-            setYear(0);
-            return;
-        }
+        if (!isVisible) return;
 
         const duration = 2000;
         const startTime = Date.now();
@@ -94,7 +91,9 @@ export default function InteractiveLogoPoster() {
         };
 
         requestAnimationFrame(animateYear);
-    }, [isVisible]);
+    }, [isVisible, targetYear]);
+
+    const displayYear = isVisible ? year : 0;
 
     // Reduced angles for elegance: max +/- 8 degrees instead of 15
     const rotateX = current.y * -8;
@@ -149,7 +148,7 @@ export default function InteractiveLogoPoster() {
                     <div className="bg-black/80 backdrop-blur-sm text-white px-5 py-2.5 rounded-full flex items-center gap-3 shadow-[0_5px_15px_rgba(0,0,0,0.2)]">
                         <div className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
                         <span className="text-[11px] tracking-[0.2em] font-medium uppercase font-display text-white/90 min-w-[80px]">
-                            Since {year}
+                            Since {displayYear}
                         </span>
                     </div>
                 </div>

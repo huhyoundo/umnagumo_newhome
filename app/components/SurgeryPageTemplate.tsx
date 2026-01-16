@@ -3,7 +3,7 @@
 import Image from './SafeImage';
 import Link from 'next/link';
 import Header from './Header';
-import Footer from './Footer';
+import FooterDeferred from './deferred/FooterDeferred';
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 interface FAQ {
@@ -14,7 +14,6 @@ interface FAQ {
 import PostOpTimeline from './PostOpTimeline';
 import InteractiveSculpture from './InteractiveSculpture';
 import { generateFaqSchema } from '../lib/seo';
-import Script from 'next/script';
 
 interface SurgeryPageProps {
   englishTitle: string;
@@ -74,10 +73,7 @@ function useTextScramble(text: string, isActive: boolean, delay: number = 0) {
   const chars = '가나다라마바사아자차카타파하';
 
   useEffect(() => {
-    if (!isActive) {
-      setDisplayText('');
-      return;
-    }
+    if (!isActive) return;
 
     const timeout = setTimeout(() => {
       const duration = 1200;
@@ -111,20 +107,32 @@ function useTextScramble(text: string, isActive: boolean, delay: number = 0) {
     return () => clearTimeout(timeout);
   }, [text, isActive, delay, chars]);
 
-  return displayText;
+  return isActive ? displayText : '';
 }
 
 // ===== 파티클 배경 컴포넌트 =====
+function createPrng(seed: number) {
+  let state = seed | 0;
+  return () => {
+    state = (state + 0x6D2B79F5) | 0;
+    let t = Math.imul(state ^ (state >>> 15), 1 | state);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 function ParticleBackground({ isVisible }: { isVisible: boolean }) {
-  const particles = useMemo(() =>
-    Array.from({ length: 15 }, (_, i) => ({
+  const particles = useMemo(() => {
+    const rand = createPrng(0x5f3759df);
+    return Array.from({ length: 15 }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      duration: Math.random() * 15 + 10,
-      delay: Math.random() * -10,
-    })), []);
+      x: rand() * 100,
+      y: rand() * 100,
+      size: rand() * 3 + 1,
+      duration: rand() * 15 + 10,
+      delay: rand() * -10,
+    }));
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -466,12 +474,12 @@ export default function SurgeryPageTemplate({
   const isCircleSurgeryImage = surgeryImageVariant === 'circle';
 
   // 스크롤 애니메이션 훅
-  const concernsAnim = useScrollAnimation(0.2);
-  const ctaAnim = useScrollAnimation(0.3);
-  const explanationAnim = useScrollAnimation(0.2);
-  const specialAnim = useScrollAnimation(0.2);
-  const faqAnim = useScrollAnimation(0.2);
-  const finalCtaAnim = useScrollAnimation(0.3);
+  const { ref: concernsRef, isVisible: concernsIsVisible } = useScrollAnimation(0.2);
+  const { ref: ctaRef, isVisible: ctaIsVisible } = useScrollAnimation(0.3);
+  const { ref: explanationRef, isVisible: explanationIsVisible } = useScrollAnimation(0.2);
+  const { ref: specialRef, isVisible: specialIsVisible } = useScrollAnimation(0.2);
+  const { ref: faqRef, isVisible: faqIsVisible } = useScrollAnimation(0.2);
+  const { ref: finalCtaRef, isVisible: finalCtaIsVisible } = useScrollAnimation(0.3);
 
   // 텍스트 스크램블
   const scrambledSubtitle = useTextScramble(englishTitle, loadStage >= 1, 0);
@@ -711,7 +719,7 @@ export default function SurgeryPageTemplate({
         </section>
 
         {/* Concerns Section */}
-        <section className="py-20 md:py-28 bg-white" ref={concernsAnim.ref}>
+        <section className="py-20 md:py-28 bg-white" ref={concernsRef}>
           <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* 조각상 이미지 */}
@@ -720,8 +728,8 @@ export default function SurgeryPageTemplate({
                 <div
                   className="relative w-full h-full"
                   style={{
-                    opacity: concernsAnim.isVisible ? 1 : 0,
-                    transform: concernsAnim.isVisible ? 'translateX(0)' : 'translateX(-60px)',
+                    opacity: concernsIsVisible ? 1 : 0,
+                    transform: concernsIsVisible ? 'translateX(0)' : 'translateX(-60px)',
                     transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
                   }}
                 >
@@ -734,14 +742,14 @@ export default function SurgeryPageTemplate({
                 <SectionTitle
                   subtitle="Your Concerns"
                   title="이런 고민이 있으신가요?"
-                  isVisible={concernsAnim.isVisible}
+                  isVisible={concernsIsVisible}
                   align="left"
                 />
                 <div className="space-y-4">
                   {concerns.map((concern, index) => (
                     <Card3D
                       key={index}
-                      isVisible={concernsAnim.isVisible}
+                      isVisible={concernsIsVisible}
                       delay={0.3 + index * 0.1}
                       className="group"
                     >
@@ -764,14 +772,14 @@ export default function SurgeryPageTemplate({
         {/* CTA Banner */}
         <section
           className="relative py-16 md:py-20 bg-[var(--navy)] overflow-hidden"
-          ref={ctaAnim.ref}
+          ref={ctaRef}
         >
           <div
             className="absolute inset-0 opacity-20"
             style={{
               backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%),
                                radial-gradient(circle at 80% 50%, rgba(255,255,255,0.3) 0%, transparent 50%)`,
-              transform: ctaAnim.isVisible ? 'scale(1)' : 'scale(1.3)',
+              transform: ctaIsVisible ? 'scale(1)' : 'scale(1.3)',
               transition: 'transform 2s ease',
             }}
           />
@@ -780,15 +788,15 @@ export default function SurgeryPageTemplate({
             <p
               className="text-white/80 text-[14px] mb-3"
               style={{
-                opacity: ctaAnim.isVisible ? 1 : 0,
-                transform: ctaAnim.isVisible ? 'translateY(0)' : 'translateY(20px)',
+                opacity: ctaIsVisible ? 1 : 0,
+                transform: ctaIsVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition: 'all 0.6s ease',
               }}
             >
               이런 고민을 가지고 있다면,
             </p>
             <p className="text-white text-[20px] md:text-[28px] font-medium tracking-[-0.02em]">
-              <AnimatedText isVisible={ctaAnim.isVisible} delay={0.2} type="wave">
+              <AnimatedText isVisible={ctaIsVisible} delay={0.2} type="wave">
                 지금이 바로 전문의 상담이 필요한 때입니다.
               </AnimatedText>
             </p>
@@ -796,25 +804,25 @@ export default function SurgeryPageTemplate({
         </section>
 
         {/* Explanation Section */}
-        <section className="py-20 md:py-28 bg-[var(--paper)]" ref={explanationAnim.ref}>
+        <section className="py-20 md:py-28 bg-[var(--paper)]" ref={explanationRef}>
           <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* 수술 이미지 */}
               <div
                 className="relative"
                 style={{
-                  opacity: explanationAnim.isVisible ? 1 : 0,
-                  transform: explanationAnim.isVisible ? 'translateX(0)' : 'translateX(-50px)',
-                  transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
-                }}
-              >
+	                  opacity: explanationIsVisible ? 1 : 0,
+	                  transform: explanationIsVisible ? 'translateX(0)' : 'translateX(-50px)',
+	                  transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
+	                }}
+	              >
                 <div
                   className={`absolute top-0 left-0 w-full h-full bg-[var(--navy)]/15 ${isCircleSurgeryImage ? 'rounded-full' : ''}`}
                   style={{
-                    transform: explanationAnim.isVisible ? 'translate(20px, 20px)' : 'translate(0, 0)',
-                    transition: 'transform 1s ease 0.3s',
-                  }}
-                />
+	                    transform: explanationIsVisible ? 'translate(20px, 20px)' : 'translate(0, 0)',
+	                    transition: 'transform 1s ease 0.3s',
+	                  }}
+	                />
                 <div className={`relative overflow-hidden group ${isCircleSurgeryImage ? 'aspect-square rounded-full bg-[var(--paper)]' : ''}`}>
                   {isCircleSurgeryImage ? (
                     <Image
@@ -843,34 +851,34 @@ export default function SurgeryPageTemplate({
                 <div
                   className="flex items-center gap-4 mb-6"
                   style={{
-                    opacity: explanationAnim.isVisible ? 1 : 0,
-                    transform: explanationAnim.isVisible ? 'translateX(0)' : 'translateX(30px)',
-                    transition: 'all 0.6s ease',
-                  }}
-                >
+	                    opacity: explanationIsVisible ? 1 : 0,
+	                    transform: explanationIsVisible ? 'translateX(0)' : 'translateX(30px)',
+	                    transition: 'all 0.6s ease',
+	                  }}
+	                >
                   <div
                     className="w-14 h-[1px] bg-[var(--navy)]"
                     style={{
-                      transform: explanationAnim.isVisible ? 'scaleX(1)' : 'scaleX(0)',
-                      transformOrigin: 'left',
-                      transition: 'transform 0.8s ease 0.2s',
-                    }}
-                  />
+	                      transform: explanationIsVisible ? 'scaleX(1)' : 'scaleX(0)',
+	                      transformOrigin: 'left',
+	                      transition: 'transform 0.8s ease 0.2s',
+	                    }}
+	                  />
                   <span className="text-[12px] text-[var(--navy)] tracking-[0.2em] uppercase">About Surgery</span>
                 </div>
                 <h2 className="text-[26px] md:text-[34px] font-semibold text-[var(--ink)] leading-[1.3] tracking-[-0.02em]">
-                  <AnimatedText isVisible={explanationAnim.isVisible} delay={0.2} type="split">
-                    {explanationTitle}
-                  </AnimatedText>
+	                  <AnimatedText isVisible={explanationIsVisible} delay={0.2} type="split">
+	                    {explanationTitle}
+	                  </AnimatedText>
                 </h2>
                 {explanationSubtitle && (
                   <p
                     className="text-[18px] md:text-[22px] font-medium text-[var(--navy)] mt-2 mb-8"
                     style={{
-                      opacity: explanationAnim.isVisible ? 1 : 0,
-                      transition: 'opacity 0.6s ease 0.4s',
-                    }}
-                  >
+	                      opacity: explanationIsVisible ? 1 : 0,
+	                      transition: 'opacity 0.6s ease 0.4s',
+	                    }}
+	                  >
                     {explanationSubtitle}
                   </p>
                 )}
@@ -881,22 +889,22 @@ export default function SurgeryPageTemplate({
                       key={index}
                       className="text-[14px] md:text-[15px] text-[#555] leading-[1.9]"
                       style={{
-                        opacity: explanationAnim.isVisible ? 1 : 0,
-                        transform: explanationAnim.isVisible ? 'translateY(0)' : 'translateY(20px)',
-                        transition: `all 0.6s ease ${0.4 + index * 0.1}s`,
-                      }}
-                    >
+	                        opacity: explanationIsVisible ? 1 : 0,
+	                        transform: explanationIsVisible ? 'translateY(0)' : 'translateY(20px)',
+	                        transition: `all 0.6s ease ${0.4 + index * 0.1}s`,
+	                      }}
+	                    >
                       {paragraph}
                     </p>
                   ))}
                 </div>
                 <div
                   style={{
-                    opacity: explanationAnim.isVisible ? 1 : 0,
-                    transform: explanationAnim.isVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transition: 'all 0.6s ease 0.6s',
-                  }}
-                >
+	                    opacity: explanationIsVisible ? 1 : 0,
+	                    transform: explanationIsVisible ? 'translateY(0)' : 'translateY(20px)',
+	                    transition: 'all 0.6s ease 0.6s',
+	                  }}
+	                >
                   <Link
                     href="http://pf.kakao.com/_QRNzxj"
                     target="_blank"
@@ -915,7 +923,7 @@ export default function SurgeryPageTemplate({
         </section>
 
         {/* Special Points Section */}
-        <section className="relative py-20 md:py-28 overflow-hidden" ref={specialAnim.ref}>
+        <section className="relative py-20 md:py-28 overflow-hidden" ref={specialRef}>
           {specialBackgroundImage && (
             <>
               <Image
@@ -932,21 +940,21 @@ export default function SurgeryPageTemplate({
           {!specialBackgroundImage && <div className="absolute inset-0 bg-white" />}
 
           <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-16">
-            <SectionTitle
-              subtitle="Why Choose Us"
-              title={specialTitle}
-              description={specialSubtitle}
-              isVisible={specialAnim.isVisible}
-            />
+	            <SectionTitle
+	              subtitle="Why Choose Us"
+	              title={specialTitle}
+	              description={specialSubtitle}
+	              isVisible={specialIsVisible}
+	            />
 
             <div className="grid md:grid-cols-3 gap-6">
-              {specialPoints.map((point, index) => (
-                <Card3D
-                  key={index}
-                  isVisible={specialAnim.isVisible}
-                  delay={0.3 + index * 0.15}
-                  className="group"
-                >
+	              {specialPoints.map((point, index) => (
+	                <Card3D
+	                  key={index}
+	                  isVisible={specialIsVisible}
+	                  delay={0.3 + index * 0.15}
+	                  className="group"
+	                >
                   <div className="bg-white border border-gray-100 p-8 md:p-10 hover:border-[var(--navy)]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-500">
                     <div className="flex items-center justify-between mb-8">
                       <div className="text-[var(--navy)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
@@ -972,12 +980,12 @@ export default function SurgeryPageTemplate({
         {showTimeline && <PostOpTimeline steps={timelineSteps} />}
 
         {/* FAQ Section */}
-        <section className="py-20 md:py-28 bg-[var(--paper)]" ref={faqAnim.ref}>
+        <section className="py-20 md:py-28 bg-[var(--paper)]" ref={faqRef}>
           <div className="max-w-[800px] mx-auto px-6 lg:px-10">
             <SectionTitle
               subtitle="FAQ"
               title={faqTitle}
-              isVisible={faqAnim.isVisible}
+              isVisible={faqIsVisible}
             />
 
             <div className="space-y-3">
@@ -986,8 +994,8 @@ export default function SurgeryPageTemplate({
                   key={index}
                   className="bg-white border border-gray-100 overflow-hidden"
                   style={{
-                    opacity: faqAnim.isVisible ? 1 : 0,
-                    transform: faqAnim.isVisible ? 'translateY(0)' : 'translateY(30px)',
+                    opacity: faqIsVisible ? 1 : 0,
+                    transform: faqIsVisible ? 'translateY(0)' : 'translateY(30px)',
                     transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1)`,
                     transitionDelay: `${0.2 + index * 0.08}s`,
                   }}
@@ -1033,7 +1041,7 @@ export default function SurgeryPageTemplate({
         </section>
 
         {/* Final CTA Section */}
-        <section className="py-20 md:py-24 bg-[#2a2a2a] overflow-hidden" ref={finalCtaAnim.ref}>
+        <section className="py-20 md:py-24 bg-[#2a2a2a] overflow-hidden" ref={finalCtaRef}>
           <div className="max-w-[900px] mx-auto px-6 lg:px-10 text-center">
             <p
               className="text-[12px] tracking-[0.2em] uppercase mb-6"
@@ -1043,23 +1051,23 @@ export default function SurgeryPageTemplate({
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                animation: finalCtaAnim.isVisible ? 'gradientShift 4s ease infinite' : 'none',
-                opacity: finalCtaAnim.isVisible ? 1 : 0,
+                animation: finalCtaIsVisible ? 'gradientShift 4s ease infinite' : 'none',
+                opacity: finalCtaIsVisible ? 1 : 0,
                 transition: 'opacity 0.6s ease',
               }}
             >
               Consultation
             </p>
             <h2 className="text-[24px] md:text-[32px] font-semibold text-white mb-4 tracking-[-0.02em]">
-              <AnimatedText isVisible={finalCtaAnim.isVisible} delay={0.1} type="word">
+              <AnimatedText isVisible={finalCtaIsVisible} delay={0.1} type="word">
                 전문의와 상담하세요
               </AnimatedText>
             </h2>
             <p
               className="text-[14px] md:text-[15px] text-white/70 mb-10 leading-relaxed"
               style={{
-                opacity: finalCtaAnim.isVisible ? 1 : 0,
-                transform: finalCtaAnim.isVisible ? 'translateY(0)' : 'translateY(20px)',
+                opacity: finalCtaIsVisible ? 1 : 0,
+                transform: finalCtaIsVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition: 'all 0.6s ease 0.3s',
               }}
             >
@@ -1069,8 +1077,8 @@ export default function SurgeryPageTemplate({
             <div
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
               style={{
-                opacity: finalCtaAnim.isVisible ? 1 : 0,
-                transform: finalCtaAnim.isVisible ? 'translateY(0)' : 'translateY(20px)',
+                opacity: finalCtaIsVisible ? 1 : 0,
+                transform: finalCtaIsVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition: 'all 0.6s ease 0.4s',
               }}
             >
@@ -1098,7 +1106,7 @@ export default function SurgeryPageTemplate({
           </div>
         </section>
       </main>
-      <Footer />
+      <FooterDeferred />
     </>
   );
 }

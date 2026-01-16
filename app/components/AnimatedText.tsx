@@ -40,7 +40,7 @@ export default function AnimatedText({
 }: AnimatedTextProps) {
   const [isVisible, setIsVisible] = useState(trigger === 'mount');
   const [isHovered, setIsHovered] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(trigger !== 'mount' || delay === 0);
   const ref = useRef<HTMLElement>(null);
 
   // Split text into characters or words
@@ -56,11 +56,11 @@ export default function AnimatedText({
 
   // Mount animation
   useEffect(() => {
-    if (trigger === 'mount') {
-      const timer = setTimeout(() => setMounted(true), delay * 1000);
-      return () => clearTimeout(timer);
-    }
-    setMounted(true);
+    if (trigger !== 'mount') return;
+    if (delay === 0) return;
+
+    const timer = setTimeout(() => setMounted(true), delay * 1000);
+    return () => clearTimeout(timer);
   }, [trigger, delay]);
 
   // Scroll trigger
@@ -277,15 +277,15 @@ export function MaskRevealText({
   threshold = 0.3,
 }: MaskRevealTextProps) {
   const [isVisible, setIsVisible] = useState(trigger === 'mount');
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(trigger !== 'mount' || delay === 0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (trigger === 'mount') {
-      const timer = setTimeout(() => setMounted(true), delay * 1000);
-      return () => clearTimeout(timer);
-    }
-    setMounted(true);
+    if (trigger !== 'mount') return;
+    if (delay === 0) return;
+
+    const timer = setTimeout(() => setMounted(true), delay * 1000);
+    return () => clearTimeout(timer);
   }, [trigger, delay]);
 
   useEffect(() => {
@@ -365,10 +365,13 @@ export function HoverText({
       case 'wave':
         return { ...baseStyle, transform: `translateY(${-10 * intensity}px)` };
       case 'scatter':
-        return {
-          ...baseStyle,
-          transform: `translate(${(Math.random() - 0.5) * 10 * intensity}px, ${(Math.random() - 0.5) * 10 * intensity}px)`
-        };
+        {
+          const xSeed = Math.sin(index * 12.9898) * 43758.5453;
+          const ySeed = Math.sin(index * 78.233) * 12345.6789;
+          const x = (xSeed - Math.floor(xSeed) - 0.5) * 10 * intensity;
+          const y = (ySeed - Math.floor(ySeed) - 0.5) * 10 * intensity;
+          return { ...baseStyle, transform: `translate(${x}px, ${y}px)` };
+        }
       case 'bounce':
         return { ...baseStyle, transform: `scale(${1 + 0.2 * intensity})` };
       case 'rotate':
@@ -417,14 +420,11 @@ export function CountUpText({
   threshold = 0.5,
 }: CountUpTextProps) {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(trigger === 'mount');
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (trigger === 'mount') {
-      setHasStarted(true);
-      return;
-    }
+    if (trigger !== 'scroll') return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {

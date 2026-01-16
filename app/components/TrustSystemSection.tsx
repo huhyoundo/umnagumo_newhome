@@ -33,16 +33,19 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
 
   useEffect(() => {
     // 클라이언트에서만 파티클 생성 (hydration 불일치 방지)
-    setParticles(
-      Array.from({ length: 15 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-        duration: Math.random() * 20 + 15,
-        delay: Math.random() * -15,
-      }))
-    );
+    const raf = requestAnimationFrame(() => {
+      setParticles(
+        Array.from({ length: 15 }, (_, i) => ({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 4 + 2,
+          duration: Math.random() * 20 + 15,
+          delay: Math.random() * -15,
+        }))
+      );
+    });
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   if (particles.length === 0) return null;

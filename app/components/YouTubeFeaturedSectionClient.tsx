@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 
 const FEATURED_VIDEO = {
@@ -6,7 +8,7 @@ const FEATURED_VIDEO = {
   description: '가슴성형을 선택하는 다양한 이유와, 엄나구모가 생각하는 ‘가치 있는 수술’의 기준을 정리한 대표 영상입니다.',
 };
 
-export default function YouTubeFeaturedSection() {
+export default function YouTubeFeaturedSectionClient() {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10">
@@ -65,3 +67,4 @@ export default function YouTubeFeaturedSection() {
     </section>
   );
 }
+

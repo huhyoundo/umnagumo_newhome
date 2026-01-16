@@ -158,7 +158,7 @@ export default function LiquidRevealCanvas({
         vec2 res = max(u_resolution, vec2(1.0));
         vec2 uv = v_uv;
 
-        float intro = 1.0 - smoothstep(u_introHold, u_introHold + u_introFade, u_time);
+        float intro = smoothstep(u_introHold, u_introHold + u_introFade, u_time);
         intro = clamp(intro, 0.0, 1.0);
 
         float reveal = 0.0;
@@ -317,6 +317,8 @@ export default function LiquidRevealCanvas({
       gl.uniform2f(texSizeLoc, 1, 1);
 
       const startTime = performance.now() / 1000;
+      const introEnd = (Math.max(0, introHoldMs) + Math.max(0.1, introFadeMs)) / 1000;
+      const pointerIsCoarse = window.matchMedia('(pointer: coarse)').matches;
 
       const pushPoint = (x: number, y: number, t: number) => {
         points.pop();
@@ -327,79 +329,16 @@ export default function LiquidRevealCanvas({
       let hoverActive = false;
       let hoverX = 0.5;
       let hoverY = 0.5;
-      const addPointFromEvent = (e: PointerEvent) => {
-        const rect = canvas.getBoundingClientRect();
-        if (rect.width <= 0 || rect.height <= 0) return;
-        const rawX = (e.clientX - rect.left) / rect.width;
-        const rawY = 1 - (e.clientY - rect.top) / rect.height;
-        if (rawX < 0 || rawX > 1 || rawY < 0 || rawY > 1) {
-          hoverActive = false;
-          return;
-        }
-        const nx = clamp(rawX, 0, 1);
-        const ny = clamp(rawY, 0, 1);
-        hoverActive = true;
-        hoverX = nx;
-        hoverY = ny;
-
-        const now = performance.now() / 1000;
-        if (now - lastAdd < 0.028) return;
-        lastAdd = now;
-        pushPoint(nx, ny, now - startTime);
-      };
-
-      const handlePointerMove = (e: PointerEvent) => addPointFromEvent(e);
-      const handlePointerDown = (e: PointerEvent) => {
-        addPointFromEvent(e);
-        lastAdd = 0;
-      };
-
-      window.addEventListener('pointermove', handlePointerMove, { passive: true });
-      window.addEventListener('pointerdown', handlePointerDown, { passive: true });
-
-      let width = 1;
-      let height = 1;
-      let resizeObserver: ResizeObserver | null = null;
-
-      const resize = () => {
-        const rect = canvas.getBoundingClientRect();
-        const dpr = clamp(window.devicePixelRatio || 1, 1, 2);
-        width = Math.max(1, rect.width);
-        height = Math.max(1, rect.height);
-        const nextWidth = Math.max(1, Math.floor(width * dpr));
-        const nextHeight = Math.max(1, Math.floor(height * dpr));
-        if (canvas.width !== nextWidth) canvas.width = nextWidth;
-        if (canvas.height !== nextHeight) canvas.height = nextHeight;
-        gl.viewport(0, 0, canvas.width, canvas.height);
-        gl.uniform2f(resLoc, width, height);
-      };
-
-      resize();
-      if (typeof ResizeObserver !== 'undefined') {
-        resizeObserver = new ResizeObserver(() => resize());
-        resizeObserver.observe(canvas);
-      }
-      window.addEventListener('resize', resize, { passive: true });
-
-      const img = new Image();
-      img.decoding = 'async';
+      let rafId = 0;
       let textureReady = false;
 
-      const uploadTexture = () => {
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-        gl.uniform2f(texSizeLoc, img.naturalWidth || img.width, img.naturalHeight || img.height);
-        textureReady = true;
+      const hasActivePoints = (t: number) => {
+        const maxAge = 3.6;
+        return points.some((p) => p.t >= 0 && t - p.t < maxAge);
       };
 
-      img.onload = () => uploadTexture();
-      img.src = imageSrc;
-      if (img.complete && img.naturalWidth > 0) uploadTexture();
-      let rafId = 0;
-
       const render = () => {
+        rafId = 0;
         const now = performance.now() / 1000;
         const t = now - startTime;
         gl.uniform1f(timeLoc, t);
@@ -423,21 +362,100 @@ export default function LiquidRevealCanvas({
 
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-        if (!prefersReducedMotion) {
-          rafId = requestAnimationFrame(render);
-        }
+        if (prefersReducedMotion) return;
+
+        const keepAnimating = t < introEnd || hoverActive || hasActivePoints(t);
+        if (keepAnimating) rafId = requestAnimationFrame(render);
       };
 
-      if (prefersReducedMotion) {
+      const scheduleRender = () => {
+        if (rafId) return;
         rafId = requestAnimationFrame(render);
-      } else {
-        rafId = requestAnimationFrame(render);
+      };
+
+      const addPointFromEvent = (e: PointerEvent) => {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return;
+        const rawX = (e.clientX - rect.left) / rect.width;
+        const rawY = 1 - (e.clientY - rect.top) / rect.height;
+        if (rawX < 0 || rawX > 1 || rawY < 0 || rawY > 1) {
+          hoverActive = false;
+          return;
+        }
+        const nx = clamp(rawX, 0, 1);
+        const ny = clamp(rawY, 0, 1);
+        hoverActive = true;
+        hoverX = nx;
+        hoverY = ny;
+
+        const now = performance.now() / 1000;
+        if (now - lastAdd < 0.028) return;
+        lastAdd = now;
+        pushPoint(nx, ny, now - startTime);
+        scheduleRender();
+      };
+
+      const handlePointerMove = (e: PointerEvent) => addPointFromEvent(e);
+      const handlePointerDown = (e: PointerEvent) => {
+        addPointFromEvent(e);
+        lastAdd = 0;
+      };
+
+      window.addEventListener('pointermove', handlePointerMove, { passive: true });
+      window.addEventListener('pointerdown', handlePointerDown, { passive: true });
+
+      let width = 1;
+      let height = 1;
+      let resizeObserver: ResizeObserver | null = null;
+
+      const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        const dprMax = pointerIsCoarse ? 1.5 : 2;
+        const dpr = clamp(window.devicePixelRatio || 1, 1, dprMax);
+        width = Math.max(1, rect.width);
+        height = Math.max(1, rect.height);
+        const nextWidth = Math.max(1, Math.floor(width * dpr));
+        const nextHeight = Math.max(1, Math.floor(height * dpr));
+        if (canvas.width !== nextWidth) canvas.width = nextWidth;
+        if (canvas.height !== nextHeight) canvas.height = nextHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.uniform2f(resLoc, width, height);
+      };
+
+      resize();
+      if (typeof ResizeObserver !== 'undefined') {
+        resizeObserver = new ResizeObserver(() => resize());
+        resizeObserver.observe(canvas);
       }
+      const handleResize = () => {
+        resize();
+        scheduleRender();
+      };
+      window.addEventListener('resize', handleResize, { passive: true });
+
+      const img = new Image();
+      img.decoding = 'async';
+
+      const uploadTexture = () => {
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+        gl.uniform2f(texSizeLoc, img.naturalWidth || img.width, img.naturalHeight || img.height);
+        textureReady = true;
+        scheduleRender();
+      };
+
+      img.onload = () => uploadTexture();
+      img.src = imageSrc;
+      if (img.complete && img.naturalWidth > 0) uploadTexture();
+
+      scheduleRender();
 
       return () => {
         cancelAnimationFrame(rafId);
         resizeObserver?.disconnect();
-        window.removeEventListener('resize', resize);
+        window.removeEventListener('resize', handleResize);
         window.removeEventListener('pointermove', handlePointerMove);
         window.removeEventListener('pointerdown', handlePointerDown);
         if (program) gl.deleteProgram(program);

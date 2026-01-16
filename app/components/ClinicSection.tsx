@@ -4,6 +4,17 @@ import Image from './SafeImage';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
+interface ClinicItem {
+  number: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  href: string;
+  imagePosition?: string;
+  scale?: number;
+}
+
 // 스크롤 애니메이션 훅
 function useScrollAnimation(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null);
@@ -35,16 +46,19 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
 
   useEffect(() => {
     // 클라이언트에서만 파티클 생성 (hydration 불일치 방지)
-    setParticles(
-      Array.from({ length: 12 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        duration: Math.random() * 25 + 15,
-        delay: Math.random() * -20,
-      }))
-    );
+    const raf = requestAnimationFrame(() => {
+      setParticles(
+        Array.from({ length: 12 }, (_, i) => ({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 3 + 1,
+          duration: Math.random() * 25 + 15,
+          delay: Math.random() * -20,
+        }))
+      );
+    });
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   if (particles.length === 0) return null;
@@ -99,7 +113,7 @@ function AnimatedTitle({ children, isVisible }: { children: string; isVisible: b
   );
 }
 
-const clinicItems = [
+const clinicItems: ClinicItem[] = [
   {
     number: '01',
     title: '가슴 첫수술',
@@ -142,7 +156,7 @@ function ClinicCard({
   index,
   isVisible,
 }: {
-  item: typeof clinicItems[0];
+  item: ClinicItem;
   index: number;
   isVisible: boolean;
 }) {
@@ -171,6 +185,8 @@ function ClinicCard({
   const row = Math.floor(index / 2);
   const col = index % 2;
   const delay = 0.2 + row * 0.2 + col * 0.1;
+  const baseScale = item.scale ?? 1;
+  const objectPosition = item.imagePosition ?? 'center';
 
   return (
     <Link
@@ -213,9 +229,9 @@ function ClinicCard({
             className="object-cover transition-transform duration-700"
             style={{
               transform: isHovered
-                ? `scale(${(item as any).scale ? (item as any).scale * 1.1 : 1.1})`
-                : `scale(${(item as any).scale || 1})`,
-              objectPosition: (item as any).imagePosition || 'center',
+                ? `scale(${baseScale * 1.1})`
+                : `scale(${baseScale})`,
+              objectPosition,
             }}
             quality={100}
             sizes="(max-width: 768px) 100vw, 400px"

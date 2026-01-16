@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Script from 'next/script';
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -230,53 +231,44 @@ function HoursRow({
 export default function Footer() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInitialized = useRef(false);
+  const [isMapReady, setIsMapReady] = useState(false);
   const { ref: footerRef, isVisible } = useScrollAnimation(0.1);
 
-  useEffect(() => {
-    const initMap = () => {
-      if (!mapRef.current || !window.naver || !window.naver.maps || mapInitialized.current) return;
+  const initMap = useCallback(() => {
+    if (!mapRef.current || mapInitialized.current) return;
+    if (!window.naver?.maps) return;
 
-      mapInitialized.current = true;
-      const location = new window.naver.maps.LatLng(37.5219756, 127.0363404);
+    mapInitialized.current = true;
+    const location = new window.naver.maps.LatLng(37.5219756, 127.0363404);
 
-      const map = new window.naver.maps.Map(mapRef.current, {
-        center: location,
-        zoom: 17,
-        zoomControl: true,
-        zoomControlOptions: {
-          position: window.naver.maps.Position.TOP_RIGHT,
-        },
-      });
+    const map = new window.naver.maps.Map(mapRef.current, {
+      center: location,
+      zoom: 17,
+      zoomControl: true,
+      zoomControlOptions: {
+        position: window.naver.maps.Position.TOP_RIGHT,
+      },
+    });
 
-      new window.naver.maps.Marker({
-        position: location,
-        map: map,
-      });
-    };
+    new window.naver.maps.Marker({
+      position: location,
+      map,
+    });
 
-    if (window.naver && window.naver.maps) {
-      initMap();
-    } else {
-      const checkNaver = setInterval(() => {
-        if (window.naver && window.naver.maps) {
-          clearInterval(checkNaver);
-          initMap();
-        }
-      }, 100);
-
-      const timeout = setTimeout(() => {
-        clearInterval(checkNaver);
-      }, 10000);
-
-      return () => {
-        clearInterval(checkNaver);
-        clearTimeout(timeout);
-      };
-    }
+    setIsMapReady(true);
   }, []);
 
   return (
     <footer ref={footerRef} className="bg-[var(--ink)] relative overflow-hidden">
+      {isVisible ? (
+        <Script
+          id="naver-maps"
+          src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=wrifnr3bub"
+          strategy="afterInteractive"
+          onLoad={initMap}
+          onReady={initMap}
+        />
+      ) : null}
       {/* Decorative background elements */}
       <div
         className="absolute top-0 left-0 w-96 h-96 rounded-full bg-[var(--navy)]/5"
@@ -327,8 +319,8 @@ export default function Footer() {
               <div
                 className="absolute inset-0 bg-gray-700 flex items-center justify-center"
                 style={{
-                  opacity: mapInitialized.current ? 0 : 1,
-                  pointerEvents: mapInitialized.current ? 'none' : 'auto',
+                  opacity: isMapReady ? 0 : 1,
+                  pointerEvents: isMapReady ? 'none' : 'auto',
                   transition: 'opacity 0.5s ease',
                 }}
               >
