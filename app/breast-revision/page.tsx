@@ -12,6 +12,7 @@ export default function BreastRevisionPage() {
   return (
     <SurgeryPageTemplate
       showTimeline={true}
+      showScarCare={true}
       englishTitle="REVISION BREAST SURGERY"
       koreanTitle="엄나구모 가슴 재수술"
       heroImage="/가슴재수술 페이지 사진/1(메인-상단).jpg"

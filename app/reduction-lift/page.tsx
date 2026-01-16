@@ -14,6 +14,7 @@ export default function ReductionLiftPage() {
     <SurgeryPageTemplate
       // Updated timeline and time
       showTimeline={true}
+      showScarCare={true}
       englishTitle="REDUCTION SURGERY"
       koreanTitle="엄나구모 축소거상술"
       heroImage="/축소거상 페이지 사진/1(메인_상단).jpg"

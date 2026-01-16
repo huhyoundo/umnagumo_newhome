@@ -13,6 +13,7 @@ interface FAQ {
 
 import PostOpTimeline from './PostOpTimeline';
 import InteractiveSculpture from './InteractiveSculpture';
+import ScarCareSection from './ScarCareSection';
 import { generateFaqSchema } from '../lib/seo';
 
 interface SurgeryPageProps {
@@ -42,6 +43,7 @@ interface SurgeryPageProps {
     period: string;
     items: string[];
   }[];
+  showScarCare?: boolean;
 }
 
 // ===== 고급 스크롤 애니메이션 훅 =====
@@ -466,6 +468,7 @@ export default function SurgeryPageTemplate({
   faqs,
   showTimeline = false,
   timelineSteps,
+  showScarCare = false,
 }: SurgeryPageProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [loadStage, setLoadStage] = useState(0);
@@ -811,18 +814,18 @@ export default function SurgeryPageTemplate({
               <div
                 className="relative"
                 style={{
-	                  opacity: explanationIsVisible ? 1 : 0,
-	                  transform: explanationIsVisible ? 'translateX(0)' : 'translateX(-50px)',
-	                  transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
-	                }}
-	              >
+                  opacity: explanationIsVisible ? 1 : 0,
+                  transform: explanationIsVisible ? 'translateX(0)' : 'translateX(-50px)',
+                  transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
                 <div
                   className={`absolute top-0 left-0 w-full h-full bg-[var(--navy)]/15 ${isCircleSurgeryImage ? 'rounded-full' : ''}`}
                   style={{
-	                    transform: explanationIsVisible ? 'translate(20px, 20px)' : 'translate(0, 0)',
-	                    transition: 'transform 1s ease 0.3s',
-	                  }}
-	                />
+                    transform: explanationIsVisible ? 'translate(20px, 20px)' : 'translate(0, 0)',
+                    transition: 'transform 1s ease 0.3s',
+                  }}
+                />
                 <div className={`relative overflow-hidden group ${isCircleSurgeryImage ? 'aspect-square rounded-full bg-[var(--paper)]' : ''}`}>
                   {isCircleSurgeryImage ? (
                     <Image
@@ -851,34 +854,34 @@ export default function SurgeryPageTemplate({
                 <div
                   className="flex items-center gap-4 mb-6"
                   style={{
-	                    opacity: explanationIsVisible ? 1 : 0,
-	                    transform: explanationIsVisible ? 'translateX(0)' : 'translateX(30px)',
-	                    transition: 'all 0.6s ease',
-	                  }}
-	                >
+                    opacity: explanationIsVisible ? 1 : 0,
+                    transform: explanationIsVisible ? 'translateX(0)' : 'translateX(30px)',
+                    transition: 'all 0.6s ease',
+                  }}
+                >
                   <div
                     className="w-14 h-[1px] bg-[var(--navy)]"
                     style={{
-	                      transform: explanationIsVisible ? 'scaleX(1)' : 'scaleX(0)',
-	                      transformOrigin: 'left',
-	                      transition: 'transform 0.8s ease 0.2s',
-	                    }}
-	                  />
+                      transform: explanationIsVisible ? 'scaleX(1)' : 'scaleX(0)',
+                      transformOrigin: 'left',
+                      transition: 'transform 0.8s ease 0.2s',
+                    }}
+                  />
                   <span className="text-[12px] text-[var(--navy)] tracking-[0.2em] uppercase">About Surgery</span>
                 </div>
                 <h2 className="text-[26px] md:text-[34px] font-semibold text-[var(--ink)] leading-[1.3] tracking-[-0.02em]">
-	                  <AnimatedText isVisible={explanationIsVisible} delay={0.2} type="split">
-	                    {explanationTitle}
-	                  </AnimatedText>
+                  <AnimatedText isVisible={explanationIsVisible} delay={0.2} type="split">
+                    {explanationTitle}
+                  </AnimatedText>
                 </h2>
                 {explanationSubtitle && (
                   <p
                     className="text-[18px] md:text-[22px] font-medium text-[var(--navy)] mt-2 mb-8"
                     style={{
-	                      opacity: explanationIsVisible ? 1 : 0,
-	                      transition: 'opacity 0.6s ease 0.4s',
-	                    }}
-	                  >
+                      opacity: explanationIsVisible ? 1 : 0,
+                      transition: 'opacity 0.6s ease 0.4s',
+                    }}
+                  >
                     {explanationSubtitle}
                   </p>
                 )}
@@ -889,22 +892,22 @@ export default function SurgeryPageTemplate({
                       key={index}
                       className="text-[14px] md:text-[15px] text-[#555] leading-[1.9]"
                       style={{
-	                        opacity: explanationIsVisible ? 1 : 0,
-	                        transform: explanationIsVisible ? 'translateY(0)' : 'translateY(20px)',
-	                        transition: `all 0.6s ease ${0.4 + index * 0.1}s`,
-	                      }}
-	                    >
+                        opacity: explanationIsVisible ? 1 : 0,
+                        transform: explanationIsVisible ? 'translateY(0)' : 'translateY(20px)',
+                        transition: `all 0.6s ease ${0.4 + index * 0.1}s`,
+                      }}
+                    >
                       {paragraph}
                     </p>
                   ))}
                 </div>
                 <div
                   style={{
-	                    opacity: explanationIsVisible ? 1 : 0,
-	                    transform: explanationIsVisible ? 'translateY(0)' : 'translateY(20px)',
-	                    transition: 'all 0.6s ease 0.6s',
-	                  }}
-	                >
+                    opacity: explanationIsVisible ? 1 : 0,
+                    transform: explanationIsVisible ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'all 0.6s ease 0.6s',
+                  }}
+                >
                   <Link
                     href="http://pf.kakao.com/_QRNzxj"
                     target="_blank"
@@ -940,21 +943,21 @@ export default function SurgeryPageTemplate({
           {!specialBackgroundImage && <div className="absolute inset-0 bg-white" />}
 
           <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-16">
-	            <SectionTitle
-	              subtitle="Why Choose Us"
-	              title={specialTitle}
-	              description={specialSubtitle}
-	              isVisible={specialIsVisible}
-	            />
+            <SectionTitle
+              subtitle="Why Choose Us"
+              title={specialTitle}
+              description={specialSubtitle}
+              isVisible={specialIsVisible}
+            />
 
             <div className="grid md:grid-cols-3 gap-6">
-	              {specialPoints.map((point, index) => (
-	                <Card3D
-	                  key={index}
-	                  isVisible={specialIsVisible}
-	                  delay={0.3 + index * 0.15}
-	                  className="group"
-	                >
+              {specialPoints.map((point, index) => (
+                <Card3D
+                  key={index}
+                  isVisible={specialIsVisible}
+                  delay={0.3 + index * 0.15}
+                  className="group"
+                >
                   <div className="bg-white border border-gray-100 p-8 md:p-10 hover:border-[var(--navy)]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-500">
                     <div className="flex items-center justify-between mb-8">
                       <div className="text-[var(--navy)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
@@ -978,6 +981,8 @@ export default function SurgeryPageTemplate({
         </section>
 
         {showTimeline && <PostOpTimeline steps={timelineSteps} />}
+
+        {showScarCare && <ScarCareSection />}
 
         {/* FAQ Section */}
         <section className="py-20 md:py-28 bg-[var(--paper)]" ref={faqRef}>

@@ -13,6 +13,7 @@ export default function BreastAugmentationPage() {
     <SurgeryPageTemplate
       // Updated surgery time
       showTimeline={true}
+      showScarCare={true}
       englishTitle="PRIMARY BREAST SURGERY"
       koreanTitle="엄나구모 가슴 첫수술"
       heroImage="/보형물제거 페이지 사진/1(메인-상단).jpg"

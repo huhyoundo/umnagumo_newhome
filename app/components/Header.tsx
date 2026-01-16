@@ -34,8 +34,8 @@ export default function Header() {
   return (
     <header
       className={`fixed md:sticky top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${isScrolled
-          ? 'bg-[rgba(248,246,243,0.92)] backdrop-blur-md shadow-[0_1px_18px_rgba(0,0,0,0.06)] border-b border-line'
-          : 'bg-[rgba(248,246,243,0.82)] backdrop-blur-md border-b border-line'
+        ? 'bg-[rgba(248,246,243,0.92)] backdrop-blur-md shadow-[0_1px_18px_rgba(0,0,0,0.06)] border-b border-line'
+        : 'bg-[rgba(248,246,243,0.82)] backdrop-blur-md border-b border-line'
         }`}
     >
       {/* Main Header */}
@@ -86,9 +86,7 @@ export default function Header() {
                 전후사진
               </Link>
               <Link
-                href="https://blog.naver.com/umnagumo/223849151079"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/checklist"
                 className={`${desktopNavColumnClass} py-6 text-[17px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors tracking-[-0.01em] font-medium text-center`}
               >
                 체크 리스트
@@ -150,9 +148,7 @@ export default function Header() {
                     <div className={`${desktopNavColumnClass} text-center`}>
                       <div className="space-y-1">
                         <Link
-                          href="https://blog.naver.com/umnagumo/223849151079"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          href="/checklist"
                           className="block py-1 text-[15px] text-[var(--ink-muted)] hover:text-[var(--navy)] transition-colors"
                         >
                           체크 리스트
@@ -244,9 +240,7 @@ export default function Header() {
           {/* 체크 리스트 */}
           <div className="mb-6 pt-4 border-t border-line">
             <Link
-              href="https://blog.naver.com/umnagumo/223849151079"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/checklist"
               className="block py-2 text-[15px] text-[var(--ink)] hover:text-[var(--navy)] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >

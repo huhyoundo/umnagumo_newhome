@@ -52,6 +52,8 @@ const montserrat = Montserrat({
   weight: ["400", "600", "700"],
 });
 
+
+
 const DEFAULT_NAVER_SITE_VERIFICATIONS = [
   "fb15418bc68a30db2f6246177dfa6bd350527ede",
   "291831b97ca6960a865b13e1bfa7230bc005cff3",

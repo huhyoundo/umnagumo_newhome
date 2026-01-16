@@ -12,6 +12,7 @@ export default function BreastReconstructionPage() {
   return (
     <SurgeryPageTemplate
       showTimeline={true}
+      showScarCare={true}
       englishTitle="BREAST RECONSTRUCTION"
       koreanTitle="엄나구모 가슴 재건술"
       heroImage="/메인페이지 사진/12(콘텐츠-이미지5).jpg"

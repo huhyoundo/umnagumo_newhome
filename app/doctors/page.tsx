@@ -32,7 +32,7 @@ const doctors = [
     ],
   },
   {
-    role: '원장',
+    role: '대표원장',
     name: '남 정 현',
     image: '/의료진 페이지 사진/3(남정현-원장님).jpg',
     credentials: [
@@ -45,6 +45,12 @@ const doctors = [
       '대한 성형외과 유방성형연구회 학술위원',
     ],
     namStyleLink: '/nam-style',
+  },
+  {
+    role: '마취통증의학과 전문의',
+    name: '나 중 열',
+    image: '/의료진 페이지 사진/Dr_Na.jpg',
+    credentials: ['마취통증의학과 전문의'],
   },
 ] as const;
 
@@ -122,13 +128,13 @@ function DoctorCard({
   return (
     <div className="rounded-[26px] md:rounded-[36px] border border-line bg-white overflow-hidden">
       <div className={`grid lg:grid-cols-2 ${reverse ? 'lg:[&>*:first-child]:order-2' : ''}`}>
-        <div className="relative bg-[var(--paper)]">
+        <div className="relative bg-gradient-to-b from-[#f8f6f3] to-[#e6e2dc]">
           <div className="relative aspect-[4/5] md:aspect-[3/4]">
             <Image
               src={image}
               alt={name}
               fill
-              className="object-cover"
+              className="object-cover mix-blend-multiply"
 
               sizes="(min-width: 1024px) 520px, 100vw"
             />
@@ -264,8 +270,9 @@ export default function DoctorsPage() {
         {/* Doctor Cards */}
         <section className="py-10 md:py-14">
           <div className="max-w-[1200px] mx-auto px-6 lg:px-10 space-y-8 md:space-y-12">
-            <DoctorCard {...doctors[0]} />
-            <DoctorCard {...doctors[1]} reverse />
+            {doctors.map((doctor, index) => (
+              <DoctorCard key={doctor.name} {...doctor} reverse={index % 2 !== 0} />
+            ))}
           </div>
         </section>
 
