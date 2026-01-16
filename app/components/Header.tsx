@@ -97,7 +97,7 @@ export default function Header() {
 
             {/* Unified Mega Menu Panel - Full Width */}
             <div
-              className={`fixed top-[70px] left-0 w-screen transition-all duration-300 ${showMegaMenu ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+              className={`fixed top-[70px] inset-x-0 transition-all duration-300 ${showMegaMenu ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}
             >
               <div className="bg-[rgba(248,246,243,0.92)] backdrop-blur-md shadow-[0_8px_28px_rgba(0,0,0,0.06)] border-t border-line">
