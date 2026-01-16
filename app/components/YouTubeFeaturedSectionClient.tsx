@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import LiteYouTubeEmbed from './LiteYouTubeEmbed';
 
 const FEATURED_VIDEO = {
   id: 'cNeLplAECDc',
@@ -48,23 +49,10 @@ export default function YouTubeFeaturedSectionClient() {
 
           <div className="relative">
             <div className="absolute -inset-3 rounded-[26px] bg-[var(--navy)]/10 blur-2xl" aria-hidden="true" />
-            <div className="relative overflow-hidden rounded-[26px] border border-line bg-black shadow-[0_22px_60px_rgba(0,0,0,0.14)]">
-              <div className="aspect-video">
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${FEATURED_VIDEO.id}?rel=0&modestbranding=1`}
-                  title={FEATURED_VIDEO.title}
-                  className="w-full h-full"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-              </div>
-            </div>
+            <LiteYouTubeEmbed videoId={FEATURED_VIDEO.id} title={FEATURED_VIDEO.title} />
           </div>
         </div>
       </div>
     </section>
   );
 }
-
