@@ -112,7 +112,10 @@ function ParticleOverlay({ isVisible }: { isVisible: boolean }) {
             width: p.size,
             height: p.size,
             opacity: isVisible ? 0.6 : 0,
-            animation: isVisible ? `particleFloat ${p.duration}s ease-in-out infinite` : 'none',
+            animationName: isVisible ? 'particleFloat' : 'none',
+            animationDuration: `${p.duration}s`,
+            animationTimingFunction: 'ease-in-out',
+            animationIterationCount: 'infinite',
             animationDelay: `${p.delay}s`,
             transition: 'opacity 1s ease',
           }}
@@ -137,7 +140,9 @@ function AnimatedTitle({ children, isVisible }: { children: string; isVisible: b
               transform: isVisible
                 ? 'translateY(0) rotateX(0)'
                 : 'translateY(40px) rotateX(-60deg)',
-              transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
+              transitionProperty: 'all',
+              transitionDuration: '0.7s',
+              transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               transitionDelay: `${0.3 + index * 0.03}s`,
               transformOrigin: 'center bottom',
             }}
@@ -179,7 +184,10 @@ function StatCard({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
-        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+        backfaceVisibility: 'hidden', // 3D 렌더링 깜빡임 방지
+        transitionProperty: 'all',
+        transitionDuration: '0.8s',
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
         transitionDelay: `${0.2 + index * 0.15}s`,
       }}
       onMouseEnter={() => setIsHovered(true)}

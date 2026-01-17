@@ -72,7 +72,9 @@ function SplitText({ children, isVisible, delay = 0, className = '' }: SplitText
                   : `translateX(${initialX}px) scale(0) rotateY(${distanceFromMid * 30}deg)`,
                 opacity: isVisible ? 1 : 0,
                 filter: isVisible ? 'blur(0px)' : 'blur(8px)',
-                transition: `all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)`,
+                transitionProperty: 'all',
+                transitionDuration: '0.8s',
+                transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
                 transitionDelay: `${delay + Math.abs(distanceFromMid) * 0.05}s`,
               }}
             >
@@ -116,7 +118,10 @@ function WaveText({ children, isVisible, delay = 0, className = '' }: WaveTextPr
                 ? 'translateY(0) rotateX(0deg)'
                 : 'translateY(100%) rotateX(-90deg)',
               opacity: isVisible ? 1 : 0,
-              transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1)`,
+              backfaceVisibility: 'hidden', // 3D 렌더링 아티팩트 방지
+              transitionProperty: 'all',
+              transitionDuration: '0.7s',
+              transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               transitionDelay: `${delay + index * 0.03}s`,
               animation: waveActive ? `heroWave 3s ease-in-out ${index * 0.1}s infinite` : 'none',
             }}
@@ -226,7 +231,9 @@ function ClipReveal({ children, isVisible, delay = 0, direction = 'left', classN
       className={`inline-block ${className}`}
       style={{
         clipPath: getClipPath(),
-        transition: `clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1)`,
+        transitionProperty: 'clip-path',
+        transitionDuration: '1.2s',
+        transitionTimingFunction: 'cubic-bezier(0.77, 0, 0.175, 1)',
         transitionDelay: `${delay}s`,
       }}
     >
@@ -310,7 +317,9 @@ function ScrollIndicator({ isVisible }: { isVisible: boolean }) {
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
+        transitionProperty: 'all',
+        transitionDuration: '1s',
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
         transitionDelay: '2s',
       }}
     >
@@ -391,9 +400,11 @@ export default function Hero() {
         <div
           className="relative mt-6 md:mt-8 rounded-[28px] md:rounded-[50px] overflow-hidden border border-line bg-[var(--paper)]"
           style={{
-            height: 'calc(100vh - 120px)',
+            height: 'calc(100svh - 120px)',
             minHeight: 560,
             maxHeight: 900,
+            transform: 'translateZ(0)', // GPU 가속 강제 (스크롤 깜빡임 방지)
+            willChange: 'transform',
           }}
         >
           {/* Background */}
