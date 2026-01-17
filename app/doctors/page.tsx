@@ -50,7 +50,11 @@ const doctors = [
     role: '마취통증의학과 전문의',
     name: '나 중 열',
     image: '/의료진 페이지 사진/Dr_Na.jpg',
-    credentials: ['마취통증의학과 전문의'],
+    credentials: [
+      '충남대학교 의과대학 졸업',
+      '순천향대학병원 마취통증의학과 전문의',
+      '대한 마취통증의학회 정회원',
+    ],
   },
 ] as const;
 
