@@ -14,14 +14,14 @@ export default function PrivacyPolicyPage() {
                     </h1>
 
                     <div className="space-y-12 text-[var(--ink)] leading-relaxed">
-                        <section>
-                            <p className="mb-6">
-                                엄나구모성형외과의원(이하 '본원')은 고객님의 개인정보를 소중히 여기며, 「개인정보 보호법」 및 「의료법」 등 관련 법령을 철저히 준수하고 있습니다. 본원은 개인정보 처리방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 안내해 드립니다.
-                            </p>
-                            <p className="font-medium text-[var(--navy)]">
-                                본 방침은 2025년 1월 20일부터 시행됩니다.
-                            </p>
-                        </section>
+	                        <section>
+	                            <p className="mb-6">
+	                                엄나구모성형외과의원(이하 &apos;본원&apos;)은 고객님의 개인정보를 소중히 여기며, 「개인정보 보호법」 및 「의료법」 등 관련 법령을 철저히 준수하고 있습니다. 본원은 개인정보 처리방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 안내해 드립니다.
+	                            </p>
+	                            <p className="font-medium text-[var(--navy)]">
+	                                본 방침은 2025년 1월 20일부터 시행됩니다.
+	                            </p>
+	                        </section>
 
                         <section>
                             <h2 className="text-xl font-bold text-[var(--navy)] mb-6">제 1 조 (개인정보의 수집 항목 및 방법)</h2>
@@ -128,13 +128,13 @@ export default function PrivacyPolicyPage() {
                         </section>
 
                         <section>
-                            <h2 className="text-xl font-bold text-[var(--navy)] mb-6">제 9 조 (고지의 의무)</h2>
-                            <p className="text-sm text-[var(--ink-muted)]">
-                                현 개인정보 처리방침은 2025년 1월 20일부터 적용됩니다. 내용의 추가, 삭제 및 수정이 있을 시에는 홈페이지의 '공지사항'을 통해 고지할 것입니다.
-                            </p>
-                        </section>
-                    </div>
-                </div>
+	                            <h2 className="text-xl font-bold text-[var(--navy)] mb-6">제 9 조 (고지의 의무)</h2>
+	                            <p className="text-sm text-[var(--ink-muted)]">
+	                                현 개인정보 처리방침은 2025년 1월 20일부터 적용됩니다. 내용의 추가, 삭제 및 수정이 있을 시에는 홈페이지의 &apos;공지사항&apos;을 통해 고지할 것입니다.
+	                            </p>
+	                        </section>
+	                    </div>
+	                </div>
             </main>
             <FooterDeferred />
         </>

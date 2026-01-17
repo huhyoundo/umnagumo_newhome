@@ -587,12 +587,12 @@ export default function BreastSurgeryGuide() {
               </p>
             </MotivaFeatureCard>
 
-            <MotivaFeatureCard number="2" title="촉감 (Texture)">
-              <p>
-                탱탱하면서도 부드러운 탄력감을 가지며, '찹쌀떡 같은 쫀득한 촉감'으로 표현됩니다. 
-                Ergonomix® 보형물은 피부 아래서 자연스러운 움직임을 연출합니다.
-              </p>
-            </MotivaFeatureCard>
+	            <MotivaFeatureCard number="2" title="촉감 (Texture)">
+	              <p>
+	                탱탱하면서도 부드러운 탄력감을 가지며, &apos;찹쌀떡 같은 쫀득한 촉감&apos;으로 표현됩니다. 
+	                Ergonomix® 보형물은 피부 아래서 자연스러운 움직임을 연출합니다.
+	              </p>
+	            </MotivaFeatureCard>
 
             <MotivaFeatureCard number="3" title="안정성 (Safety)">
               <ul>
