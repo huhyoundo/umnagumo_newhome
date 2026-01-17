@@ -872,14 +872,77 @@ export default function ChecklistContent() {
             padding: 80px 20px;
             overflow: hidden;
           }
-// ...
+  
+          /* Clinic Badge */
+          .clinic-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 10;
+          }
+
+          .clinic-badge span {
+            font-size: 0.9rem;
+            color: #C9A86C;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+          }
+
+          /* Main Heading */
+          h1 {
+            display: block;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 10;
+          }
+
+          .hero-sub {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+            line-height: 1.4;
+          }
+
+          .hero-main {
+            display: block;
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FFFFFF 0%, #C0C0C0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            line-height: 1.2;
+          }
+
+          .hero-accent {
+            display: block;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #FFD700 0%, #C9A86C 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Montserrat', sans-serif;
+          }
+
           .hero-description {
             font-size: 1.2rem;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 10;
           }
-// ...
           .scroll-indicator {
             position: absolute;
             bottom: 30px;
