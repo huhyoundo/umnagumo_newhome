@@ -28,18 +28,6 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
 
 
   {
-    id: 21,
-    legacyNewsId: "NEWS_000000000000021",
-    surgeryType: "revision",
-    title: "겨드랑이 절개하 재수술\n멘토 보형물",
-    description: "우측 밑빠짐 및 좌측 각진라인\n양측 피막절제 및 우측 소작찝기, 좌측 밑선교정 시행",
-    image: "/assets/before-after/revision/NEWS_000000000000021-preview.png",
-    modalImage: "/assets/before-after/revision/NEWS_000000000000021-modal.png",
-  },
-
-
-
-  {
     id: 17,
     legacyNewsId: "NEWS_000000000000017",
     surgeryType: "primary",

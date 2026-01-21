@@ -26,11 +26,8 @@ const categories = [
 const reviews: LegacyBreastGalleryItem[] = legacyBreastGalleryItems;
 
 const bestReviews: LegacyBreastGalleryItem[] = [
-  legacyBreastGalleryItems.find((item) => item.legacyNewsId === 'NEWS_000000000000021'),
-  ...legacyBreastGalleryItems
-    .filter((item) => item.surgeryType === 'revision' && item.legacyNewsId !== 'NEWS_000000000000021')
-    .slice(0, 2),
-].filter((item): item is LegacyBreastGalleryItem => Boolean(item));
+  ...legacyBreastGalleryItems.slice(0, 3),
+];
 
 const categoryLabelById: Record<GalleryCategory, string> = {
   all: '전체보기',
