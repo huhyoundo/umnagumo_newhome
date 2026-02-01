@@ -8,82 +8,38 @@ import ApprenticeshipValues from '../components/ApprenticeshipValues';
 
 export const metadata: Metadata = createPageMetadata({
   title: '의료진 소개',
-  description: '엄나구모 성형외과 의료진 소개. 축적된 경험과 전문적 기술로 가장 자연스러운 아름다움을 완성합니다.',
+  description:
+    '강남 논현 엄나구모 성형외과 의료진 소개. 축적된 경험과 전문적 기술로 가슴성형·가슴수술의 자연스러운 결과를 완성합니다.',
   path: '/doctors',
 });
 
 type TimelineItem = { year: string; text: string };
 
-const doctors = [
-  {
-    role: '대표원장',
-    name: '엄 순 찬',
-    image: '/의료진 페이지 사진/2(대표원장님).jpg',
-    credentials: [
-      '순천향대학교 의과대학 졸업',
-      '일본 교토대학교 부속병원 성형외과 전공의 수련',
-      '일본 교토대학교 의학부 의학연구과 외과계 박사',
-      '일본 도쿄 가슴전문 나구모 클리닉 수석의사',
-      '한국 성형외과 전문의 취득',
-      '대한 성형외과학회 정회원',
-      '대한 성형외과의사회 정회원',
-      '대한 미용성형외과학회 정회원',
-      '현) 엄나구모 성형외과 대표원장',
-    ],
-  },
-  {
-    role: '대표원장',
-    name: '남 정 현',
-    image: '/의료진 페이지 사진/3(남정현-원장님).jpg',
-    credentials: [
-      '순천향대학교 의과대학 졸업',
-      '순천향대학병원 성형외과 전문의',
-      '순천향대학교 대학원 성형외과학 석사',
-      '대한 성형외과학회 정회원',
-      '대한 성형외과의사회 정회원',
-      '대한 미용성형외과학회 정회원',
-      '대한 성형외과 유방성형연구회 학술위원',
-    ],
-    namStyleLink: '/nam-style',
-  },
-  {
-    role: '마취통증의학과 전문의',
-    name: '나 중 열',
-    image: '/의료진 페이지 사진/Dr_Na.jpg',
-    credentials: [
-      '충남대학교 의과대학 졸업',
-      '순천향대학병원 마취통증의학과 전문의',
-      '대한 마취통증의학회 정회원',
-    ],
-  },
-] as const;
+import { doctors } from '../data/doctors';
 
 const japanTimeline: readonly TimelineItem[] = [
-  { year: '1988년', text: '도쿄 우에노(上野)에 「나구모미용외과」 개원 — 나구모 요시노리 원장 창업' },
-  { year: '1990년', text: '의료법인 인가, 의료법인사단 나구모회 나구모클리닉 설립 (도쿄 니시고탄다)' },
+  { year: '1988년', text: '도쿄 우에노(上野)에 「나구모미용외과」\n개원 나구모 요시노리 원장 창업' },
+  { year: '1990년', text: '의료법인 인가, 의료법인사단 나구모회\n나구모클리닉 설립 (도쿄 니시고탄다)' },
   { year: '1994년', text: '오사카원 개원' },
-  { year: '1995년', text: '후쿠오카원 개원 / 원장 유방전문의 자격 취득' },
-  { year: '1999년', text: '도쿄원 오사키(大崎)로 이전, 유방전용 검사장비 확충' },
+  { year: '1995년', text: '후쿠오카원 개원 / 원장 유방전문의\n자격 취득' },
+  { year: '1999년', text: '도쿄원 오사키(大崎)로 이전, 유방전용\n검사장비 확충' },
   { year: '2009년', text: '나고야원 개원' },
   { year: '2012년', text: '삿포로원 개원' },
-  { year: '2014년', text: '도쿄원 치요다구 산반초 「유방재건센터」로 이전' },
+  { year: '2014년', text: '도쿄원 치요다구 산반초 「유방재건센터」\n로 이전' },
 
-  { year: '현재', text: '전국 4개원 운영 (도쿄·나고야·오사카·후쿠오카)' },
+  { year: '현재', text: '4개원 운영 (도쿄·나고야·오사카·후쿠오카)' },
 ];
 
 
 
 const koreaTimeline: readonly TimelineItem[] = [
-  { year: '1999년', text: '엄순찬 원장, 일본 교토대학교 의학박사 박사과정학위 취득' },
-  { year: '2000년', text: '일본 도쿄 나구모 클리닉 수석의사 임명' },
-  { year: '2000년', text: '나구모 클리닉 한국인 최초 수석의사' },
-  { year: '2001년', text: '한국 성형외과 전문의 취득' },
-  { year: '2001년', text: '대한성형외과학회 정회원 등록' },
-  { year: '2001년', text: '대한미용성형외과학회 창립회원 등록' },
-  { year: '2003년', text: '서울 강남 논현동 엄나구모성형외과 개원 (서울 강남)' },
+  { year: '1999년', text: '엄순찬 원장, 일본 교토대학교 의학박사\n박사과정학위 취득' },
+  { year: '2000년', text: '일본 도쿄 나구모 클리닉 한국인 최초\n수석의사 임명' },
+  { year: '2001년', text: '한국 성형외과 전문의 취득\n대한성형외과학회 정회원 등록\n대한미용성형외과학회 창립회원 등록' },
+  { year: '2003년', text: '서울 강남 논현동 엄나구모성형외과 개원' },
   { year: '2005년', text: '겨드랑이 절개 가슴수술 특화 시스템 구축' },
-  { year: '2009년', text: '유방성형 학술논문 발표 (엄나구모 성형외과 소속)' },
-  { year: '2018년', text: '대한성형외과학회 유방성형연구회 운영위원 위촉' },
+  { year: '2009년', text: '유방성형 학술논문 발표' },
+  { year: '2018년', text: '대한성형외과학회 유방성형연구회\n운영위원 위촉' },
   { year: '2020년', text: '유방성형 KCI 학술논문 저자 등재' },
 
 ];
@@ -99,11 +55,11 @@ function Timeline({ items }: { items: readonly TimelineItem[] }) {
               className="absolute left-[6px] top-[8px] w-[10px] h-[10px] rounded-full bg-[var(--navy)]/70 ring-4 ring-white"
               aria-hidden="true"
             />
-            <div className="flex flex-wrap items-start gap-x-3 gap-y-1">
-              <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--navy)]/8 text-[var(--navy)] text-[12px] font-semibold">
+            <div className="flex items-start gap-3">
+              <span className="shrink-0 inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--navy)]/8 text-[var(--navy)] text-[12px] font-semibold">
                 {item.year}
               </span>
-              <p className="text-[13px] md:text-[14px] text-[var(--ink-muted)] leading-relaxed">
+              <p className="text-[13px] md:text-[14px] text-[var(--ink-muted)] leading-relaxed whitespace-pre-wrap py-1">
                 {item.text}
               </p>
             </div>
@@ -207,7 +163,7 @@ export default function DoctorsPage() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    'linear-gradient(90deg, rgba(248,246,243,0.96) 0%, rgba(248,246,243,0.82) 48%, rgba(248,246,243,0.35) 72%, rgba(29,35,86,0.08) 100%)',
+                    'linear-gradient(90deg, rgba(248,246,243,0.98) 0%, rgba(248,246,243,0.95) 60%, rgba(248,246,243,0.85) 80%, rgba(248,246,243,0.4) 100%)',
                 }}
               />
 
@@ -219,10 +175,8 @@ export default function DoctorsPage() {
                   <h1 className="text-[34px] md:text-[52px] font-semibold tracking-[-0.03em] text-[var(--ink)] leading-[1.12] mt-5">
                     의료진 소개
                   </h1>
-                  <p className="text-[14px] md:text-[16px] text-[var(--ink-muted)] leading-relaxed mt-6">
-                    축적된 경험과 현대적 기술로 가장 자연스러운 아름다움을 실현합니다.
-                    <br />
-                    디자인·시술·회복까지 전 과정에서 한 분 한 분을 세심하게 돌보겠습니다.
+                  <p className="text-[14px] md:text-[16px] text-[var(--ink-muted)] leading-relaxed mt-6 break-keep whitespace-pre-wrap">
+                    축적된 경험과 현대적 기술로 가장 자연스러운 아름다움을 실현합니다. 디자인·시술·회복까지 전 과정에서 한 분 한 분을 세심하게 돌보겠습니다.
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-3 mt-10">
@@ -319,7 +273,7 @@ export default function DoctorsPage() {
                 <div className="flex items-start justify-between gap-6">
                   <div>
                     <h3 className="text-[16px] md:text-[18px] font-semibold text-[var(--ink)]">
-                      구모클리닉(ナグモクリニック) 연혁
+                      나구모클리닉(ナグモクリニック) 연혁
                     </h3>
                     <p className="text-[13px] text-[var(--ink-muted)] mt-2">
                       창업 37년 / 법인설립 35년

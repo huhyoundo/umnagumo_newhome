@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:checklist": "node scripts/sync-checklist-from-naver.mjs"
   },
   "dependencies": {
     "next": "^16.1.1",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/facebook-pixel": "^0.0.31",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

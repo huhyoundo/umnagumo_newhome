@@ -4,7 +4,8 @@ import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
   title: '가슴 재건술',
-  description: '엄나구모 가슴 재건술. 개인별 조직 상태와 목표에 맞춘 계획으로 자연스러운 라인과 균형 회복을 돕습니다.',
+  description:
+    '강남 논현 엄나구모 가슴 재건술. 개인별 조직 상태와 목표에 맞춘 계획으로 자연스러운 라인과 균형 회복을 돕습니다.',
   path: '/breast-reconstruction',
 });
 

@@ -33,7 +33,7 @@ export default function ApprenticeshipValues() {
                 <>스승이 제자의 뒤에서<br />손을 직접 잡아주며 지도</>,
                 <>매일 수술 후 스승의<br />직접평가 및 피드백</>,
                 <>기구 파지법부터 배우는<br />기본기 훈련</>,
-                '일만 번의 반복이 한 번의 완벽한 수술이 될 때까지',
+                <>일만 번의 반복이 한 번의<br />완벽한 수술이 될 때까지</>,
             ],
         },
         {
@@ -41,9 +41,9 @@ export default function ApprenticeshipValues() {
             enTitle: 'Philosophy',
             koTitle: '핵심 철학',
             desc: [
-                '"수술은 수학이 아니다" - 이론을 넘어선 직관과 응용력',
-                '첫수술 환자 임상으로 기술을 갈고닦지 않음',
-                '스승에서 제자로, 그 제자가 다시 스승이 되는 계승 구조',
+                <>“수술은 수학이 아니다”<br />- 이론을 넘어선 직관과 응용력</>,
+                <>첫수술 환자 임상으로<br />기술을 갈고닦지 않음</>,
+                <>스승에서 제자로, 그 제자가<br />다시 스승이 되는 계승 구조</>,
             ],
         },
         {
@@ -51,7 +51,7 @@ export default function ApprenticeshipValues() {
             enTitle: 'Differentiation',
             koTitle: '차별점',
             desc: [
-                '대형병원에서 가르치지 않는 고난이도 술기 직접 전수',
+                <>대형병원에서 가르치지 않는<br />고난이도 술기 직접 전수</>,
                 '경쟁사가 될 것을 우려해 간단한 술기만 가르치는 일반 병원과 차별화',
                 '오직 환자의 결과에만 집중하는 문화',
             ],
@@ -101,9 +101,9 @@ export default function ApprenticeshipValues() {
                                 {item.desc.map((d, i) => (
                                     <li
                                         key={i}
-                                        className="text-[15px] text-[var(--ink-muted)] leading-relaxed font-light group-hover:text-[var(--ink)] transition-colors duration-300 flex items-start gap-3"
+                                        className="text-[15px] text-[var(--ink-muted)] leading-relaxed font-light group-hover:text-[var(--ink)] transition-colors duration-300 flex items-start gap-3 break-keep"
                                     >
-                                        <span className="inline-block w-1 h-1 rounded-full bg-[var(--gold)] mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <span className="inline-block w-1 h-1 rounded-full bg-[var(--gold)] mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0" />
                                         <span>{d}</span>
                                     </li>
                                 ))}

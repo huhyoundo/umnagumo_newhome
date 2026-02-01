@@ -6,6 +6,7 @@ import FooterDeferred from '../../components/deferred/FooterDeferred';
 import Image from '../../components/SafeImage';
 import Link from 'next/link';
 import { legacyBreastGalleryItems } from '../../data/legacyBreastGallery';
+import { SITE_NAME, SITE_URL } from '../../lib/seo';
 
 // 1. Generate Static Params for SSG (Build all 27 pages statically)
 export async function generateStaticParams() {
@@ -27,21 +28,30 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     }
 
     const normalizedTitle = item.title.replace(/\n/g, ' ');
-    const normalizedDescription = item.description.replace(/\n/g, ' ');
-    const pageTitle = `${normalizedTitle} | 엄나구모 성형외과`;
+    const normalizedDescription = item.description.replace(/\n/g, ' ').trim();
+    const pageTitle = `${normalizedTitle} | ${SITE_NAME}`;
+    const canonicalUrl = new URL(`/before-after/${id}`, SITE_URL);
+    const pageDescription = normalizedDescription
+        ? `${normalizedDescription} - ${SITE_NAME} 가슴성형 전후사진 케이스 상세`
+        : `${SITE_NAME} 가슴성형 전후사진 케이스 상세`;
 
     return {
         title: pageTitle,
-        description: `${normalizedDescription} - 엄나구모 성형외과 가슴성형 전후사진 케이스 상세`,
+        description: pageDescription,
+        alternates: { canonical: canonicalUrl },
         openGraph: {
             title: pageTitle,
-            description: normalizedDescription,
+            description: pageDescription,
+            url: canonicalUrl,
+            siteName: SITE_NAME,
+            locale: 'ko_KR',
+            type: 'article',
             images: [item.image], // Using the preview image for OG share
         },
         twitter: {
             card: 'summary_large_image',
             title: pageTitle,
-            description: normalizedDescription,
+            description: pageDescription,
             images: [item.image],
         },
     };

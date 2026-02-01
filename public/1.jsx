@@ -17,48 +17,48 @@ const ChevronDownIcon = () => (
 
 const StethoscopeIcon = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-    <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-    <circle cx="20" cy="10" r="2"/>
+    <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
+    <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
+    <circle cx="20" cy="10" r="2" />
   </svg>
 );
 
 const ShieldIcon = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-    <path d="m9 12 2 2 4-4"/>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="m9 12 2 2 4-4" />
   </svg>
 );
 
 const HeartIcon = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
   </svg>
 );
 
 const ScissorsIcon = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="6" cy="6" r="3"/>
-    <circle cx="6" cy="18" r="3"/>
-    <line x1="20" y1="4" x2="8.12" y2="15.88"/>
-    <line x1="14.47" y1="14.48" x2="20" y2="20"/>
-    <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+    <circle cx="6" cy="6" r="3" />
+    <circle cx="6" cy="18" r="3" />
+    <line x1="20" y1="4" x2="8.12" y2="15.88" />
+    <line x1="14.47" y1="14.48" x2="20" y2="20" />
+    <line x1="8.12" y1="8.12" x2="12" y2="12" />
   </svg>
 );
 
 const LayersIcon = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-    <polyline points="2 17 12 22 22 17"/>
-    <polyline points="2 12 12 17 22 12"/>
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 17 12 22 22 17" />
+    <polyline points="2 12 12 17 22 12" />
   </svg>
 );
 
 const AlertIcon = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-    <line x1="12" y1="9" x2="12" y2="13"/>
-    <line x1="12" y1="17" x2="12.01" y2="17"/>
+    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+    <line x1="12" y1="9" x2="12" y2="13" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
   </svg>
 );
 
@@ -170,7 +170,7 @@ const AccordionSection = ({ title, icon, children, defaultOpen = false, accentCo
 const InfoCard = ({ title, pros = [], cons = [], recommendation, highlight = false }) => (
   <div className={`info-card ${highlight ? 'highlight' : ''}`}>
     <h4>{title}</h4>
-    
+
     {pros.length > 0 && (
       <div className="pros-cons-section">
         <span className="section-label pros">장점</span>
@@ -181,7 +181,7 @@ const InfoCard = ({ title, pros = [], cons = [], recommendation, highlight = fal
         </ul>
       </div>
     )}
-    
+
     {cons.length > 0 && (
       <div className="pros-cons-section">
         <span className="section-label cons">단점</span>
@@ -192,7 +192,7 @@ const InfoCard = ({ title, pros = [], cons = [], recommendation, highlight = fal
         </ul>
       </div>
     )}
-    
+
     {recommendation && (
       <div className="recommendation">
         <span className="rec-label">추천 대상</span>
@@ -518,18 +518,18 @@ export default function BreastSurgeryGuide() {
           <div className="gradient-orb orb-2"></div>
           <div className="grid-pattern"></div>
         </div>
-        
+
         <div className="hero-content">
           <div className="clinic-badge">
             <span>Dr. 남정현 원장</span>
           </div>
-          
+
           <h1>
             <span className="hero-sub">철저한 준비와 관리</span>
             <span className="hero-main">가슴확대 수술</span>
             <span className="hero-accent">A to Z</span>
           </h1>
-          
+
           <p className="hero-description">
             엄나구모 성형외과의 체계적인 수술 가이드로<br />
             안전하고 자연스러운 결과를 경험하세요
@@ -562,15 +562,15 @@ export default function BreastSurgeryGuide() {
       {/* Main Content */}
       <main className="main-content">
         <div className="content-wrapper">
-          
+
           {/* Section: 모티바 보형물 */}
-          <AccordionSection 
-            title="모티바(Motiva) 프리미엄 보형물" 
+          <AccordionSection
+            title="모티바(Motiva) 프리미엄 보형물"
             icon={<HeartIcon />}
             defaultOpen={true}
           >
             <p className="section-intro">
-              2024년 FDA 승인을 받은 모티바는 Establishment Labs에서 제조하는 프리미엄 보형물로, 
+              2024년 FDA 승인을 받은 모티바는 Establishment Labs에서 제조하는 프리미엄 보형물로,
               안정성과 자연스러움을 인정받고 있습니다.
             </p>
 
@@ -587,12 +587,12 @@ export default function BreastSurgeryGuide() {
               </p>
             </MotivaFeatureCard>
 
-	            <MotivaFeatureCard number="2" title="촉감 (Texture)">
-	              <p>
-	                탱탱하면서도 부드러운 탄력감을 가지며, &apos;찹쌀떡 같은 쫀득한 촉감&apos;으로 표현됩니다. 
-	                Ergonomix® 보형물은 피부 아래서 자연스러운 움직임을 연출합니다.
-	              </p>
-	            </MotivaFeatureCard>
+            <MotivaFeatureCard number="2" title="촉감 (Texture)">
+              <p>
+                탱탱하면서도 부드러운 탄력감을 가지며, &apos;찹쌀떡 같은 쫀득한 촉감&apos;으로 표현됩니다.
+                Ergonomix® 보형물은 피부 아래서 자연스러운 움직임을 연출합니다.
+              </p>
+            </MotivaFeatureCard>
 
             <MotivaFeatureCard number="3" title="안정성 (Safety)">
               <ul>
@@ -610,15 +610,15 @@ export default function BreastSurgeryGuide() {
           </AccordionSection>
 
           {/* Section: 절개 방법 */}
-          <AccordionSection 
-            title="절개 방법 선택 가이드" 
+          <AccordionSection
+            title="절개 방법 선택 가이드"
             icon={<ScissorsIcon />}
           >
             <p className="section-intro">
               개인의 체형과 원하는 결과에 따라 최적의 절개 방법이 달라집니다.
             </p>
 
-            <InfoCard 
+            <InfoCard
               title="겨드랑이 절개"
               highlight={true}
               pros={[
@@ -635,7 +635,7 @@ export default function BreastSurgeryGuide() {
               recommendation="흉터에 민감하고 자연스러운 결과를 원하는 분"
             />
 
-            <InfoCard 
+            <InfoCard
               title="밑선 절개"
               pros={[
                 "수술 시야 확보가 용이하여 정밀도가 높음",
@@ -649,7 +649,7 @@ export default function BreastSurgeryGuide() {
               recommendation="흉터에 크게 신경 쓰지 않고 안전하고 정밀한 수술을 원하는 분"
             />
 
-            <InfoCard 
+            <InfoCard
               title="유륜 절개"
               pros={[
                 "특수한 경우(거상 수술, 심한 수축 가슴)에 효과적"
@@ -663,8 +663,8 @@ export default function BreastSurgeryGuide() {
           </AccordionSection>
 
           {/* Section: 보형물 삽입 위치 */}
-          <AccordionSection 
-            title="보형물 삽입 위치" 
+          <AccordionSection
+            title="보형물 삽입 위치"
             icon={<LayersIcon />}
           >
             <p className="section-intro">
@@ -696,7 +696,7 @@ export default function BreastSurgeryGuide() {
               </div>
             </div>
 
-            <InfoCard 
+            <InfoCard
               title="근막 하 (대흉근막 아래 삽입)"
               highlight={true}
               pros={[
@@ -712,7 +712,7 @@ export default function BreastSurgeryGuide() {
               recommendation="통증이 적고 빠른 회복, 자연스러운 촉감을 원하는 분"
             />
 
-            <InfoCard 
+            <InfoCard
               title="이중평면법 (Dual Plane)"
               pros={[
                 "마른 체형에서 보형물이 직접 만져지는 것 방지",
@@ -739,8 +739,8 @@ export default function BreastSurgeryGuide() {
           </AccordionSection>
 
           {/* Section: 합병증 */}
-          <AccordionSection 
-            title="수술 후 합병증 안내" 
+          <AccordionSection
+            title="수술 후 합병증 안내"
             icon={<AlertIcon />}
           >
             <p className="section-intro">
@@ -749,15 +749,15 @@ export default function BreastSurgeryGuide() {
 
             <div className="complication-period">
               <h4 className="period-title acute">급성기 합병증 <span>수술 당일 ~ 1개월</span></h4>
-              
-              <ComplicationCard 
+
+              <ComplicationCard
                 title="출혈"
                 severity="acute"
                 description="혈압 상승이나 움직임으로 인해 지혈된 혈관이 다시 터지거나, 재생이 완전히 이루어지지 않은 혈관이 찢어지면서 발생합니다."
                 treatment="급격한 부풀어 오름은 다음날 수술적 지혈, 서서히 부풀어 오르는 경우는 5~7일 후 혈종 제거"
               />
 
-              <ComplicationCard 
+              <ComplicationCard
                 title="감염"
                 severity="acute"
                 description="절개 부위 연조직염과 가슴방 안쪽 염증으로 나뉘며, 열감, 발적, 붓기, 통증 등의 증상이 수술 후 1~2주 사이에 나타납니다."
@@ -767,22 +767,22 @@ export default function BreastSurgeryGuide() {
 
             <div className="complication-period">
               <h4 className="period-title chronic">만성기 합병증 <span>2~3개월 이후</span></h4>
-              
-              <ComplicationCard 
+
+              <ComplicationCard
                 title="피막구축 (구형구축)"
                 severity="chronic"
                 description="보형물 주위 피막이 비정상적으로 수축하면서 보형물을 압박해 가슴이 딱딱해지거나 모양이 변형되고 통증이 생기는 현상입니다."
                 treatment="재수술로 두꺼워진 피막을 절제하고 가슴방을 새로 성형 (본원 발생률 1% 미만 관리)"
               />
 
-              <ComplicationCard 
+              <ComplicationCard
                 title="장액종"
                 severity="chronic"
                 description="보형물 주변에 맑은 체액이 고이는 현상으로, 조직 손상, 출혈, 감염 또는 드물게 역형성 대세포 림프종(ALCL)과 연관될 수 있습니다."
                 treatment="대부분 자연 흡수되며, 양이 많으면 주사기 흡입. 세균 감염 의심 시 배양검사와 항생제 치료"
               />
 
-              <ComplicationCard 
+              <ComplicationCard
                 title="보형물 위치 변이"
                 severity="chronic"
                 description="스무스 타입 보형물은 조직과의 유착이 적어 밑빠짐, 옆빠짐 문제가 발생할 수 있습니다."
@@ -833,6 +833,8 @@ export default function BreastSurgeryGuide() {
           color: #FAFAFA;
           font-family: 'Noto Sans KR', sans-serif;
           overflow-x: hidden;
+          word-break: keep-all;
+          word-wrap: break-word;
         }
 
         /* Hero Section */

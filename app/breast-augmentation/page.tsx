@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '가슴 첫수술',
-  description: '엄나구모 가슴 첫수술. 체형·조직·라인에 맞춘 맞춤 디자인으로 자연스러운 볼륨과 조화를 완성합니다.',
+  title: '강남 가슴확대(가슴성형)',
+  description:
+    '강남 논현 엄나구모 성형외과 가슴확대(가슴성형) 첫수술. 체형·조직·라인에 맞춘 맞춤 디자인으로 자연스러운 볼륨과 조화를 완성합니다.',
   path: '/breast-augmentation',
 });
 

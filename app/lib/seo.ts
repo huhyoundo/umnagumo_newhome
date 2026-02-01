@@ -6,29 +6,38 @@ export const SITE_NAME = "엄나구모 성형외과";
 export const AUTHOR_NAME = "Dr. Eom Soon-chan & Dr. Nam Jung-hyun";
 
 export const SITE_DESCRIPTION =
-  "강남 논현동 가슴성형 전문 엄나구모 성형외과. 25년 경력, 12,000례 이상의 임상 경험. 모티바, 멘토 보형물을 이용한 가슴확대, 축소, 거상, 재수술 전문. 1:1 맞춤 상담.";
+  "엄나구모 성형외과는 서울특별시 강남구 도산대로 318 SB타워 6층에서 가슴성형과 가슴수술을 중심으로 상담부터 수술, 회복관리까지 개인별 상태에 맞춘 계획을 제안합니다. 가슴확대, 가슴거상, 가슴 재수술은 물론 처진가슴 교정, 축소술, 재건술, 보형물 제거 등 다양한 케이스를 진료합니다.";
 
 // Schema Generators
+export function generateWebSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: "ko-KR",
+  };
+}
+
 export function generateOrganizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "MedicalOrganization",
+    "@type": "MedicalClinic",
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    image: `${SITE_URL}/og-image.jpg`,
+    image: `${SITE_URL}/opengraph-image`,
     description: SITE_DESCRIPTION,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "강남구 논현로 815",
+      streetAddress: "서울특별시 강남구 도산대로 318 SB타워 6층",
       addressLocality: "Seoul",
       addressRegion: "Gangnam-gu",
-      postalCode: "06039",
       addressCountry: "KR",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+82-2-518-0050",
+      telephone: "+82-2-512-6838",
       contactType: "customer service",
       areaServed: "KR",
       availableLanguage: ["Korean", "English"],
@@ -64,7 +73,7 @@ export function generateMedicalWebPageSchema(title: string, description: string,
   };
 }
 
-export function generateFaqSchema(faqs: { question: string; answer: string }[]) {
+export function generateFaqSchema(faqs: ReadonlyArray<{ question: string; answer: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -103,7 +112,9 @@ export function createPageMetadata({
 }): Metadata {
   const canonicalUrl = new URL(path, SITE_URL);
   const resolvedDescription = description ?? SITE_DESCRIPTION;
-  const resolvedOgTitle = title ? `${title} | ${SITE_NAME}` : "엄나구모 성형외과 | 강남 논현 가슴성형 25년 | 모티바·멘토 재수술 전문";
+  const resolvedOgTitle = title
+    ? `${title} | ${SITE_NAME}`
+    : "강남 가슴성형·가슴수술·가슴확대 | 가슴거상·처진가슴·재수술 전문 | 엄나구모 성형외과";
 
   return {
     ...(title ? { title } : {}),
@@ -118,7 +129,7 @@ export function createPageMetadata({
       type: "website",
       images: [
         {
-          url: "/og-image.jpg",
+          url: "/opengraph-image",
           width: 1200,
           height: 630,
           alt: resolvedOgTitle,
@@ -129,7 +140,7 @@ export function createPageMetadata({
       card: "summary_large_image",
       title: resolvedOgTitle,
       description: resolvedDescription,
-      images: ["/og-image.jpg"],
+      images: ["/twitter-image"],
     },
     robots: {
       index: true,

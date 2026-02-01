@@ -3,12 +3,57 @@
 import Image from './SafeImage';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import InteractiveLogoPoster from './InteractiveLogoPoster';
+import { doctors } from '../data/doctors';
 
-// 스크롤 애니메이션 훅
-function useScrollAnimation(threshold = 0.2) {
-  const ref = useRef<HTMLDivElement>(null);
+function DoctorCard({ doctor, index, isVisible }: { doctor: typeof doctors[number], index: number, isVisible: boolean }) {
+  return (
+    <div
+      className="group relative flex flex-col items-center text-center"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+        transitionDelay: `${0.1 + index * 0.15}s`,
+      }}
+    >
+      <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden rounded-[20px] bg-[#f8f6f3]">
+        <Image
+          src={doctor.image}
+          alt={doctor.name}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(min-width: 1024px) 33vw, 100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      </div>
+
+      <p className="text-[11px] md:text-[12px] text-[var(--navy)] tracking-[0.2em] font-medium uppercase mb-2">
+        {doctor.role}
+      </p>
+      <h3 className="text-[20px] md:text-[22px] font-semibold text-[var(--ink)] mb-4">
+        {doctor.name}
+      </h3>
+
+      <div className="w-8 h-[1px] bg-[var(--line)] mb-4 group-hover:w-16 transition-all duration-300" />
+
+      {/* Show only first credential or a summarized version if needed, 
+          but for now let's just show a 'View Profile' link to keep it clean like a summary */}
+      <Link
+        href="/doctors"
+        className="inline-flex items-center gap-2 text-[13px] text-[var(--ink-muted)] hover:text-[var(--navy)] transition-colors duration-300"
+      >
+        <span>프로필 보기</span>
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </Link>
+    </div>
+  );
+}
+
+export default function DoctorSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,204 +63,36 @@ function useScrollAnimation(threshold = 0.2) {
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold: 0.1 }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, isVisible };
-}
-
-// 마그네틱 버튼 컴포넌트
-function MagneticButton({ children, href, className }: { children: React.ReactNode; href: string; className?: string }) {
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!buttonRef.current) return;
-    const rect = buttonRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const x = (e.clientX - centerX) * 0.2;
-    const y = (e.clientY - centerY) * 0.2;
-    setPosition({ x, y });
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
-    setPosition({ x: 0, y: 0 });
-  }, []);
-
-  useEffect(() => {
-    const button = buttonRef.current;
-    if (button) {
-      button.addEventListener('mousemove', handleMouseMove);
-      button.addEventListener('mouseleave', handleMouseLeave);
-      return () => {
-        button.removeEventListener('mousemove', handleMouseMove);
-        button.removeEventListener('mouseleave', handleMouseLeave);
-      };
-    }
-  }, [handleMouseMove, handleMouseLeave]);
-
   return (
-    <Link
-      ref={buttonRef}
-      href={href}
-      className={className}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-      }}
-    >
-      {children}
-    </Link>
-  );
-}
+    <section ref={sectionRef} className="py-20 md:py-28 bg-white border-b border-line">
+      <div className="w-full max-w-[1200px] mx-auto px-6 lg:px-10">
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[12px] text-[var(--navy)] tracking-[0.25em] font-medium uppercase mb-4"
+            style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(10px)', transition: 'all 0.6s ease' }}>
+            MEDICAL TEAM
+          </p>
+          <h2 className="text-[28px] md:text-[36px] font-semibold text-[var(--ink)] tracking-[-0.02em]"
+            style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(10px)', transition: 'all 0.6s ease 0.1s' }}>
+            엄나구모 의료진 소개
+          </h2>
+          <p className="mt-5 text-[15px] text-[var(--ink-muted)] leading-relaxed max-w-[600px] mx-auto break-keep"
+            style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(10px)', transition: 'all 0.6s ease 0.2s' }}>
+            25년 이상의 경험과 노하우를 가진 의료진이<br className="md:hidden" />
+            상담부터 수술, 회복까지 직접 책임집니다.
+          </p>
+        </div>
 
-// 애니메이션 텍스트 컴포넌트
-function AnimatedText({ children, isVisible, delay = 0 }: { children: string; isVisible: boolean; delay?: number }) {
-  const words = children.split(' ');
-  return (
-    <span>
-      {words.map((word, index) => (
-        <span
-          key={index}
-          className="inline-block will-change-transform"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0) rotateX(0)' : 'translateY(30px) rotateX(-15deg)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-            transitionDelay: `${delay + index * 0.08}s`,
-          }}
-        >
-          {word}{index < words.length - 1 ? '\u00A0' : ''}
-        </span>
-      ))}
-    </span>
-  );
-}
-
-export default function DoctorSection() {
-  const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  // 이미지 패럴랙스
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!imageRef.current) return;
-    const rect = imageRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePosition({ x, y });
-  }, []);
-
-  useEffect(() => {
-    const element = imageRef.current;
-    if (element) {
-      element.addEventListener('mousemove', handleMouseMove);
-      return () => element.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, [handleMouseMove]);
-
-  return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-white overflow-hidden">
-      <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-16">
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="lg:py-8">
-            {/* Subtitle */}
-            <div className="overflow-hidden mb-4">
-              <p
-                className="text-[12px] tracking-[0.2em] uppercase font-medium"
-                style={{
-                  background: 'linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%)',
-                  backgroundSize: '200% 100%',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  animation: isVisible ? 'gradientShift 4s ease infinite' : 'none',
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transition: 'all 0.6s ease',
-                }}
-              >
-                MEDICAL TEAM
-              </p>
-            </div>
-
-            {/* Title */}
-            <h2 className="text-[24px] md:text-[32px] font-semibold text-[#2a2a2a] mb-6 tracking-[-0.02em]">
-              <AnimatedText isVisible={isVisible} delay={0.1}>
-                엄나구모 의료진 소개
-              </AnimatedText>
-            </h2>
-
-            {/* Description with staggered lines */}
-            <div className="space-y-1 mb-8">
-              {[
-                '축적된 경험과 전문적 기술로 가장 자연스러운',
-                '아름다움을 실현하며, 체형과 균형을 기반으로 한',
-                '정교한 디자인과 세심한 시술 과정 속에서 단 한 건',
-                '한 건 최선의 결과를 돌봅니다.',
-              ].map((line, index) => (
-                <p
-                  key={index}
-                  className="text-[14px] md:text-[15px] text-gray-600 leading-[1.9]"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateX(0)' : 'translateX(-30px)',
-                    transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                    transitionDelay: `${0.3 + index * 0.1}s`,
-                  }}
-                >
-                  {line}
-                </p>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'all 0.6s ease 0.7s',
-              }}
-            >
-              <MagneticButton
-                href="/doctors"
-                className="inline-flex items-center gap-2 text-[13px] text-[var(--ink)] border-b border-[var(--ink)] pb-1
-                  hover:text-[var(--navy)] hover:border-[var(--navy)] transition-colors duration-300 font-medium group"
-              >
-                의료진 소개 자세히 보기
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </MagneticButton>
-            </div>
-          </div>
-
-          {/* Right Image - Interactive Brand Logo Poster */}
-          <div
-            className="relative"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateX(0)' : 'translateX(60px)',
-              transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
-            }}
-          >
-            {/* Decorative frame - external to the 3D card */}
-            <div
-              className="absolute -top-6 -right-6 w-full h-full border-2 border-[var(--navy)]/10"
-              style={{
-                transform: isVisible ? 'translate(0, 0)' : 'translate(-20px, -20px)',
-                transition: 'transform 1s ease 0.4s',
-              }}
-            />
-
-            <InteractiveLogoPoster />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-12 gap-x-8 lg:gap-x-12 justify-center max-w-[800px] mx-auto">
+          {doctors.filter(d => !d.role.includes('마취')).map((doctor, index) => (
+            <DoctorCard key={doctor.name} doctor={doctor} index={index} isVisible={isVisible} />
+          ))}
         </div>
       </div>
     </section>

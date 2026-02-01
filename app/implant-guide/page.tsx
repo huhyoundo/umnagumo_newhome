@@ -7,7 +7,8 @@ import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
   title: '보형물 가이드',
-  description: '가슴의 본질을 결정하는 보형물 선택. 25년 임상 경험으로 가장 안전하고 정확한 기준을 제시합니다.',
+  description:
+    '강남 논현 엄나구모 보형물 가이드. 가슴성형·가슴수술 결과를 좌우하는 보형물 선택 기준을 25년 임상 경험을 바탕으로 안내합니다.',
   path: '/implant-guide',
 });
 

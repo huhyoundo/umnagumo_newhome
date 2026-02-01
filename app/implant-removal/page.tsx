@@ -4,7 +4,7 @@ import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
   title: '보형물 제거',
-  description: '엄나구모 보형물 제거술. 더 이상 보형물이 필요하지 않거나 문제가 발생한 경우 안전하게 해결합니다.',
+  description: '강남 논현 엄나구모 보형물 제거술. 더 이상 보형물이 필요하지 않거나 문제가 발생한 경우 안전하게 해결합니다.',
   path: '/implant-removal',
 });
 

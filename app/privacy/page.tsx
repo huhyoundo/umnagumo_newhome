@@ -1,7 +1,16 @@
-'use client';
-
+import type { Metadata } from 'next';
 import Header from '../components/Header';
 import FooterDeferred from '../components/deferred/FooterDeferred';
+import { createPageMetadata } from '../lib/seo';
+
+export const metadata: Metadata = {
+    ...createPageMetadata({
+        title: '개인정보 처리방침',
+        description: '엄나구모 성형외과 개인정보 처리방침입니다.',
+        path: '/privacy',
+    }),
+    robots: { index: false, follow: true },
+};
 
 export default function PrivacyPolicyPage() {
     return (

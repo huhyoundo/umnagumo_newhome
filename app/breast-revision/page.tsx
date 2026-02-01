@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '가슴 재수술',
-  description: '엄나구모 가슴 재수술. 구축·파손·비대칭·변형 등 문제를 해결하기 위한 정밀 교정 수술입니다.',
+  title: '강남 가슴재수술(가슴수술)',
+  description:
+    '강남 논현 엄나구모 가슴 재수술. 구축·파손·비대칭·변형 등 문제를 해결하기 위한 정밀 교정 가슴수술입니다.',
   path: '/breast-revision',
 });
 

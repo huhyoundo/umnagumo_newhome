@@ -4,8 +4,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import FloatingContactButton from "./components/FloatingContactButton";
 import PretendardFullLoader from "./components/PretendardFullLoader";
+import FacebookPixel from "./components/FacebookPixel";
 import ThirdPartyScripts from "./components/ThirdPartyScripts";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, generateOrganizationSchema } from "./lib/seo";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, generateOrganizationSchema, generateWebSiteSchema } from "./lib/seo";
 
 const pretendardInitial = localFont({
   src: [
@@ -77,11 +78,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "엄나구모 성형외과 | 강남 논현 가슴성형 25년 | 모티바·멘토 재수술 전문",
+    default: "엄나구모 성형외과 | 강남 논현 가슴성형·가슴수술 25년 | 가슴확대·재수술 전문",
     template: "%s | 엄나구모 성형외과",
   },
   description: SITE_DESCRIPTION,
-  keywords: "엄나구모 성형외과, 강남 가슴성형, 논현 가슴성형외과, 가슴성형 전문, 가슴확대 수술, 가슴재수술 잘하는 곳, 처진가슴 수술, 짝가슴 교정, 자연유방성형, 보형물 가슴성형, 모티바 가슴성형, 안전한 가슴성형",
+  keywords:
+    "엄나구모 성형외과, 강남 가슴성형, 강남 가슴수술, 강남 가슴확대, 논현 가슴성형, 논현 가슴수술, 가슴성형, 가슴수술, 가슴확대, 가슴확대 수술, 가슴거상, 처진가슴, 처진가슴 수술, 가슴재수술, 짝가슴 교정, 보형물 가슴성형, 모티바, 멘토",
   applicationName: SITE_NAME,
   icons: {
     icon: [
@@ -103,17 +105,27 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "엄나구모 성형외과 | 강남 논현 가슴성형 전문",
+    title: "엄나구모 성형외과 | 강남 논현 가슴성형·가슴수술 전문",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "ko_KR",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "엄나구모 성형외과 | 강남 논현 가슴성형·가슴수술 전문",
+      },
+    ],
+
   },
   twitter: {
     card: "summary_large_image",
-    title: "엄나구모 성형외과 | 강남 논현 가슴성형 전문",
+    title: "엄나구모 성형외과 | 강남 논현 가슴성형·가슴수술 전문",
     description: SITE_DESCRIPTION,
+    images: ["/twitter-image"],
   },
 };
 
@@ -123,6 +135,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const organizationStructuredData = generateOrganizationSchema();
+  const websiteStructuredData = generateWebSiteSchema();
 
   return (
     <html lang="ko" className={`${pretendardInitial.variable} ${pretendardFull.variable} ${montserrat.variable}`}>
@@ -139,7 +152,7 @@ export default function RootLayout({
         ))}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationStructuredData, websiteStructuredData]) }}
         />
       </head>
       <body className="antialiased min-h-screen">
@@ -151,6 +164,15 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1438534097844292&ev=PageView&noscript=1"
+          />
+        </noscript>
+        <FacebookPixel />
         {children}
         <ThirdPartyScripts
           gtmId="GTM-TG7KZ92W"

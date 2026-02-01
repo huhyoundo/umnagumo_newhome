@@ -5,7 +5,7 @@ import { createPageMetadata } from '../lib/seo';
 export const metadata: Metadata = createPageMetadata({
   title: '유두축소',
   description:
-    '엄나구모 유두축소술. 유두가 길거나 굵어 보이는 문제를 개선해 가슴 전체의 비율과 심미성을 되찾아주는 교정술입니다.',
+    '강남 논현 엄나구모 유두축소술. 유두가 길거나 굵어 보이는 문제를 개선해 가슴 전체의 비율과 심미성을 되찾아주는 교정술입니다.',
   path: '/nipple-reduction',
 });
 

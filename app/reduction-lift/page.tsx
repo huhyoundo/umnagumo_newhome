@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import { createPageMetadata } from '../lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '축소거상',
+  title: '가슴거상·처진가슴 교정(축소거상)',
   description:
-    '엄나구모 축소거상술. 과도하게 큰 가슴으로 인한 통증·거북함·처짐 등을 해결하는 볼륨 축소 + 처짐 교정 복합 수술입니다.',
+    '강남 논현 엄나구모 축소거상술. 과도하게 큰 가슴으로 인한 통증·거북함·처짐 등을 해결하는 볼륨 축소 + 처짐 교정 복합 가슴수술입니다.',
   path: '/reduction-lift',
 });
 

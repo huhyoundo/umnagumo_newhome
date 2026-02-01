@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
+import HomeSeoSection from './components/HomeSeoSection';
 import YouTubeFeaturedSectionDeferred from './components/deferred/YouTubeFeaturedSectionDeferred';
 import BeforeAfterSectionDeferred from './components/deferred/BeforeAfterSectionDeferred';
 import ClinicSectionDeferred from './components/deferred/ClinicSectionDeferred';
@@ -21,6 +22,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <HomeSeoSection />
         <ClinicSectionDeferred />
         <StatsSectionDeferred />
         <TrustSystemSectionDeferred />
