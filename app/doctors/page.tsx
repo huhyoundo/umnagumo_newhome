@@ -18,7 +18,7 @@ type TimelineItem = { year: string; text: string };
 import { doctors } from '../data/doctors';
 
 const japanTimeline: readonly TimelineItem[] = [
-  { year: '1988년', text: '도쿄 우에노에\n나구모미용외과 개원\n나구모 요시노리 원장 창업' },
+  { year: '1988년', text: '도쿄 우에노에\n나구모 미용외과 개원\n나구모 요시노리 원장 창업' },
   { year: '1990년', text: '의료법인사단 나구모회\n나구모 클리닉 설립\n(도쿄 니시코단타)' },
   { year: '1994년', text: '오사카원 개원' },
   { year: '1995년', text: '후쿠오카원 개원\n유방전문의 자격 취득' },
