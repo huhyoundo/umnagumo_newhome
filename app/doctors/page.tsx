@@ -18,26 +18,26 @@ type TimelineItem = { year: string; text: string };
 import { doctors } from '../data/doctors';
 
 const japanTimeline: readonly TimelineItem[] = [
-  { year: '1988년', text: '도쿄 우에노(上野)에 「나구모미용외과」\n개원 나구모 요시노리 원장 창업' },
-  { year: '1990년', text: '의료법인 인가, 의료법인사단 나구모회\n나구모클리닉 설립 (도쿄 니시고탄다)' },
+  { year: '1988년', text: '도쿄 우에노에\n나구모미용외과 개원\n나구모 요시노리 원장 창업' },
+  { year: '1990년', text: '의료법인사단 나구모회\n나구모 클리닉 설립\n(도쿄 니시코단타)' },
   { year: '1994년', text: '오사카원 개원' },
-  { year: '1995년', text: '후쿠오카원 개원 / 원장 유방전문의\n자격 취득' },
-  { year: '1999년', text: '도쿄원 오사키(大崎)로 이전, 유방전용\n검사장비 확충' },
+  { year: '1995년', text: '후쿠오카원 개원\n유방전문의 자격 취득' },
+  { year: '1999년', text: '도쿄원 오사키로 이전\n유방전용 검사장비 확충' },
   { year: '2009년', text: '나고야원 개원' },
   { year: '2012년', text: '삿포로원 개원' },
-  { year: '2014년', text: '도쿄원 치요다구 산반초 「유방재건센터」\n로 이전' },
+  { year: '2014년', text: '도쿄원 치요다구 산반초\n유방재건 센터로 이전' },
 
-  { year: '현재', text: '4개원 운영 (도쿄·나고야·오사카·후쿠오카)' },
+  { year: '현재', text: '4개원 운영\n(도쿄,나고야,오사카,후쿠오카)' },
 ];
 
 
 
 const koreaTimeline: readonly TimelineItem[] = [
-  { year: '1999년', text: '엄순찬 원장, 일본 교토대학교 의학박사\n박사과정학위 취득' },
-  { year: '2000년', text: '일본 도쿄 나구모 클리닉 한국인 최초\n수석의사 임명' },
+  { year: '1999년', text: '일본 교토대학교 의학박사\n박사과정학위 취득' },
+  { year: '2000년', text: '일본 도쿄 나구모 클리닉\n한국인 최초 수석의사 임명' },
   { year: '2001년', text: '한국 성형외과 전문의 취득\n대한성형외과학회 정회원 등록\n대한미용성형외과학회 창립회원 등록' },
-  { year: '2003년', text: '서울 강남 논현동 엄나구모성형외과 개원' },
-  { year: '2005년', text: '겨드랑이 절개 가슴수술 특화 시스템 구축' },
+  { year: '2003년', text: '강남구 논현동 엄나구모성형외과\n개원' },
+  { year: '2005년', text: '겨드랑이 절개 가슴수술\n특화 시스템 구축' },
   { year: '2009년', text: '유방성형 학술논문 발표' },
   { year: '2018년', text: '대한성형외과학회 유방성형연구회\n운영위원 위촉' },
   { year: '2020년', text: '유방성형 KCI 학술논문 저자 등재' },
@@ -176,7 +176,7 @@ export default function DoctorsPage() {
                     의료진 소개
                   </h1>
                   <p className="text-[14px] md:text-[16px] text-[var(--ink-muted)] leading-relaxed mt-6 break-keep whitespace-pre-wrap">
-                    축적된 경험과 현대적 기술로 가장 자연스러운 아름다움을 실현합니다. 디자인·시술·회복까지 전 과정에서 한 분 한 분을 세심하게 돌보겠습니다.
+                    축적된 경험과 현대적 기술로 가장 자연스러운 아름다움을 실현합니다.<br />디자인·시술·회복까지 전 과정에서 한 분 한 분을 세심하게 돌보겠습니다.
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-3 mt-10">
@@ -217,8 +217,7 @@ export default function DoctorsPage() {
                   </h2>
                 </div>
                 <p className="text-[13px] md:text-[14px] text-[var(--ink-muted)] leading-relaxed max-w-[520px]">
-                  체형 조건을 기반으로 한 정교한 디자인과 정확한 수술, 그리고 수술 이후의 모든 과정까지.
-                  엄나구모는 ‘결과의 완성’을 끝까지 책임집니다.
+                  체형 조건을 기반으로 한 정교한 디자인과 정확한 수술, 그리고 수술 이후의 모든 과정까지<br />엄나구모는 ‘결과의 완성’을 끝까지 책임집니다.
                 </p>
               </div>
             </div>
@@ -273,10 +272,10 @@ export default function DoctorsPage() {
                 <div className="flex items-start justify-between gap-6">
                   <div>
                     <h3 className="text-[16px] md:text-[18px] font-semibold text-[var(--ink)]">
-                      나구모클리닉(ナグモクリニック) 연혁
+                      나구모클리닉(ナグモクリニック)<br className="block md:hidden" /> 연혁
                     </h3>
                     <p className="text-[13px] text-[var(--ink-muted)] mt-2">
-                      창업 37년 / 법인설립 35년
+                      창업 37년
                     </p>
                   </div>
                   <div className="relative w-[120px] h-[120px] shrink-0">
@@ -302,7 +301,7 @@ export default function DoctorsPage() {
                 <div className="flex items-start justify-between gap-6">
                   <div>
                     <h3 className="text-[16px] md:text-[18px] font-semibold text-[var(--ink)]">
-                      엄나구모성형외과
+                      엄나구모<br className="block md:hidden" />성형외과
                     </h3>
                     <p className="text-[13px] text-[var(--ink-muted)] mt-2">
                       2003-현재
