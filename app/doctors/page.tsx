@@ -302,7 +302,7 @@ export default function DoctorsPage() {
                 <div className="flex items-start justify-between gap-6">
                   <div>
                     <h3 className="text-[16px] md:text-[18px] font-semibold text-[var(--ink)]">
-                      한국 엄나구모성형외과
+                      엄나구모성형외과
                     </h3>
                     <p className="text-[13px] text-[var(--ink-muted)] mt-2">
                       2003-현재

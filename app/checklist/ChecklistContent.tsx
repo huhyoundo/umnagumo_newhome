@@ -173,6 +173,12 @@ function cleanupHtml(html: string) {
         .se-module-image {
             margin: 50px 0 !important;
         }
+        
+        /* 10. Map Section Spacing */
+        .se-module-map-text {
+            margin-top: 32px !important;
+            display: block;
+        }
 
       </style>
       ${cleaned}
