@@ -51,7 +51,7 @@ export default function ApprenticeshipValues() {
             enTitle: 'Differentiation',
             koTitle: '차별점',
             desc: [
-                <>대형병원에서 가르치지 않는<br />고난이도 술기 직접 전수</>,
+                <>대형병원에서 가르치지 않는<br />고난도 술기 직접 전수</>,
                 '경쟁사가 될 것을 우려해 간단한 술기만 가르치는 일반 병원과 차별화',
                 '오직 환자의 결과에만 집중하는 문화',
             ],
