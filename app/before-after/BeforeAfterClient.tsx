@@ -186,15 +186,40 @@ export default function BeforeAfterPage() {
             <div className="rounded-[26px] md:rounded-[36px] border border-line bg-white overflow-hidden shadow-[0_22px_60px_rgba(0,0,0,0.08)]">
               <div className="grid lg:grid-cols-[1fr_420px]">
                 <div className="relative bg-[var(--paper)]">
-                  <div className="relative aspect-[4/3] md:aspect-[16/10]">
-                    <Image
-                      src={activeBest.image}
-                      alt={`${activeBest.title} 수술 전후`}
-                      fill
-                      className="object-contain"
-                      quality={100}
-                      sizes="(min-width: 1024px) 780px, 100vw"
-                    />
+                  <div className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
+                    {activeBest.imageBefore && activeBest.imageAfter ? (
+                      <div className="absolute inset-0 flex w-full h-full">
+                        <div className="relative w-1/2 h-full border-r border-white/10">
+                          <Image
+                            src={activeBest.imageBefore}
+                            alt={`${activeBest.title} 수술 전`}
+                            fill
+                            className="object-cover"
+                            quality={100}
+                            sizes="(min-width: 1024px) 390px, 50vw"
+                          />
+                        </div>
+                        <div className="relative w-1/2 h-full">
+                          <Image
+                            src={activeBest.imageAfter}
+                            alt={`${activeBest.title} 수술 후`}
+                            fill
+                            className="object-cover"
+                            quality={100}
+                            sizes="(min-width: 1024px) 390px, 50vw"
+                          />
+                        </div>
+                      </div>
+                    ) : activeBest.image ? (
+                      <Image
+                        src={activeBest.image}
+                        alt={`${activeBest.title} 수술 전후`}
+                        fill
+                        className="object-contain"
+                        quality={100}
+                        sizes="(min-width: 1024px) 780px, 100vw"
+                      />
+                    ) : null}
                   </div>
                   <div className="absolute top-5 left-5 flex items-center gap-2">
                     <span className="px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm border border-line text-[12px] font-semibold text-[var(--ink)]">
@@ -305,15 +330,40 @@ export default function BeforeAfterPage() {
                     </div>
 
                     <div className="relative bg-[var(--paper)]">
-                      <div className="relative aspect-[4/3]">
-                        <Image
-                          src={review.image}
-                          alt={`${review.title} 수술 전후`}
-                          fill
-                          className="object-contain"
-                          quality={100}
-                          sizes="(min-width: 1024px) 33vw, 100vw"
-                        />
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        {review.imageBefore && review.imageAfter ? (
+                          <div className="absolute inset-0 flex w-full h-full">
+                            <div className="relative w-1/2 h-full border-r border-white/10">
+                              <Image
+                                src={review.imageBefore}
+                                alt={`${review.title} 수술 전`}
+                                fill
+                                className="object-cover"
+                                quality={100}
+                                sizes="(min-width: 1024px) 16vw, 50vw"
+                              />
+                            </div>
+                            <div className="relative w-1/2 h-full">
+                              <Image
+                                src={review.imageAfter}
+                                alt={`${review.title} 수술 후`}
+                                fill
+                                className="object-cover"
+                                quality={100}
+                                sizes="(min-width: 1024px) 16vw, 50vw"
+                              />
+                            </div>
+                          </div>
+                        ) : review.image ? (
+                          <Image
+                            src={review.image}
+                            alt={`${review.title} 수술 전후`}
+                            fill
+                            className="object-contain"
+                            quality={100}
+                            sizes="(min-width: 1024px) 33vw, 100vw"
+                          />
+                        ) : null}
                       </div>
                     </div>
 

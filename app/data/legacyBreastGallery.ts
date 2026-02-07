@@ -8,11 +8,22 @@ export interface LegacyBreastGalleryItem {
   surgeryType: SurgeryType;
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  imageBefore?: string;
+  imageAfter?: string;
   modalImage?: string;
 }
 
 export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
+  {
+    id: 25,
+    legacyNewsId: "NEWS_000000000000025",
+    surgeryType: "revision",
+    title: "겨드랑이 절개하 재수술\n모티바 보형물",
+    description: "좌측 구축 및 우측 어색한라인\n양측 피막절제 후 밑선라인 교정",
+    imageBefore: "/assets/before-after/revision/case-25-before.png",
+    imageAfter: "/assets/before-after/revision/case-25-after.png",
+  },
 
 
 

@@ -58,14 +58,39 @@ export default async function CaseMetadataModal({ params }: { params: Promise<{ 
                 {/* Image Section */}
                 <div className="relative rounded-[16px] md:rounded-[24px] overflow-hidden border border-line bg-gray-50 shadow-sm mb-10 w-full">
                     <div className="relative aspect-[4/3] md:aspect-[16/10] w-full">
-                        <Image
-                            src={item.modalImage || item.image}
-                            alt={`${item.title} 상세 전후사진`}
-                            fill
-                            className="object-contain"
-                            quality={100}
-                            priority
-                        />
+                        {item.imageBefore && item.imageAfter ? (
+                            <div className="absolute inset-0 flex w-full h-full">
+                                <div className="relative w-1/2 h-full border-r border-white/10">
+                                    <Image
+                                        src={item.imageBefore}
+                                        alt={`${item.title} 수술 전`}
+                                        fill
+                                        className="object-cover"
+                                        quality={100}
+                                        priority
+                                    />
+                                </div>
+                                <div className="relative w-1/2 h-full">
+                                    <Image
+                                        src={item.imageAfter}
+                                        alt={`${item.title} 수술 후`}
+                                        fill
+                                        className="object-cover"
+                                        quality={100}
+                                        priority
+                                    />
+                                </div>
+                            </div>
+                        ) : item.modalImage || item.image ? (
+                            <Image
+                                src={item.modalImage || item.image!}
+                                alt={`${item.title} 상세 전후사진`}
+                                fill
+                                className="object-contain"
+                                quality={100}
+                                priority
+                            />
+                        ) : null}
                     </div>
                 </div>
 

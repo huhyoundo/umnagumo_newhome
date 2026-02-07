@@ -204,16 +204,41 @@ function GalleryCard({
       </div>
 
       {/* 이미지 */}
-      <div className="relative bg-gray-50 overflow-hidden">
-        <Image
-          src={item.image}
-          alt={`${item.title} 수술 전후`}
-          width={900}
-          height={675}
-          className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
-          quality={100}
-          sizes="(max-width: 768px) 100vw, 700px"
-        />
+      <div className="relative bg-gray-50 overflow-hidden aspect-[4/3]">
+        {item.imageBefore && item.imageAfter ? (
+          <div className="absolute inset-0 flex w-full h-full">
+            <div className="relative w-1/2 h-full border-r border-white/10">
+              <Image
+                src={item.imageBefore}
+                alt={`${item.title} 수술 전`}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105 origin-right"
+                quality={100}
+                sizes="(max-width: 768px) 50vw, 350px"
+              />
+            </div>
+            <div className="relative w-1/2 h-full">
+              <Image
+                src={item.imageAfter}
+                alt={`${item.title} 수술 후`}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105 origin-left"
+                quality={100}
+                sizes="(max-width: 768px) 50vw, 350px"
+              />
+            </div>
+          </div>
+        ) : item.image ? (
+          <Image
+            src={item.image}
+            alt={`${item.title} 수술 전후`}
+            fill
+            className="object-contain transition-transform duration-700 group-hover:scale-105"
+            quality={100}
+            sizes="(max-width: 768px) 100vw, 700px"
+          />
+        ) : null}
+
         {/* Image overlay on hover */}
         <div
           className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
@@ -273,12 +298,12 @@ function ProgressIndicator({
       <span className="text-[12px] text-gray-500 font-medium">
         {String(current).padStart(2, '0')}
       </span>
-        <div className="w-40 h-[2px] bg-gray-200 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-[var(--navy)] rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+      <div className="w-40 h-[2px] bg-gray-200 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-[var(--navy)] rounded-full transition-all duration-500 ease-out"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
       <span className="text-[12px] text-gray-400">
         {String(total).padStart(2, '0')}
       </span>

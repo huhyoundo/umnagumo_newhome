@@ -46,13 +46,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             siteName: SITE_NAME,
             locale: 'ko_KR',
             type: 'article',
-            images: [item.image], // Using the preview image for OG share
+            images: [item.image || item.imageBefore || ''], // Using the preview image for OG share
         },
         twitter: {
             card: 'summary_large_image',
             title: pageTitle,
             description: pageDescription,
-            images: [item.image],
+            images: [item.image || item.imageBefore || ''],
         },
     };
 }
@@ -94,14 +94,39 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
                     <div className="relative rounded-[20px] md:rounded-[30px] overflow-hidden border border-line bg-white shadow-sm mb-12">
                         {/* Using the modal image if available for higher res, otherwise preview */}
                         <div className="relative aspect-[4/3] md:aspect-[16/10]">
-                            <Image
-                                src={item.modalImage || item.image}
-                                alt={`${item.title} 상세 전후사진`}
-                                fill
-                                className="object-contain" // Changed to contain to show full image
-                                quality={100}
-                                priority
-                            />
+                            {item.imageBefore && item.imageAfter ? (
+                                <div className="absolute inset-0 flex w-full h-full">
+                                    <div className="relative w-1/2 h-full border-r border-white/10">
+                                        <Image
+                                            src={item.imageBefore}
+                                            alt={`${item.title} 수술 전`}
+                                            fill
+                                            className="object-cover"
+                                            quality={100}
+                                            priority
+                                        />
+                                    </div>
+                                    <div className="relative w-1/2 h-full">
+                                        <Image
+                                            src={item.imageAfter}
+                                            alt={`${item.title} 수술 후`}
+                                            fill
+                                            className="object-cover"
+                                            quality={100}
+                                            priority
+                                        />
+                                    </div>
+                                </div>
+                            ) : item.modalImage || item.image ? (
+                                <Image
+                                    src={item.modalImage || item.image!}
+                                    alt={`${item.title} 상세 전후사진`}
+                                    fill
+                                    className="object-contain" // Changed to contain to show full image
+                                    quality={100}
+                                    priority
+                                />
+                            ) : null}
                         </div>
                     </div>
 
