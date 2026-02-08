@@ -16,6 +16,9 @@ function cleanupHtml(html: string) {
     // Fix: Remove colon specifically after "STEP N" patterns even if inline or messy
     cleaned = cleaned.replace(/(STEP\s*\d+)(?:<[^>]+>|\s|&nbsp;)*(:|：)/gi, '$1');
 
+    // Fix: Address line break for better readability
+    cleaned = cleaned.replace(/서울특별시\s+강남구\s+도산대로\s+318\s+SB타워\s+6층/g, '서울특별시 강남구 도산대로 318<br/>SB타워 6층');
+
     // 2. Add style to Q&A headings (Targeting <b> tags inside <p>)
     // Naver Smart Editor usually wraps text in <p class="se-text-paragraph"><span><b>...
     // We will target generic <b> tags that look like headers (short text?) or just enhance all <b>
