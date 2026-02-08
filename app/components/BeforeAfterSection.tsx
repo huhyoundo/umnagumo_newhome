@@ -1,6 +1,7 @@
 'use client';
 
 import Image from './SafeImage';
+import MagnifyImage from './MagnifyImage';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -212,30 +213,33 @@ function GalleryCard({
                 src={item.imageBefore}
                 alt={`${item.title} 수술 전`}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105 origin-right"
+                className="object-contain transition-transform duration-700 group-hover:scale-105 origin-right"
                 quality={100}
                 sizes="(max-width: 768px) 50vw, 350px"
               />
             </div>
             <div className="relative w-1/2 h-full">
-              <Image
+              <MagnifyImage
                 src={item.imageAfter}
                 alt={`${item.title} 수술 후`}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105 origin-left"
+                className="object-contain transition-transform duration-700 group-hover:scale-105 origin-left"
                 quality={100}
                 sizes="(max-width: 768px) 50vw, 350px"
+                zoomLevel={4}
               />
             </div>
           </div>
         ) : item.image ? (
-          <Image
+          <MagnifyImage
             src={item.image}
             alt={`${item.title} 수술 전후`}
             fill
             className="object-contain transition-transform duration-700 group-hover:scale-105"
             quality={100}
             sizes="(max-width: 768px) 100vw, 700px"
+            zoomLevel={4}
+            activeOnRightHalfOnly={true}
           />
         ) : null}
 
