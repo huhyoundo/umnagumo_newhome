@@ -20,9 +20,9 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
     legacyNewsId: "NEWS_000000000000025",
     surgeryType: "revision",
     title: "겨드랑이 절개하 재수술\n모티바 보형물",
-    description: "좌측 구축 및 우측 어색한라인\n양측 피막절제 후 밑선라인 교정",
-    imageBefore: "/assets/before-after/revision/case-25-before.png",
-    imageAfter: "/assets/before-after/revision/case-25-after.png",
+    description: "좌측 밑빠짐 교정 및 밑선 재건",
+    imageBefore: "/가슴재수술 페이지 사진/전.png",
+    imageAfter: "/가슴재수술 페이지 사진/후.png",
   },
 
 

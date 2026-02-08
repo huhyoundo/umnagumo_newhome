@@ -194,7 +194,7 @@ export default function BeforeAfterPage() {
                             src={activeBest.imageBefore}
                             alt={`${activeBest.title} 수술 전`}
                             fill
-                            className="object-cover"
+                            className="object-contain"
                             quality={100}
                             sizes="(min-width: 1024px) 390px, 50vw"
                           />
@@ -204,7 +204,7 @@ export default function BeforeAfterPage() {
                             src={activeBest.imageAfter}
                             alt={`${activeBest.title} 수술 후`}
                             fill
-                            className="object-cover"
+                            className="object-contain"
                             quality={100}
                             sizes="(min-width: 1024px) 390px, 50vw"
                           />
@@ -338,7 +338,7 @@ export default function BeforeAfterPage() {
                                 src={review.imageBefore}
                                 alt={`${review.title} 수술 전`}
                                 fill
-                                className="object-cover"
+                                className="object-contain"
                                 quality={100}
                                 sizes="(min-width: 1024px) 16vw, 50vw"
                               />
@@ -348,7 +348,7 @@ export default function BeforeAfterPage() {
                                 src={review.imageAfter}
                                 alt={`${review.title} 수술 후`}
                                 fill
-                                className="object-cover"
+                                className="object-contain"
                                 quality={100}
                                 sizes="(min-width: 1024px) 16vw, 50vw"
                               />
