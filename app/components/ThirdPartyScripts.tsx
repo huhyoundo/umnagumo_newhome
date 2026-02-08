@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 type ThirdPartyScriptsProps = {
   gtmId: string;
@@ -115,6 +116,31 @@ export default function ThirdPartyScripts({
       cleanupInteraction();
     };
   }, [enableNaverAnalytics, gtmId, naverAnalyticsWa]);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') return;
+
+    // Track page view on route change
+    // Naver Analytics
+    const win = window as unknown as {
+      wcs_do?: () => void;
+      dataLayer?: unknown[];
+    };
+
+    if (win.wcs_do) {
+      win.wcs_do();
+    }
+
+    // GTM Virtual Page View
+    if (win.dataLayer) {
+      win.dataLayer.push({
+        event: 'page_view',
+        page_path: pathname,
+      });
+    }
+  }, [pathname]);
 
   return null;
 }
