@@ -208,7 +208,7 @@ export default function BeforeAfterPage() {
                             className="object-contain"
                             quality={100}
                             sizes="(min-width: 1024px) 390px, 50vw"
-                            zoomLevel={2}
+                            zoomLevel={4}
                           />
                         </div>
                       </div>
