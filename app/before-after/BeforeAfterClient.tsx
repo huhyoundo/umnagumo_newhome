@@ -2,6 +2,7 @@
 
 import Image from '../components/SafeImage';
 import Link from 'next/link';
+import MagnifyImage from '../components/MagnifyImage';
 import Header from '../components/Header';
 import FooterDeferred from '../components/deferred/FooterDeferred';
 import { useMemo, useState } from 'react';
@@ -200,24 +201,27 @@ export default function BeforeAfterPage() {
                           />
                         </div>
                         <div className="relative w-1/2 h-full">
-                          <Image
+                          <MagnifyImage
                             src={activeBest.imageAfter}
                             alt={`${activeBest.title} 수술 후`}
                             fill
                             className="object-contain"
                             quality={100}
                             sizes="(min-width: 1024px) 390px, 50vw"
+                            zoomLevel={2}
                           />
                         </div>
                       </div>
                     ) : activeBest.image ? (
-                      <Image
+                      <MagnifyImage
                         src={activeBest.image}
                         alt={`${activeBest.title} 수술 전후`}
                         fill
                         className="object-contain"
                         quality={100}
                         sizes="(min-width: 1024px) 780px, 100vw"
+                        zoomLevel={4}
+                        activeOnRightHalfOnly={true}
                       />
                     ) : null}
                   </div>
@@ -344,24 +348,27 @@ export default function BeforeAfterPage() {
                               />
                             </div>
                             <div className="relative w-1/2 h-full">
-                              <Image
+                              <MagnifyImage
                                 src={review.imageAfter}
                                 alt={`${review.title} 수술 후`}
                                 fill
                                 className="object-contain"
                                 quality={100}
                                 sizes="(min-width: 1024px) 16vw, 50vw"
+                                zoomLevel={2}
                               />
                             </div>
                           </div>
                         ) : review.image ? (
-                          <Image
+                          <MagnifyImage
                             src={review.image}
                             alt={`${review.title} 수술 전후`}
                             fill
                             className="object-contain"
                             quality={100}
                             sizes="(min-width: 1024px) 33vw, 100vw"
+                            zoomLevel={4}
+                            activeOnRightHalfOnly={true}
                           />
                         ) : null}
                       </div>
