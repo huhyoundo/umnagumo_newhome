@@ -148,7 +148,10 @@ function ParticleBackground({ isVisible }: { isVisible: boolean }) {
             width: p.size,
             height: p.size,
             opacity: isVisible ? 0.6 : 0,
-            animation: isVisible ? `particleFloat ${p.duration}s ease-in-out infinite` : 'none',
+            animationName: isVisible ? 'particleFloat' : 'none',
+            animationDuration: `${p.duration}s`,
+            animationTimingFunction: 'ease-in-out',
+            animationIterationCount: 'infinite',
             animationDelay: `${p.delay}s`,
             transition: 'opacity 1s ease',
           }}
