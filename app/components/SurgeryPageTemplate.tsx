@@ -202,7 +202,7 @@ function AnimatedText({ children, isVisible, delay = 0, type = 'char', className
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0) rotateX(0)' : 'translateY(40px) rotateX(-20deg)',
               transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-              transitionDelay: `${delay + index * 0.08}s`,
+              transitionDelay: `${(delay + index * 0.08).toFixed(3)}s`,
             }}
           >
             {word}{index < words.length - 1 ? '\u00A0' : ''}
@@ -229,7 +229,7 @@ function AnimatedText({ children, isVisible, delay = 0, type = 'char', className
                   ? 'translateX(0) scale(1)'
                   : `translateX(${fromLeft ? '-50px' : '50px'}) scale(0.8)`,
                 transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                transitionDelay: `${delay + Math.abs(index - mid) * 0.03}s`,
+                transitionDelay: `${(delay + Math.abs(index - mid) * 0.03).toFixed(3)}s`,
               }}
             >
               {char === ' ' ? '\u00A0' : char}
@@ -250,10 +250,10 @@ function AnimatedText({ children, isVisible, delay = 0, type = 'char', className
             className="inline-block will-change-transform"
             style={{
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : `translateY(${20 + Math.sin(index * 0.5) * 15}px)`,
+              transform: isVisible ? 'translateY(0)' : `translateY(${(20 + Math.sin(index * 0.5) * 15).toFixed(3)}px)`,
               transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-              transitionDelay: `${delay + index * 0.025}s`,
-              animation: isVisible ? `heroWave 3s ease-in-out infinite ${index * 0.1}s` : 'none',
+              transitionDelay: `${(delay + index * 0.025).toFixed(3)}s`,
+              animation: isVisible ? `heroWave 3s ease-in-out infinite ${(index * 0.1).toFixed(3)}s` : 'none',
             }}
           >
             {char === ' ' ? '\u00A0' : char}
@@ -277,7 +277,7 @@ function AnimatedText({ children, isVisible, delay = 0, type = 'char', className
               ? 'perspective(500px) rotateX(0) translateY(0)'
               : 'perspective(500px) rotateX(-90deg) translateY(30px)',
             transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-            transitionDelay: `${delay + index * 0.03}s`,
+            transitionDelay: `${(delay + index * 0.03).toFixed(3)}s`,
             transformOrigin: 'center bottom',
           }}
         >
