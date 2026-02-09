@@ -64,8 +64,8 @@ export const legacyBreastGalleryItems: LegacyBreastGalleryItem[] = [
     surgeryType: "primary",
     title: "겨드랑이 절개하 첫수술\n멘토 보형물",
     description: "",
-    image: "/assets/before-after/primary/NEWS_000000000000013-preview.png",
-    modalImage: "/assets/before-after/primary/NEWS_000000000000013-modal.jpg",
+    image: "/gallery/13_surgery.png",
+    modalImage: "/gallery/13.png",
   },
   {
     id: 12,
